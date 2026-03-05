@@ -1,17 +1,109 @@
-# Why Believe? | Evidence for God
+# Why Believe?
 
-A single-page website presenting evidence and arguments for the existence of God. The site explores philosophical, scientific, and historical reasoning in an accessible and visually engaging format.
+**Free online apologetics curriculum for grades 6–12**
 
-## Overview
+[whybelieve.faith](https://whybelieve.faith)
 
-This project is a static HTML website that covers topics such as cosmological arguments, fine-tuning of the universe, the origin of life, historical evidence, and more. It features a clean, modern design with a navy and gold color scheme.
+---
 
-## Getting Started
+## What This Is
 
-Simply open `index.html` in any web browser to view the site. No build tools or server required.
+A free, interactive, single-page website that teaches students *why* there is evidence for the existence of God — using logic, philosophy, history, science, and archaeology. Not just what Christians believe, but why the evidence supports it.
+
+Two tracks, one mission:
+
+- **Grades 6–8** — 8 lessons using everyday analogies, plain language, and step-by-step reasoning
+- **Grades 9–12** — 9 lessons engaging formal philosophical arguments, peer-reviewed science, primary historical sources, and advanced topics including quantum physics and consciousness
+
+## Curriculum Overview
+
+### Grades 6–8 (8 Lessons)
+
+| # | Lesson | Topic |
+|---|--------|-------|
+| 1 | The Universe Needs a Cause | Cosmological Argument |
+| 2 | Right & Wrong: Where Does Morality Come From? | Moral Argument |
+| 3 | The Universe Was Built for Life — On Purpose? | Fine-Tuning Argument |
+| 4 | Can We Trust the Bible? The Manuscript Evidence | Biblical Reliability |
+| 5 | Did Archaeologists Prove the Bible Right? | Archaeological Evidence |
+| 6 | Non-Christian Sources Confirm Jesus Existed | Historical Sources |
+| 7 | The Empty Tomb: What Really Happened? | Resurrection Evidence |
+| 8 | If God is Good, Why Is There Evil? | Problem of Evil |
+
+### Grades 9–12 (9 Lessons)
+
+| # | Lesson | Topic |
+|---|--------|-------|
+| 1 | The Kalam Cosmological Argument | Craig, al-Ghazali, Borde-Guth-Vilenkin theorem |
+| 2 | The Moral Argument: From Objective Values to God | Euthyphro, Divine Command Theory, moral realism |
+| 3 | Cosmic Fine-Tuning and the Design Inference | Penrose, Collins, Lennox, Boltzmann Brains |
+| 4 | The Origin of Life: What Chemistry Actually Shows | James Tour's five unsolved problems, chirality, Miller-Urey |
+| 5 | Textual Criticism and the New Testament | P52, 400K variants, Ehrman's own data |
+| 6 | Archaeology, Extra-Biblical Sources & the Historical Method | Pilate Stone, criteria of authenticity, Ramsay on Luke |
+| 7 | The Resurrection: A Historical Investigation | Habermas minimal facts, pre-Pauline creed, N.T. Wright |
+| 8 | The Problem of Evil: A Philosophical Deep Dive | Plantinga's Free Will Defense, skeptical theism, Lewis |
+| 9 | Quantum Physics, Non-Locality & Consciousness *(Deeper Analysis)* | Bell's inequality, 2022 Nobel Prize, consciousness-first ontology |
+
+## Features
+
+- **Interactive quizzes** with instant feedback in every lesson
+- **Objection/Response blocks** addressing common skeptical challenges
+- **Key terms** with definitions for each lesson
+- **Discussion questions** for classroom or small group use
+- **Progress tracking** with visual progress dots
+- **Grade selector** on homepage — one site, two tracks
+- **Fully responsive** — works on desktop, tablet, and mobile
+- **No dependencies** — single HTML file, no build step, no frameworks
+- **100% free** — no account, no cost, no catch
+
+## Thinkers Referenced
+
+The curriculum draws on the work of:
+
+- **William Lane Craig** — Kalam Cosmological Argument
+- **John Lennox** — Science and faith, fine-tuning ([johnlennox.org](https://johnlennox.org))
+- **James Tour** — Origin of life, synthetic chemistry ([jmtour.com](https://jmtour.com))
+- **Alvin Plantinga** — Free Will Defense, modal logic
+- **C.S. Lewis** — Moral argument, problem of evil
+- **Gary Habermas** — Minimal facts approach to the resurrection
+- **N.T. Wright** — Historical case for the resurrection
+- **Thomas Aquinas** — Five Ways, classical theism
+- **Roger Penrose** — Fine-tuning, initial entropy conditions
+- **Robin Collins** — Likelihood Principle, design inference
+- **David Chalmers** — Hard problem of consciousness
+- **Bernardo Kastrup** — Analytic idealism
 
 ## Tech Stack
 
-- HTML5 / CSS3 / JavaScript
-- Google Fonts (Playfair Display, Source Serif 4, JetBrains Mono)
-- Fully static — no frameworks or dependencies
+- Single `index.html` file (~3,300 lines)
+- Vanilla HTML, CSS, and JavaScript — no build tools
+- Google Fonts: Playfair Display, Source Serif 4, JetBrains Mono
+- Hosted on [Netlify](https://www.netlify.com/) (free tier)
+- Domain: `whybelieve.faith`
+
+## Deployment
+
+Drop `index.html` into any static hosting provider. No build step required.
+
+```
+# Netlify (via CLI)
+netlify deploy --prod --dir .
+
+# Or just drag-and-drop index.html into the Netlify dashboard
+```
+
+## Further Resources
+
+- [johnlennox.org](https://johnlennox.org) — John Lennox
+- [jmtour.com](https://jmtour.com) — James Tour
+- [reasonablefaith.org](https://www.reasonablefaith.org) — William Lane Craig
+- [reasons.org](https://reasons.org) — Hugh Ross / Reasons to Believe
+- [ttb.org](https://ttb.org) — Thru the Bible with J. Vernon McGee
+
+## License
+
+This is an open educational resource. Share it freely.
+
+## Contact
+
+whybelieve.faith@pm.me
