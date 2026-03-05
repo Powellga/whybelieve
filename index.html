@@ -165,6 +165,56 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── GRADE SELECTOR ── */
+  .grade-selector-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .grade-selector-btns {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  }
+  .grade-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 1.25rem 2rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: center;
+    min-width: 200px;
+  }
+  .grade-btn:hover {
+    background: rgba(200,146,42,0.15);
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(200,146,42,0.2);
+  }
+  .grade-btn-grade {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--gold-light);
+    margin-bottom: 0.3rem;
+  }
+  .grade-btn-desc {
+    display: block;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    font-style: italic;
+  }
+
+  /* 9-12 accent color */
+  .advanced .lesson-card { border-top-color: #4a90d9; }
+  .advanced .lesson-tag { background: #e3edf7; color: #2a5a8f; }
+  .lesson-card.adv-card { border-top-color: #4a90d9; }
+  .lesson-card.adv-card .lesson-tag { background: #e3edf7; color: #2a5a8f; }
+  .lesson-card.adv-card .lesson-number { color: #4a90d9; }
+
   /* ── PAGES ── */
   .page { display: none; padding-top: 60px; min-height: 100vh; }
   .page.active { display: block; }
@@ -533,7 +583,8 @@
   /* Responsive */
   @media (max-width: 600px) {
     .nav-links .nav-btn:not(.always) { display: none; }
-    .nav-btn[data-page="lessons"] { display: inline-block; }
+    .grade-selector-btns { flex-direction: column; align-items: center; }
+    .grade-btn { min-width: 240px; }
   }
 </style>
 </head>
@@ -544,7 +595,8 @@
   <div class="nav-logo">Why Believe?</div>
   <div class="nav-links">
     <button class="nav-btn always active" data-page="home">Home</button>
-    <button class="nav-btn always" data-page="lessons">Lessons</button>
+    <button class="nav-btn always" data-page="lessons" id="nav-lessons-68">6–8</button>
+    <button class="nav-btn always" data-page="lessons-advanced" id="nav-lessons-912">9–12</button>
     <button class="nav-btn" data-page="about">About</button>
   </div>
 </nav>
@@ -553,11 +605,23 @@
 <div id="page-home" class="page active">
   <div class="hero">
     <div class="star-field" id="starField"></div>
-    <div class="hero-badge">FREE CURRICULUM · GRADES 6–8</div>
+    <div class="hero-badge">FREE CURRICULUM · GRADES 6–12</div>
     <h1>Why <span>Believe?</span></h1>
     <p class="hero-sub">Not just what Christians believe — but <em>why</em> there is real evidence that God exists.</p>
-    <div class="hero-cta">
-      <button class="btn-primary" onclick="showPage('lessons')">Start Learning →</button>
+    <div class="grade-selector" style="position:relative;animation:fadeUp 0.8s 0.4s ease both;">
+      <div class="grade-selector-label">CHOOSE YOUR TRACK</div>
+      <div class="grade-selector-btns">
+        <button class="grade-btn" onclick="setGrade('6-8');showPage('lessons')">
+          <span class="grade-btn-grade">Grades 6–8</span>
+          <span class="grade-btn-desc">Foundations — clear and simple</span>
+        </button>
+        <button class="grade-btn" onclick="setGrade('9-12');showPage('lessons-advanced')">
+          <span class="grade-btn-grade">Grades 9–12</span>
+          <span class="grade-btn-desc">Advanced — philosophy, science & history</span>
+        </button>
+      </div>
+    </div>
+    <div class="hero-cta" style="margin-top:1.5rem;">
       <button class="btn-secondary" onclick="showPage('about')">What is this?</button>
     </div>
   </div>
@@ -1230,7 +1294,7 @@
   <div class="lesson-container">
     <button class="lesson-back" onclick="showPage('lessons')">← Back to Lessons</button>
     <div class="lesson-header reveal">
-      <div class="lesson-number">LESSON 05 · ARCHAEOLOGICAL EVIDENCE</div>
+      <div class="lesson-number">LESSON 06 · ARCHAEOLOGICAL EVIDENCE</div>
       <h1>Did Archaeologists Prove the Bible Right?</h1>
       <p class="intro">For centuries, critics claimed the Bible invented places, kings, and events. Then archaeologists began excavating the Middle East. Discovery after discovery confirmed what the Bible described — in remarkable detail.</p>
     </div>
@@ -1658,28 +1722,1277 @@
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 9-12 ADVANCED TRACK -->
+<!-- ═══════════════════════════════════════════════════ -->
+
+<!-- ADVANCED LESSONS PAGE -->
+<div id="page-lessons-advanced" class="page">
+  <div class="lessons-hero" style="background:linear-gradient(135deg,#0f1f3d 0%,#1a3260 100%);">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:#4a90d9;letter-spacing:0.2em;margin-bottom:0.75rem;">GRADES 9–12 · ADVANCED TRACK</div>
+    <h2>Choose a Lesson</h2>
+    <p>Formal arguments, primary sources, peer-reviewed evidence, and advanced philosophy. Preparation for college-level challenges.</p>
+    <button class="btn-secondary" style="margin-top:1rem;font-size:0.85rem;padding:0.5rem 1.25rem;" onclick="showPage('lessons')">Switch to Grades 6–8 →</button>
+  </div>
+  <div style="max-width:960px;margin:1rem auto;padding:0 2rem;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-muted);letter-spacing:0.1em;margin-bottom:0.5rem;">UNIT 1 — PHILOSOPHY & SCIENCE: ARGUMENTS FOR GOD'S EXISTENCE</div>
+  </div>
+  <div class="lessons-grid" style="padding-bottom:0.5rem;">
+    <div class="lesson-card adv-card" onclick="showLesson('adv-kalam')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 01</div>
+        <h3>The Kalam Cosmological Argument</h3>
+        <p>William Lane Craig's formalization of an ancient argument: the impossibility of an actually infinite past, the Borde-Guth-Vilenkin theorem, and the metaphysics of causation.</p>
+        <div class="lesson-tag">COSMOLOGICAL · ADVANCED</div>
+      </div>
+    </div>
+    <div class="lesson-card adv-card" onclick="showLesson('adv-moral')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 02</div>
+        <h3>The Moral Argument: From Objective Values to God</h3>
+        <p>Kant's moral postulates, divine command theory vs. Euthyphro, and why naturalism cannot ground moral realism. A rigorous philosophical case.</p>
+        <div class="lesson-tag">MORAL · ADVANCED</div>
+      </div>
+    </div>
+    <div class="lesson-card adv-card" onclick="showLesson('adv-finetuning')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 03</div>
+        <h3>Cosmic Fine-Tuning and the Design Inference</h3>
+        <p>Roger Penrose's entropy calculation, Robin Collins's likelihood principle, and John Lennox on the limits of scientific explanation. Is the multiverse an answer?</p>
+        <div class="lesson-tag">TELEOLOGICAL · ADVANCED</div>
+      </div>
+    </div>
+    <div class="lesson-card adv-card" onclick="showLesson('adv-origin')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 04</div>
+        <h3>The Origin of Life: What Chemistry Actually Shows</h3>
+        <p>Rice University chemist James Tour — one of the world's most cited scientists — demonstrates that origin-of-life research has not solved even one of five fundamental chemical problems.</p>
+        <div class="lesson-tag">ORIGIN OF LIFE · JAMES TOUR</div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:960px;margin:1.5rem auto 0.5rem;padding:0 2rem;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-muted);letter-spacing:0.1em;">UNIT 2 — TEXTUAL AND ARCHAEOLOGICAL EVIDENCE</div>
+  </div>
+  <div class="lessons-grid" style="padding-bottom:0.5rem;">
+    <div class="lesson-card adv-card" onclick="showLesson('adv-textual')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 05</div>
+        <h3>Textual Criticism and the New Testament</h3>
+        <p>The science of reconstructing ancient texts. Papyrus P52, the Codex Sinaiticus, and why Bart Ehrman's own data supports reliability.</p>
+        <div class="lesson-tag">TEXTUAL CRITICISM · ADVANCED</div>
+      </div>
+    </div>
+    <div class="lesson-card adv-card" onclick="showLesson('adv-archaeology')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 06</div>
+        <h3>Archaeology, Extra-Biblical Sources & the Historical Method</h3>
+        <p>From the Pilate Stone to the James Ossuary. How historians evaluate ancient evidence and what the convergence of sources tells us.</p>
+        <div class="lesson-tag">ARCHAEOLOGY · ADVANCED</div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:960px;margin:1.5rem auto 0.5rem;padding:0 2rem;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-muted);letter-spacing:0.1em;">UNIT 3 — THE RESURRECTION & HARD QUESTIONS</div>
+  </div>
+  <div class="lessons-grid" style="padding-bottom:0.5rem;">
+    <div class="lesson-card adv-card" onclick="showLesson('adv-resurrection')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 07</div>
+        <h3>The Resurrection: A Historical Investigation</h3>
+        <p>Habermas's minimal facts, N.T. Wright's historiography, and Bayesian reasoning applied to miracle claims. What do serious historians actually conclude?</p>
+        <div class="lesson-tag">RESURRECTION · ADVANCED</div>
+      </div>
+    </div>
+    <div class="lesson-card adv-card" onclick="showLesson('adv-evil')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 08</div>
+        <h3>The Problem of Evil: A Philosophical Deep Dive</h3>
+        <p>Plantinga's modal Free Will Defense, Leibniz's "best possible world," skeptical theism, and why the logical problem of evil has been largely solved.</p>
+        <div class="lesson-tag">THEODICY · ADVANCED</div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:960px;margin:1.5rem auto 0.5rem;padding:0 2rem;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-muted);letter-spacing:0.1em;">DEEPER ANALYSIS — PHYSICS & CONSCIOUSNESS</div>
+  </div>
+  <div class="lessons-grid" style="padding-bottom:3rem;">
+    <div class="lesson-card adv-card" onclick="showLesson('adv-bells')" style="border-top-color:#7c5cbf;">
+      <div class="lesson-card-inner">
+        <div class="lesson-number" style="color:#7c5cbf;">LESSON 09 · DEEPER ANALYSIS</div>
+        <h3>Quantum Physics, Non-Locality & Consciousness</h3>
+        <p>Bell's inequality proves reality is non-local. What does that mean for materialism — and does consciousness point to something deeper than matter?</p>
+        <div class="lesson-tag" style="background:#ece5f5;color:#5a3d8f;">QUANTUM PHYSICS · CONSCIOUSNESS</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- LESSON ADV-01: KALAM COSMOLOGICAL ARGUMENT        -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-adv-kalam" class="page">
+  <div class="progress-bar">
+    <span>LESSON 01 OF 09 · ADVANCED</span>
+    <div class="progress-dots">
+      <div class="progress-dot current"></div>
+      <div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+      <div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons-advanced')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 01 · KALAM COSMOLOGICAL ARGUMENT</div>
+      <h1>The Kalam Cosmological Argument</h1>
+      <p class="intro">First formulated by medieval Islamic philosopher al-Ghazali and rigorously defended by William Lane Craig, the Kalam argument uses both philosophical reasoning and modern cosmology to demonstrate that the universe has a transcendent cause.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Formal Argument</h2>
+      <p>The Kalam Cosmological Argument has a deceptively simple logical structure. Its power lies not in its complexity but in the strength of its premises:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">P1</div><div><strong>Everything that begins to exist has a cause.</strong></div></li>
+        <li><div class="step-num">P2</div><div><strong>The universe began to exist.</strong></div></li>
+        <li><div class="step-num">∴</div><div><strong>Therefore, the universe has a cause.</strong></div></li>
+      </ul>
+      <p>The argument is logically valid — if both premises are true, the conclusion follows necessarily. The question is whether both premises can withstand scrutiny. As we will see, both are supported by strong philosophical and scientific evidence.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Premise 1: The Causal Principle</h2>
+      <p>The claim that everything which begins to exist has a cause is not merely intuitive — it is a foundational principle of both science and everyday reasoning. It is presupposed by every scientific experiment ever conducted. If effects could arise without causes, the entire enterprise of scientific inquiry would collapse.</p>
+      <p>Note the precise wording: the premise applies to things that <em>begin to exist</em>, not to all things. This is crucial. The argument does not claim that everything has a cause — only things with a temporal origin. Something that exists eternally and necessarily would not require a cause.</p>
+      <p>Philosopher Alexander Pruss has formulated a strengthened version through the Principle of Sufficient Reason: every contingent fact has an explanation. If the universe is a contingent fact — and modern cosmology strongly suggests it is — then it requires an explanation.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Premise 2: The Universe Began to Exist</h2>
+      <p>This premise is supported by two independent lines of evidence: philosophical arguments against the possibility of an actually infinite past, and modern cosmological science.</p>
+      <h3>The Philosophical Argument</h3>
+      <p>An actual infinite — as opposed to a potential infinite — cannot exist in concrete reality. This is not a claim about mathematics; mathematicians work with infinite sets all the time. The claim is that an actually infinite number of <em>real, successive, temporal events</em> cannot exist. If the past were actually infinite, an infinite number of events would have already elapsed — which means we would never have arrived at the present moment. The fact that we are here now entails that the series of past events is finite, which means the universe had a beginning.</p>
+      <h3>The Scientific Evidence</h3>
+      <p>Modern cosmology has independently confirmed what the philosophical argument implies:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>The Big Bang.</strong> Standard cosmological models describe a universe that began from an initial singularity approximately 13.8 billion years ago. Space, time, matter, and energy all originated at this point.</div></li>
+        <li><div class="step-num">2</div><div><strong>The Second Law of Thermodynamics.</strong> The universe is running down — entropy is increasing. If the universe were eternal, it would have already reached maximum entropy (heat death). The fact that it hasn't tells us it had a beginning.</div></li>
+        <li><div class="step-num">3</div><div><strong>The Borde-Guth-Vilenkin Theorem (2003).</strong> Arvind Borde, Alan Guth, and Alexander Vilenkin proved that any universe which has, on average, been expanding throughout its history must have a past spacetime boundary. Vilenkin has stated: "All the evidence we have says that the universe had a beginning."</div></li>
+      </ul>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">📎 WHAT THE PHYSICIST SAID</div>
+      <p>Alexander Vilenkin, one of the world's leading cosmologists, wrote: <strong>"It is said that an argument is what convinces reasonable men and a proof is what it takes to convince even an unreasonable man. With the proof now in place, cosmologists can no longer hide behind the possibility of a past-eternal universe."</strong></p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Cause of the Universe</h2>
+      <p>If the universe — meaning all space, time, matter, and energy — had a cause, we can deduce several properties of that cause through conceptual analysis alone:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>Timeless</strong> — it caused time to begin, so it cannot be temporal.</div></li>
+        <li><div class="step-num">2</div><div><strong>Spaceless</strong> — it caused space to begin, so it exists beyond spatial dimensions.</div></li>
+        <li><div class="step-num">3</div><div><strong>Immaterial</strong> — it caused matter and energy to begin, so it is non-physical.</div></li>
+        <li><div class="step-num">4</div><div><strong>Enormously powerful</strong> — it brought the universe into existence from nothing.</div></li>
+        <li><div class="step-num">5</div><div><strong>Personal</strong> — a timeless cause can produce a temporal effect only through a free decision (the exercise of will). A mechanistic, impersonal cause existing timelessly would produce its effect from eternity, not at a finite point. Only a personal agent can freely choose to create at a moment.</div></li>
+      </ul>
+      <p>This description — a timeless, spaceless, immaterial, enormously powerful personal being — is what theists mean by God.</p>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">KALAM</div><div class="term-def">Arabic for "speech" or "discourse." Refers to the medieval Islamic theological tradition in which this cosmological argument was first formalized.</div></div>
+      <div class="term-card"><div class="term-name">ACTUAL INFINITE</div><div class="term-def">A completed infinite quantity existing all at once in reality — as opposed to a potential infinite, which grows toward infinity without reaching it.</div></div>
+      <div class="term-card"><div class="term-name">BORDE-GUTH-VILENKIN</div><div class="term-def">A 2003 cosmological theorem proving that any universe with average expansion greater than zero must have a past spacetime boundary (a beginning).</div></div>
+      <div class="term-card"><div class="term-name">CONTINGENT VS. NECESSARY</div><div class="term-def">Something contingent could have failed to exist; something necessary exists by the very nature of what it is and cannot fail to exist.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="content-block reveal">
+      <h2>Common Objections</h2>
+      <div class="objection-block">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"Quantum mechanics shows that things can come into existence without a cause — virtual particles appear from nothing."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Virtual particles do not come from nothing. They arise from quantum vacuum fields — which are structured, law-governed physical states containing energy. A quantum vacuum is emphatically not "nothing." The relevant question is: why does the quantum vacuum (or any physical reality) exist at all? That is precisely what the Kalam argument addresses.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"Maybe the universe is cyclical — it expands, collapses, and repeats forever."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Cyclic models face two problems. First, the Borde-Guth-Vilenkin theorem applies even to cyclic cosmologies — if the average expansion rate is positive, there must still be a beginning. Second, entropy accumulates across cycles, meaning each successive "bounce" would look different from the last. Running the sequence backward still requires a first cycle.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"If God doesn't need a cause, why does the universe?"</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>The argument does not claim "everything needs a cause." It claims everything that <em>begins to exist</em> needs a cause. God, by hypothesis, did not begin to exist — God exists necessarily and eternally. The universe, by contrast, began to exist (as both philosophy and physics confirm). Only things with a beginning require a cause.</p></div>
+      </div>
+    </div>
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It — Discussion Questions</div>
+      <ul>
+        <li>What is the difference between a potential infinite and an actual infinite? Why does this matter for the argument?</li>
+        <li>The Borde-Guth-Vilenkin theorem is a mathematical proof, not an empirical observation. Does this strengthen or weaken its force?</li>
+        <li>Why does Craig argue the cause must be personal rather than mechanistic? Do you find the argument from agent causation compelling?</li>
+        <li>Could a necessary being be non-personal (like an abstract mathematical structure)? Why or why not?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">Why does the Kalam argument conclude the cause of the universe must be personal?</p>
+      <div class="quiz-options" id="qa1-options">
+        <button class="quiz-option" onclick="answerAdv(this,'qa1',false)">A. Because the Bible says God is personal.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa1',true)">B. Because only a personal agent with free will can produce a temporal effect from a timeless state — a mechanistic cause would produce its effect from eternity.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa1',false)">C. Because scientists have proven that personal beings existed before the Big Bang.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa1',false)">D. Because impersonal causes don't exist.</button>
+      </div>
+      <div class="quiz-feedback" id="qa1-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p>The Kalam Cosmological Argument demonstrates through both philosophical reasoning and modern cosmology that <strong>the universe began to exist and therefore has a transcendent, personal cause</strong> — timeless, spaceless, immaterial, and enormously powerful. This conclusion follows from premises that have withstood rigorous academic scrutiny for decades.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-primary" style="background:#4a90d9;" onclick="showLesson('adv-moral')">Next: Moral Argument →</button>
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showPage('lessons-advanced')">← All Lessons</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- LESSON ADV-02: MORAL ARGUMENT                      -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-adv-moral" class="page">
+  <div class="progress-bar">
+    <span>LESSON 02 OF 09 · ADVANCED</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div>
+      <div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+      <div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons-advanced')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 02 · MORAL ARGUMENT</div>
+      <h1>The Moral Argument: From Objective Values to God</h1>
+      <p class="intro">If objective moral truths exist — if some things are genuinely right or wrong regardless of opinion — then those truths require a foundation. The Moral Argument contends that God is the best explanation for the existence of objective moral values and duties.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Formal Argument</h2>
+      <ul class="argument-steps">
+        <li><div class="step-num">P1</div><div><strong>If God does not exist, objective moral values and duties do not exist.</strong></div></li>
+        <li><div class="step-num">P2</div><div><strong>Objective moral values and duties do exist.</strong></div></li>
+        <li><div class="step-num">∴</div><div><strong>Therefore, God exists.</strong></div></li>
+      </ul>
+      <p>This is a logically valid <em>modus tollens</em> argument. If you deny the conclusion, you must deny one of the premises. Most people find Premise 2 difficult to reject — which means the weight of the argument falls on Premise 1.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Premise 1: Why Naturalism Cannot Ground Morality</h2>
+      <p>On a naturalistic worldview — one where only physical matter, energy, and natural laws exist — moral facts have no obvious home. Consider the alternatives:</p>
+      <h3>Evolution?</h3>
+      <p>Evolution explains why we <em>have</em> moral instincts but cannot explain why those instincts track <em>truth</em>. Natural selection favors survival-promoting behavior, not morally correct behavior. If our moral sense is merely a survival mechanism, we have no reason to think it reveals genuine moral facts. As philosopher Michael Ruse has candidly admitted: on a purely evolutionary account, morality is "an illusion fobbed off on us by our genes."</p>
+      <h3>Social Contract?</h3>
+      <p>Social contract theories ground morality in agreements among rational agents. But agreements are contingent — they could have been different. A society that agreed to permit genocide would not make genocide right. Social contracts describe what people <em>do</em> agree to, not what they <em>ought</em> to agree to.</p>
+      <h3>Moral Platonism?</h3>
+      <p>Some philosophers argue that moral truths exist as abstract, mind-independent facts — like mathematical truths. This is philosophically coherent, but it raises a deep problem: why would abstract moral facts have any authority over concrete beings? And how would purely physical creatures gain epistemic access to non-physical moral truths? Without a bridge between the abstract and the concrete, moral Platonism is incomplete.</p>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">📎 DOSTOEVSKY'S QUESTION</div>
+      <p>In <em>The Brothers Karamazov</em>, Dostoevsky explores the idea that <strong>"without God, everything is permitted."</strong> This is not a claim about psychology (atheists can behave well) but about ontology: without a transcendent moral lawgiver, there is no objective standard by which any action can be called genuinely right or genuinely wrong.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Premise 2: Moral Realism</h2>
+      <p>Do objective moral facts exist? Consider test cases:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">•</div><div>The Holocaust was objectively evil — not merely unpopular.</div></li>
+        <li><div class="step-num">•</div><div>Torturing a child for amusement is wrong regardless of any cultural norms.</div></li>
+        <li><div class="step-num">•</div><div>Human beings have inherent dignity and rights that are not granted by governments.</div></li>
+      </ul>
+      <p>If you affirm any of these, you are a moral realist. And moral realism — the existence of objective moral facts — is the majority position among professional philosophers. A 2020 PhilPapers survey found that roughly 62% of philosophers accept or lean toward moral realism.</p>
+      <p>Note also that moral relativism is self-defeating. The claim "there are no objective moral truths" is itself presented as an objective truth about morality. The relativist cannot state their position without undermining it.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Euthyphro Dilemma</h2>
+      <p>The oldest and most common objection to theistic ethics is the Euthyphro Dilemma (from Plato): "Is something good because God commands it, or does God command it because it is good?"</p>
+      <p>If the former, morality seems arbitrary. If the latter, morality is independent of God, making God irrelevant to ethics.</p>
+      <p>The standard theistic response takes neither horn. Morality is grounded in God's <em>nature</em>, not God's arbitrary will. God is essentially good — goodness is not something God decides but something God <em>is</em>. God's commands flow necessarily from his unchangeable character. This is known as the <strong>Modified Divine Command Theory</strong>, defended by Robert Adams and William Lane Craig.</p>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">MORAL REALISM</div><div class="term-def">The philosophical position that objective moral facts exist independently of human opinion. Majority position among professional philosophers.</div></div>
+      <div class="term-card"><div class="term-name">EUTHYPHRO DILEMMA</div><div class="term-def">A challenge from Plato: is goodness determined by God's will or independent of it? Resolved by grounding morality in God's nature.</div></div>
+      <div class="term-card"><div class="term-name">MODUS TOLLENS</div><div class="term-def">A valid logical form: "If P then Q; not Q; therefore not P." The Moral Argument uses this structure in reverse.</div></div>
+      <div class="term-card"><div class="term-name">DIVINE COMMAND THEORY</div><div class="term-def">The view that moral obligations are constituted by God's commands, grounded in God's essentially good nature.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="content-block reveal">
+      <h2>Common Objections</h2>
+      <div class="objection-block">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"Atheists can be moral. You don't need God to be a good person."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Absolutely true — and the argument does not deny this. The Moral Argument is not about moral <em>behavior</em> (epistemology) but about moral <em>ontology</em>: what <em>grounds</em> the existence of moral facts? An atheist can know and follow moral truths just as a person who doesn't believe in mathematics can still add correctly. The question is what makes those truths true — not who can access them.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"The existence of moral disagreement shows morality is subjective."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Disagreement does not entail subjectivity. People disagree about history, physics, and mathematics — yet we don't conclude those fields are subjective. Moral disagreement can reflect ignorance, bias, or cultural conditioning without undermining the existence of moral truth. In fact, the very act of moral disagreement presupposes that there is a right answer being sought.</p></div>
+      </div>
+    </div>
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>If evolution explains our moral intuitions, does that undermine their reliability? Apply the same logic to our cognitive faculties — does evolution undermine the reliability of reason itself?</li>
+        <li>How does the Modified Divine Command Theory escape the Euthyphro Dilemma?</li>
+        <li>Is moral Platonism a viable alternative to theistic moral realism? What are its weaknesses?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">The standard theistic response to the Euthyphro Dilemma is:</p>
+      <div class="quiz-options" id="qa2-options">
+        <button class="quiz-option" onclick="answerAdv(this,'qa2',false)">A. God arbitrarily decides what is good.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa2',false)">B. Morality is independent of God entirely.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa2',true)">C. Morality is grounded in God's essential nature — God does not decide what is good but rather IS goodness itself.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa2',false)">D. The dilemma cannot be resolved.</button>
+      </div>
+      <div class="quiz-feedback" id="qa2-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p>The Moral Argument demonstrates that <strong>objective moral values and duties — which most people recognize and most philosophers affirm — require a transcendent ground</strong>. Naturalism, evolution, and social contracts cannot provide this ground. God's essentially good nature offers the most coherent foundation for the moral facts we all recognize.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('adv-kalam')">← Lesson 1: Kalam</button>
+      <button class="btn-primary" style="background:#4a90d9;" onclick="showLesson('adv-finetuning')">Next: Fine-Tuning →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- LESSON ADV-03: FINE-TUNING                         -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-adv-finetuning" class="page">
+  <div class="progress-bar">
+    <span>LESSON 03 OF 09 · ADVANCED</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot current"></div><div class="progress-dot"></div>
+      <div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons-advanced')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 03 · TELEOLOGICAL ARGUMENT</div>
+      <h1>Cosmic Fine-Tuning and the Design Inference</h1>
+      <p class="intro">The fundamental constants of physics are calibrated to extraordinarily precise values required for the existence of life, matter, and chemistry. Physicists call this "fine-tuning." The question is: what explains it?</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Data</h2>
+      <p>Physicists have identified dozens of fundamental constants and initial conditions that must fall within extremely narrow ranges for a life-permitting universe to exist. Three of the most striking:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>The cosmological constant (Λ).</strong> This controls the expansion rate of the universe. Its observed value is fine-tuned to approximately 1 part in 10<sup>120</sup>. Roger Penrose calculated that the initial entropy conditions of the universe required a precision of 1 in 10<sup>10<sup>123</sup></sup> — a number so large that if you wrote a zero on every particle in the observable universe, you could not write it out.</div></li>
+        <li><div class="step-num">2</div><div><strong>The strong nuclear force.</strong> If stronger by 0.5%, hydrogen would be unstable and no stars could form. If weaker by 0.5%, only hydrogen would exist — no periodic table, no chemistry, no life.</div></li>
+        <li><div class="step-num">3</div><div><strong>The Hoyle resonance.</strong> Carbon is produced in stars via the triple-alpha process, which requires a specific nuclear resonance level in carbon-12. Fred Hoyle, who predicted this resonance and was an atheist at the time, said the precision required looked like "a put-up job" — as though a "super-intellect has monkeyed with physics."</div></li>
+      </ul>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Formal Argument</h2>
+      <p>Philosopher Robin Collins formulates the fine-tuning argument using the <strong>Likelihood Principle</strong>: evidence E supports hypothesis H1 over H2 if E is more probable given H1 than given H2.</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">P1</div><div>The fine-tuning of the universe is either due to physical necessity, chance, or design.</div></li>
+        <li><div class="step-num">P2</div><div>It is not due to physical necessity (no known law requires these values).</div></li>
+        <li><div class="step-num">P3</div><div>It is not due to chance (the probabilities are astronomically against it).</div></li>
+        <li><div class="step-num">∴</div><div>Therefore, fine-tuning is best explained by design.</div></li>
+      </ul>
+      <p>As John Lennox, Oxford mathematician and philosopher, has argued: the intelligibility of the universe — the fact that it can be described by elegant mathematical laws — itself requires explanation. Science can describe <em>how</em> the universe works; it cannot explain <em>why</em> it is comprehensible at all. Lennox contends that the rational intelligibility of nature is precisely what we would expect if a rational mind lies behind it.</p>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">📎 LENNOX ON SCIENCE AND GOD</div>
+      <p>John Lennox writes: <strong>"The more we get to know about our universe, the more the hypothesis that there is a Creator gains in credibility as the best explanation of why we are here."</strong> For Lennox, science does not compete with God — science reveals the fingerprints of a designing intelligence. <a href="https://johnlennox.org" target="_blank" rel="noopener noreferrer" style="color:var(--gold-light);border-bottom:1px solid rgba(232,184,75,0.3);">johnlennox.org</a></p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Multiverse Objection</h2>
+      <p>The most common skeptical response to fine-tuning is the multiverse hypothesis: perhaps there are infinitely many universes with random constant values, and we inevitably find ourselves in a life-permitting one.</p>
+      <p>Several problems with this response:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>No empirical evidence.</strong> There is currently no observational or experimental evidence for the existence of other universes. The multiverse is a theoretical speculation, not an established scientific finding.</div></li>
+        <li><div class="step-num">2</div><div><strong>It pushes the problem back.</strong> Any multiverse-generating mechanism would itself require fine-tuning — specific laws, initial conditions, and parameters must be precisely calibrated to produce universes at all.</div></li>
+        <li><div class="step-num">3</div><div><strong>Parsimony.</strong> Invoking an infinite number of unobservable universes to avoid a single designing intelligence is arguably the least parsimonious explanation available.</div></li>
+        <li><div class="step-num">4</div><div><strong>The Boltzmann Brain problem.</strong> In a truly random multiverse, it is overwhelmingly more probable that a single brain with false memories of a universe would fluctuate into existence than that an entire finely-tuned universe would. If the multiverse is real, we should expect to be Boltzmann brains — but we are not.</div></li>
+      </ul>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">LIKELIHOOD PRINCIPLE</div><div class="term-def">Evidence favors whichever hypothesis makes that evidence more probable. Used by Collins to formalize the design inference.</div></div>
+      <div class="term-card"><div class="term-name">PENROSE NUMBER</div><div class="term-def">Roger Penrose's calculation that the initial conditions of the universe required precision of 1 in 10^(10^123) — an incomprehensibly precise calibration.</div></div>
+      <div class="term-card"><div class="term-name">HOYLE RESONANCE</div><div class="term-def">A specific energy level in carbon-12 that must exist for carbon to be produced in stars. Its existence was predicted by Fred Hoyle and later confirmed experimentally.</div></div>
+      <div class="term-card"><div class="term-name">BOLTZMANN BRAIN</div><div class="term-def">A hypothetical self-aware entity that arises from random fluctuations. In a random multiverse, such entities would vastly outnumber real observers.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>Is invoking an infinite multiverse to explain fine-tuning more or less parsimonious than invoking a designer? On what grounds?</li>
+        <li>Fred Hoyle was an atheist. Why is his reaction to the carbon resonance significant?</li>
+        <li>Lennox argues that science and faith are allies, not enemies. Does fine-tuning support this view? Why?</li>
+        <li>Does fine-tuning point to a generic "designer" or specifically to the God of classical theism? What additional arguments would be needed?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">What is the Boltzmann Brain problem for the multiverse hypothesis?</p>
+      <div class="quiz-options" id="qa3-options">
+        <button class="quiz-option" onclick="answerAdv(this,'qa3',false)">A. Boltzmann proved the multiverse cannot exist.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa3',true)">B. In a random multiverse, isolated brains with false memories would be vastly more common than entire fine-tuned universes — making our existence as real observers in a real universe deeply improbable.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa3',false)">C. Brains cannot exist in multiple universes simultaneously.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa3',false)">D. Boltzmann's equations show fine-tuning is unnecessary for life.</button>
+      </div>
+      <div class="quiz-feedback" id="qa3-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p>The fine-tuning of the universe's constants to life-permitting values — <strong>with precisions ranging from 1 in 10<sup>40</sup> to 1 in 10<sup>10<sup>123</sup></sup></strong> — is best explained by intentional design. The multiverse hypothesis lacks evidence, faces its own fine-tuning problems, and generates the Boltzmann Brain paradox. Design remains the most parsimonious and explanatorily powerful option.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('adv-moral')">← Lesson 2: Moral</button>
+      <button class="btn-primary" style="background:#4a90d9;" onclick="showLesson('adv-origin')">Next: Origin of Life →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- LESSON ADV-04: ORIGIN OF LIFE — JAMES TOUR         -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-adv-origin" class="page">
+  <div class="progress-bar">
+    <span>LESSON 04 OF 09 · ADVANCED</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot current"></div>
+      <div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons-advanced')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 04 · ORIGIN OF LIFE</div>
+      <h1>The Origin of Life: What Chemistry Actually Shows</h1>
+      <p class="intro">The fine-tuning argument shows the universe was calibrated for life. But there is a separate, even harder question: once a universe with the right constants exists, how did non-living chemicals become the first living cell? Rice University chemist James Tour — one of the world's leading synthetic organic chemists — argues that the honest answer is: nobody knows.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Why This Question Matters</h2>
+      <p>The origin of life — sometimes called "abiogenesis" or "chemical evolution" — is the question of how the first living cell arose from non-living chemistry. It is important to distinguish this from biological evolution. Darwin's theory of evolution by natural selection explains how existing life diversifies. It does not explain — and Darwin himself acknowledged it does not explain — how life began in the first place.</p>
+      <p>This is not a minor gap. Without the first cell, there is nothing for natural selection to act upon. The origin of life is the foundation upon which all subsequent biology rests — and it remains, by any honest assessment, an unsolved problem in science.</p>
+      <p>James Tour, T.T. and W.F. Chao Professor of Chemistry at Rice University, has over 700 peer-reviewed publications and several hundred patents. He is one of the most cited chemists in the world. His expertise is in <em>building</em> complex molecules from scratch — which gives him a unique perspective on what would be required for life to assemble itself.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Five Unsolved Problems</h2>
+      <p>Life requires four classes of complex molecules: <strong>amino acids</strong> (for proteins), <strong>nucleotides</strong> (for DNA and RNA), <strong>carbohydrates</strong> (sugars), and <strong>lipids</strong> (for cell membranes). Tour has identified five fundamental problems that origin-of-life research has not solved:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>Polypeptide formation.</strong> How do amino acids link together into protein chains with the correct bonds? In a lab, chemists use carefully controlled conditions and protecting groups. On the early Earth, amino acids would have formed the wrong bonds, cross-linked randomly, or decomposed. No plausible prebiotic mechanism produces functional protein chains.</div></li>
+        <li><div class="step-num">2</div><div><strong>Polynucleotide formation.</strong> How do nucleotides link into RNA or DNA chains with fewer than 2% incorrect linkages? The chemistry of linking nucleotides is notoriously difficult. Even with purified starting materials and expert intervention, yields are poor and error rates are high.</div></li>
+        <li><div class="step-num">3</div><div><strong>Polysaccharide formation.</strong> How do simple sugars like glucose link together in the correct orientations? Sugars are chemically fragile, highly reactive, and form complex mixtures rather than the ordered chains biology requires.</div></li>
+        <li><div class="step-num">4</div><div><strong>Specified information.</strong> Even if you could make chains of amino acids, nucleotides, and sugars — how do they contain the right <em>sequence</em>? The difference between a functional protein and a random chain of amino acids is like the difference between a coherent sentence and random letters. Where does the information come from?</div></li>
+        <li><div class="step-num">5</div><div><strong>Cellular assembly.</strong> Even if all four molecular types existed in the right forms, how would they assemble into a functional cell? A living cell is not a bag of chemicals — it is an integrated nanosystem of staggering complexity, with membranes, molecular machines, energy systems, and information-processing architecture all working in concert.</div></li>
+      </ul>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">📎 TOUR'S CHALLENGE</div>
+      <p>In 2023, Tour issued a public 60-day challenge to ten leading origin-of-life researchers: demonstrate that <em>any one</em> of these five problems has been solved — even under unrealistically favorable conditions. He allowed them to assume purified starting materials, correct handedness, and even let a three-member panel chosen from among the ten experts judge the results. <strong>The deadline passed without any researcher attempting to answer even one challenge.</strong> <a href="https://jmtour.com" target="_blank" rel="noopener noreferrer" style="color:var(--gold-light);border-bottom:1px solid rgba(232,184,75,0.3);">jmtour.com</a></p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Chirality Problem</h2>
+      <p>One of the deepest chemical obstacles deserves special attention. Most biological molecules exhibit <strong>chirality</strong> — they come in "left-handed" and "right-handed" forms, like mirror images of each other. Life uses almost exclusively left-handed amino acids and right-handed sugars. A single wrong-handed molecule in a protein chain can destroy its function.</p>
+      <p>Every known prebiotic synthesis produces a 50/50 mixture of left- and right-handed molecules. There is no demonstrated prebiotic mechanism for achieving the near-100% purity that life requires. Tour has pointed out that this problem alone — before you even get to sequencing, folding, or assembly — is sufficient to stop abiogenesis in its tracks.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Miller-Urey Experiment: What It Actually Showed</h2>
+      <p>In 1953, Stanley Miller and Harold Urey famously produced amino acids by passing electrical sparks through a mixture of gases meant to simulate the early Earth's atmosphere. This experiment is routinely cited in textbooks as evidence that life's building blocks form easily under natural conditions.</p>
+      <p>What the textbooks often omit:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>Wrong atmosphere.</strong> Miller used a reducing atmosphere (methane, ammonia, hydrogen). Geochemists now believe the early Earth's atmosphere was largely composed of carbon dioxide and nitrogen — conditions that produce far fewer amino acids.</div></li>
+        <li><div class="step-num">2</div><div><strong>Only simple amino acids.</strong> The experiment produced a few of the simplest amino acids. It did not produce the complex amino acids life requires, nor nucleotides, nor sugars, nor lipids.</div></li>
+        <li><div class="step-num">3</div><div><strong>The product was tar.</strong> The dominant product was a complex, sticky, intractable mixture — "organic goo" — not the purified building blocks a cell would need. As Tour emphasizes: getting a few amino acids in a sea of tar is like finding a few bricks in a landfill and declaring you've explained the Empire State Building.</div></li>
+        <li><div class="step-num">4</div><div><strong>Building blocks are not buildings.</strong> Even if all the necessary molecules appeared, assembling them into a functional cell is a separate problem of incomprehensibly greater difficulty — like the difference between having a pile of transistors and having a working smartphone.</div></li>
+      </ul>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header">💡 TOUR'S ANALOGY</div>
+      <div class="analogy-body">
+        <strong>The Library of Congress.</strong> Tour draws a distinction between a large box of random alphabetic letters and the Library of Congress. Both contain the same basic components — letters. The difference is <em>information</em>: the specific sequencing that turns raw materials into meaning. The simplest living cell contains more organized information than the Library of Congress. Explaining the origin of life requires explaining not just the origin of molecular "letters" but the origin of the "books" — and no one has come close.
+      </div>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>What Tour Is — and Is Not — Arguing</h2>
+      <p>It is important to be precise about Tour's position:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">✓</div><div><strong>He IS arguing:</strong> that current origin-of-life research has not solved — and is nowhere close to solving — the problem of how non-living chemistry became a living cell. The gap between what has been demonstrated and what would be required is enormous.</div></li>
+        <li><div class="step-num">✓</div><div><strong>He IS arguing:</strong> that the public has been misled about the state of origin-of-life science. Popular media and some textbooks present the problem as nearly solved when, by any honest chemical assessment, it is not.</div></li>
+        <li><div class="step-num">✓</div><div><strong>He IS arguing:</strong> that the complexity of even the simplest cell points beyond unguided chemistry toward an intelligent source.</div></li>
+        <li><div class="step-num">✗</div><div><strong>He is NOT arguing:</strong> that science should stop investigating. Tour has explicitly encouraged continued research — but with intellectual honesty about the current state of knowledge.</div></li>
+        <li><div class="step-num">✗</div><div><strong>He is NOT arguing:</strong> against biological evolution (the diversification of existing life). His critique is specifically about chemical evolution — the origin of the first life.</div></li>
+      </ul>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">📎 TOUR IN HIS OWN WORDS</div>
+      <p>Tour writes: <strong>"Those who think scientists understand the issues of prebiotic chemistry are wholly misinformed. Nobody understands them. Maybe one day we will. But that day is far from today."</strong> He adds: "Life based upon amino acids, nucleotides, saccharides and lipids is an anomaly. Life should not exist anywhere in our universe. Yet we are led to believe that 3.8 billion years ago the requisite compounds could be found in some cave, or undersea vent, and somehow they assembled themselves into the first cell."</p>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">ABIOGENESIS</div><div class="term-def">The hypothetical natural process by which non-living chemicals gave rise to the first living cell. Distinguished from biological evolution, which describes changes in existing life.</div></div>
+      <div class="term-card"><div class="term-name">CHIRALITY</div><div class="term-def">The "handedness" of molecules. Life uses almost exclusively left-handed amino acids and right-handed sugars. No prebiotic process achieves the required purity.</div></div>
+      <div class="term-card"><div class="term-name">MILLER-UREY EXPERIMENT</div><div class="term-def">A 1953 experiment that produced simple amino acids from gases and electricity. Often overstated — it used the wrong atmosphere and produced mostly unusable tar.</div></div>
+      <div class="term-card"><div class="term-name">SPECIFIED COMPLEXITY</div><div class="term-def">The combination of complexity (many possible arrangements) and specification (only certain arrangements are functional). Life exhibits both — which unguided processes have never been shown to produce.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="content-block reveal">
+      <h2>Common Objections</h2>
+      <div class="objection-block">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"Given enough time, even improbable chemistry becomes inevitable. Life had billions of years."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Time is necessary but not sufficient. The problem is not just improbability — it is that the required chemistry works <em>against</em> life. In water, biological molecules tend to decompose, not assemble. Longer time periods mean more decomposition, not more progress. As Tour emphasizes, any amino acid chain that formed on the early Earth would have hydrolyzed (broken apart) long before it could find its way into a proto-cell. Time is the enemy, not the friend, of prebiotic chemistry.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"Tour is a nanotechnologist, not an origin-of-life researcher. He's outside his field."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Origin-of-life research <em>is</em> organic chemistry — it asks how complex organic molecules formed and assembled. Tour is one of the world's foremost experts in exactly that: synthesizing complex molecules from scratch. His expertise in building the very types of molecules that life requires gives him direct, relevant authority on whether proposed prebiotic pathways are chemically plausible. The question is not who is making the argument, but whether the chemistry is correct.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"Science just hasn't figured it out yet. Give it time."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>This is a fair point — science is ongoing. But Tour's argument is not "we'll never figure it out." His argument is: (1) the current state of knowledge is far more primitive than the public has been told, (2) the more we learn about cellular complexity, the harder the problem becomes (the goalposts keep moving further away, not closer), and (3) the honest conclusion right now is that unguided chemistry has not been demonstrated to produce life and the gap is widening, not closing.</p></div>
+      </div>
+    </div>
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>What is the difference between biological evolution and chemical evolution? Why does Tour's critique apply only to the latter?</li>
+        <li>Why is the chirality problem so devastating for prebiotic chemistry? What would a solution need to demonstrate?</li>
+        <li>Tour emphasizes that the more we learn about the cell, the harder the origin-of-life problem becomes. Why is this significant?</li>
+        <li>If the origin of life cannot currently be explained by unguided chemistry, what options remain? Is "we don't know yet" the same as "there is no answer"?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">Why does James Tour argue that the Miller-Urey experiment is insufficient to explain the origin of life?</p>
+      <div class="quiz-options" id="qa4-options">
+        <button class="quiz-option" onclick="answerAdv(this,'qa4',false)">A. Because the experiment failed to produce any organic molecules.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa4',false)">B. Because the experiment has been debunked as fraudulent.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa4',true)">C. Because it used the wrong atmospheric gases, produced mostly unusable tar along with only the simplest amino acids, and producing building blocks is not the same as producing a functional living cell.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa4',false)">D. Because amino acids cannot exist outside of living cells.</button>
+      </div>
+      <div class="quiz-feedback" id="qa4-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p><strong>The origin of life remains one of the deepest unsolved problems in all of science.</strong> James Tour — one of the world's top synthetic chemists — has demonstrated that no current origin-of-life model has solved even one of five fundamental chemical problems. The Miller-Urey experiment is routinely overstated. The chirality problem alone is a showstopper. And the more we learn about cellular complexity, the wider the gap becomes between what unguided chemistry can produce and what even the simplest life requires.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('adv-finetuning')">← Lesson 3: Fine-Tuning</button>
+      <button class="btn-primary" style="background:#4a90d9;" onclick="showLesson('adv-textual')">Next: Textual Criticism →</button>
+    </div>
+  </div>
+</div>
+<!-- LESSON ADV-04: TEXTUAL CRITICISM                   -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-adv-textual" class="page">
+  <div class="progress-bar">
+    <span>LESSON 05 OF 09 · ADVANCED</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot current"></div>
+      <div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons-advanced')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 05 · TEXTUAL CRITICISM</div>
+      <h1>Textual Criticism and the New Testament</h1>
+      <p class="intro">How do scholars reconstruct the original text of an ancient document when no original survives? Through the science of textual criticism — and the New Testament is, by every measurable standard, the best-attested document of the ancient world.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Manuscript Evidence: By the Numbers</h2>
+      <p>No original autograph of any ancient text survives. Historians reconstruct originals by comparing manuscript copies. The New Testament's manuscript attestation dwarfs every other ancient text:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>5,800+ Greek manuscripts</strong> — ranging from small fragments to complete New Testaments.</div></li>
+        <li><div class="step-num">2</div><div><strong>10,000+ Latin manuscripts</strong> — plus thousands more in Syriac, Coptic, Armenian, and other languages.</div></li>
+        <li><div class="step-num">3</div><div><strong>Over 1 million quotations</strong> in the writings of early Church Fathers — enough to reconstruct virtually the entire New Testament from patristic citations alone.</div></li>
+        <li><div class="step-num">4</div><div><strong>Earliest fragment: Papyrus P52</strong> — a fragment of John's Gospel dated to approximately 125 AD, just 30–60 years after composition.</div></li>
+      </ul>
+      <p>For comparison: Homer's Iliad survives in roughly 1,800 manuscripts, with the earliest substantial copies dating ~400 years after composition. Caesar's Gallic Wars survives in about 10 manuscripts, the earliest dating ~1,000 years later. No classicist doubts the reliability of these texts. The New Testament exceeds them by orders of magnitude.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>What About the Variants?</h2>
+      <p>Bart Ehrman and other critics emphasize that there are approximately 400,000 textual variants among New Testament manuscripts. This number sounds alarming — until you understand what it means.</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>More manuscripts = more variants.</strong> If you have 5,800 manuscripts, a single spelling difference appearing in all of them counts as 5,800 variants. The sheer number of manuscripts makes a large variant count inevitable and actually demonstrates how well-attested the text is.</div></li>
+        <li><div class="step-num">2</div><div><strong>The vast majority are trivial.</strong> Roughly 75% of variants are spelling differences (like "John" vs. "Johnn"). Another 20% are minor word-order changes that don't affect meaning in Greek.</div></li>
+        <li><div class="step-num">3</div><div><strong>No core doctrine is affected.</strong> Scholar Daniel Wallace — who has personally examined more New Testament manuscripts than anyone alive — concludes that no cardinal Christian doctrine depends on a textually disputed passage. The deity of Christ, the resurrection, salvation by grace — none of these depend on contested verses.</div></li>
+      </ul>
+      <p>Critically, Ehrman's own data supports this conclusion. When pressed in academic settings, Ehrman himself acknowledges that the text of the New Testament is remarkably well-preserved.</p>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">📎 EHRMAN'S OWN ADMISSION</div>
+      <p>Even Bart Ehrman — Christianity's most prominent textual critic — co-authored a textbook stating that <strong>"the essential Christian beliefs are not affected by textual variants in the manuscript tradition of the New Testament."</strong> (Ehrman & Metzger, <em>The Text of the New Testament</em>, 4th ed.)</p>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">TEXTUAL CRITICISM</div><div class="term-def">The academic discipline of comparing manuscript copies to reconstruct the original text of an ancient document.</div></div>
+      <div class="term-card"><div class="term-name">PAPYRUS P52</div><div class="term-def">The earliest known New Testament manuscript fragment — from John's Gospel, dated approximately 125 AD.</div></div>
+      <div class="term-card"><div class="term-name">TEXTUAL VARIANT</div><div class="term-def">Any difference between manuscript copies. Includes spelling errors, word order, and (rarely) added or omitted words.</div></div>
+      <div class="term-card"><div class="term-name">PATRISTIC CITATIONS</div><div class="term-def">Quotations of the New Testament found in the writings of early Church Fathers — an independent line of evidence for the original text.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="content-block reveal">
+      <h2>Common Objections</h2>
+      <div class="objection-block">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"The Bible has been rewritten and changed over centuries — like a game of telephone."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>The "telephone game" analogy is fundamentally misleading. In telephone, there is one chain of transmission and no way to check earlier versions. With manuscripts, there are <em>thousands</em> of independent chains, and earlier copies survive alongside later ones. Scholars can compare across chains to identify and correct errors. It is more like having 5,800 independent recordings of the same speech — errors in any one recording are easily detected by comparing it to the others.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"The books of the Bible were chosen at the Council of Nicaea for political reasons."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>This claim — popularized by Dan Brown's fiction — is historically baseless. The Council of Nicaea (325 AD) addressed the Arian controversy about Christ's divinity. It did not discuss or vote on the biblical canon. The books of the New Testament were already in widespread use across Christian communities for 200+ years before Nicaea. The canon developed organically through apostolic authorship, doctrinal consistency, and universal church acceptance — not by a single political decree.</p></div>
+      </div>
+    </div>
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>If the New Testament were the only ancient text with this level of manuscript support, would scholars trust it? What does it tell us that many people apply a stricter standard to the Bible than to other ancient documents?</li>
+        <li>Why is the "telephone game" analogy misleading when applied to manuscript transmission?</li>
+        <li>Does the existence of textual variants undermine reliability, or does the ability to identify variants actually demonstrate it?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">Why does having 400,000 textual variants in the New Testament manuscripts actually support its reliability?</p>
+      <div class="quiz-options" id="qa5-options">
+        <button class="quiz-option" onclick="answerAdv(this,'qa5',false)">A. Because variants prove the original text was perfect.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa5',true)">B. Because more manuscripts mean more opportunities to detect and correct copying errors — the large variant count reflects the enormous number of manuscripts, not corruption of the text.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa5',false)">C. Because all the variants are identical, proving the text never changed.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa5',false)">D. Because scholars ignore the variants when translating.</button>
+      </div>
+      <div class="quiz-feedback" id="qa5-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p><strong>The New Testament is the best-attested document of the ancient world</strong> — with 5,800+ Greek manuscripts, a copy gap as small as 25 years, and independent corroboration from patristic citations. Textual variants are overwhelmingly trivial, and no core Christian doctrine depends on a disputed passage. Even Christianity's fiercest textual critics acknowledge this.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('adv-origin')">← Lesson 4: Origin of Life</button>
+      <button class="btn-primary" style="background:#4a90d9;" onclick="showLesson('adv-archaeology')">Next: Archaeology →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- LESSON ADV-05: ARCHAEOLOGY                         -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-adv-archaeology" class="page">
+  <div class="progress-bar">
+    <span>LESSON 06 OF 09 · ADVANCED</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons-advanced')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 06 · ARCHAEOLOGICAL EVIDENCE</div>
+      <h1>Archaeology, Extra-Biblical Sources & the Historical Method</h1>
+      <p class="intro">Archaeology cannot prove theology — but it can confirm or deny whether the Bible accurately describes real places, real people, and real events. The track record is remarkable.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Historical Method</h2>
+      <p>Historians evaluate ancient documents using criteria of authenticity — independently developed tools that apply to all historical sources, not just the Bible:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>Multiple attestation.</strong> A claim attested by two or more independent sources is more likely historical.</div></li>
+        <li><div class="step-num">2</div><div><strong>Enemy attestation.</strong> If hostile sources confirm a claim, it is especially credible — they had no motivation to corroborate.</div></li>
+        <li><div class="step-num">3</div><div><strong>Embarrassment.</strong> Details that would embarrass the author or early community are likely authentic — no one would invent them.</div></li>
+        <li><div class="step-num">4</div><div><strong>Archaeological corroboration.</strong> Physical evidence confirming specific details enhances credibility.</div></li>
+        <li><div class="step-num">5</div><div><strong>Early dating.</strong> Sources written close to the events they describe are more reliable than later accounts.</div></li>
+      </ul>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Key Archaeological Confirmations</h2>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>The Pilate Stone (1961).</strong> Discovered at Caesarea Maritima, this limestone block bears the inscription "[Pon]tius Pilatus, Prefect of Judaea" — confirming Pilate's existence, title, and jurisdiction exactly as described in the Gospels.</div></li>
+        <li><div class="step-num">2</div><div><strong>The Tel Dan Stele (1993).</strong> An Aramaic inscription from the 9th century BC mentioning the "House of David" — the first non-biblical confirmation of King David's historical existence.</div></li>
+        <li><div class="step-num">3</div><div><strong>The Pool of Bethesda.</strong> John 5:2 describes a pool in Jerusalem with five porticoes. 19th-century excavations uncovered this exact structure — a pool with five colonnaded walkways — precisely where John placed it.</div></li>
+        <li><div class="step-num">4</div><div><strong>The Hittite Empire.</strong> For decades scholars considered the Hittites a biblical fiction. The 1906 discovery of their capital Hattusa in modern Turkey revealed one of the ancient Near East's great civilizations — confirming what the Bible described all along.</div></li>
+        <li><div class="step-num">5</div><div><strong>The James Ossuary (2002).</strong> A limestone bone box bearing the Aramaic inscription "James, son of Joseph, brother of Jesus." While its authenticity was debated, the Israeli Antiquities Authority trial ended with an acquittal — the prosecution could not prove forgery.</div></li>
+      </ul>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Luke as Historian</h2>
+      <p>The Gospel of Luke and the Book of Acts — written by the same author — name 32 countries, 54 cities, 9 islands, and dozens of officials by title. Classical historian Colin Hemer documented that Luke gets every verifiable detail correct, including obscure local titles like "politarchs" for Thessalonian officials — a term found nowhere else in Greek literature until archaeologists discovered inscriptions confirming it.</p>
+      <p>Sir William Ramsay, a 19th-century archaeologist who set out to disprove Acts, concluded after decades of fieldwork that Luke was a first-rate historian whose accuracy was unsurpassed among ancient writers.</p>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">📎 A SKEPTIC CONVINCED</div>
+      <p>Sir William Ramsay began his career believing Acts was a 2nd-century fabrication. After extensive archaeological research in Asia Minor, he reversed his position entirely, concluding that <strong>"Luke is a historian of the first rank... this author should be placed along with the very greatest of historians."</strong></p>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">MULTIPLE ATTESTATION</div><div class="term-def">A historical criterion: claims confirmed by two or more independent sources are more likely authentic.</div></div>
+      <div class="term-card"><div class="term-name">CRITERION OF EMBARRASSMENT</div><div class="term-def">Details that would embarrass the early church are likely historical — no one would invent them. Example: the women at the empty tomb.</div></div>
+      <div class="term-card"><div class="term-name">PILATE STONE</div><div class="term-def">A limestone inscription found in 1961 at Caesarea confirming Pontius Pilate's existence and title as Prefect of Judaea.</div></div>
+      <div class="term-card"><div class="term-name">CORROBORATION</div><div class="term-def">When independent evidence confirms the same historical claim, strengthening its credibility.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>What is the difference between archaeology confirming a document's historical accuracy and confirming its theological claims?</li>
+        <li>If a document gets dozens of verifiable details right, does that affect its credibility for claims we cannot independently verify? Why?</li>
+        <li>Why is the "criterion of embarrassment" a powerful tool for historians? What New Testament details qualify?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">Why is Luke considered an exceptionally reliable ancient historian?</p>
+      <div class="quiz-options" id="qa6-options">
+        <button class="quiz-option" onclick="answerAdv(this,'qa6',false)">A. Because he says so in the introduction to his Gospel.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa6',true)">B. Because he accurately names dozens of countries, cities, islands, and local officials — details verified by archaeology and confirmed by skeptical historians like Ramsay.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa6',false)">C. Because the early church voted him the most reliable author.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa6',false)">D. Because no other ancient historians existed to compare him to.</button>
+      </div>
+      <div class="quiz-feedback" id="qa6-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p><strong>Archaeology has repeatedly confirmed the Bible's historical claims</strong> — from the Pilate Stone to the Hittite Empire to the Pool of Bethesda. Applied consistently, the same historical methods that authenticate Caesar and Thucydides powerfully authenticate the biblical record. A document this consistently accurate about verifiable facts commands serious attention for its unverifiable claims.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('adv-textual')">← Lesson 5: Textual Criticism</button>
+      <button class="btn-primary" style="background:#4a90d9;" onclick="showLesson('adv-resurrection')">Next: Resurrection →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- LESSON ADV-06: RESURRECTION                        -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-adv-resurrection" class="page">
+  <div class="progress-bar">
+    <span>LESSON 07 OF 09 · ADVANCED</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons-advanced')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 07 · RESURRECTION EVIDENCE</div>
+      <h1>The Resurrection: A Historical Investigation</h1>
+      <p class="intro">The bodily resurrection of Jesus is the central claim of Christianity. Historian N.T. Wright calls it "the best explanation of the historical data." Philosopher Gary Habermas has cataloged the scholarly consensus. What does the evidence actually show?</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Minimal Facts Method</h2>
+      <p>Gary Habermas has surveyed over 3,400 academic publications on the resurrection. His "Minimal Facts" method uses only facts that meet two strict criteria: (a) they are supported by multiple independent sources, and (b) they are accepted by the vast majority of scholars — including skeptics and non-Christians.</p>
+      <p>Five facts survive this filter:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>Jesus died by Roman crucifixion.</strong> Confirmed by Tacitus, Josephus, Lucian, the Talmud, and all four Gospels. The survival ("swoon") theory is rejected by virtually all historians and medical experts.</div></li>
+        <li><div class="step-num">2</div><div><strong>The disciples had experiences they believed were appearances of the risen Jesus.</strong> Even atheist historians grant this. The question is what caused these experiences.</div></li>
+        <li><div class="step-num">3</div><div><strong>Paul, a persecutor of Christians, was suddenly converted.</strong> Paul describes himself as a violent opponent of the church. His transformation is historically undisputed.</div></li>
+        <li><div class="step-num">4</div><div><strong>James, the skeptical brother of Jesus, was suddenly converted.</strong> The Gospels indicate Jesus's brothers did not believe during his ministry. James later became leader of the Jerusalem church and was martyred.</div></li>
+        <li><div class="step-num">5</div><div><strong>The tomb was empty.</strong> The earliest Jewish polemic against Christianity did not deny the empty tomb — instead, it claimed the disciples stole the body (Matthew 28:13). This is an implicit admission that the tomb was empty.</div></li>
+      </ul>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Pre-Pauline Creed: 1 Corinthians 15:3–7</h2>
+      <p>Paul's first letter to the Corinthians (written ~55 AD) contains what scholars universally recognize as a pre-existing creedal formula that Paul "received" and "passed on":</p>
+      <div class="callout" style="margin:1rem 0;">
+        <p><em>"Christ died for our sins according to the Scriptures, he was buried, he was raised on the third day according to the Scriptures, and he appeared to Cephas, then to the Twelve..."</em></p>
+      </div>
+      <p>Scholars date this creed to within 3–5 years of the crucifixion — some argue within months. This is extraordinary: it means the core claims about the resurrection were not legends that developed over centuries. They were formal proclamations circulating within the living memory of eyewitnesses.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>N.T. Wright's Historical Argument</h2>
+      <p>In his 800-page academic work <em>The Resurrection of the Son of God</em>, historian N.T. Wright argues that two facts require explanation:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>The empty tomb.</strong> Without it, the disciples' claims would have been immediately falsifiable — the authorities could have produced the body.</div></li>
+        <li><div class="step-num">2</div><div><strong>The post-mortem appearances.</strong> Without them, the empty tomb alone would suggest grave robbery, not resurrection.</div></li>
+      </ul>
+      <p>Wright concludes that neither fact alone is sufficient — but <em>together</em>, they provide a historically compelling case. He examines every alternative hypothesis in detail (hallucination, conspiracy, wrong tomb, legend, spiritual resurrection) and demonstrates that each fails to account for all the evidence. The bodily resurrection, Wright argues, remains the best historical explanation.</p>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">📎 THE WOMEN AT THE TOMB</div>
+      <p>All four Gospels name women as the first witnesses to the empty tomb. In 1st-century Jewish culture, women's testimony was not admissible in court. If the disciples were inventing the story, <strong>they would never have made women the primary witnesses</strong> — it would have undermined their credibility. This detail passes the "criterion of embarrassment" powerfully: it is best explained by the fact that this is simply what happened.</p>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">MINIMAL FACTS</div><div class="term-def">Historical facts about the resurrection accepted by the overwhelming majority of scholars — including critics — because they meet strict evidential criteria.</div></div>
+      <div class="term-card"><div class="term-name">PRE-PAULINE CREED</div><div class="term-def">A formal statement of belief embedded in 1 Corinthians 15, dated by scholars to within 3–5 years of Jesus's death — far too early for legend.</div></div>
+      <div class="term-card"><div class="term-name">INFERENCE TO BEST EXPLANATION</div><div class="term-def">A method of reasoning: given all available evidence, which hypothesis explains all the facts most completely and simply?</div></div>
+      <div class="term-card"><div class="term-name">CRITERION OF EMBARRASSMENT</div><div class="term-def">Details embarrassing to the author are likely authentic — no one would invent them. The women at the tomb is a prime example.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="content-block reveal">
+      <h2>Alternative Hypotheses and Their Failures</h2>
+      <div class="objection-block">
+        <div class="objection"><div class="objection-label">HALLUCINATION THEORY</div><p>The disciples experienced grief-induced hallucinations.</p></div>
+        <div class="response"><div class="response-label">PROBLEMS</div><p>Hallucinations are individual and subjective — they do not occur simultaneously in groups. They cannot explain the empty tomb. They cannot explain the conversion of Paul (who was not grieving) or James (who was a skeptic). And hallucinations typically reinforce existing expectations — the disciples were not expecting resurrection; Jewish theology anticipated resurrection at the end of the age, not for a single individual in the middle of history.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">CONSPIRACY THEORY</div><p>The disciples stole the body and lied about the resurrection.</p></div>
+        <div class="response"><div class="response-label">PROBLEMS</div><p>This theory requires that every original disciple maintained a deliberate lie under torture, imprisonment, and execution — without a single member breaking. Liars make poor martyrs. People die for beliefs they hold sincerely, but they do not die for claims they know to be false.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">LEGEND THEORY</div><p>The resurrection stories developed gradually as legends over generations.</p></div>
+        <div class="response"><div class="response-label">PROBLEMS</div><p>The pre-Pauline creed dates the resurrection proclamation to within 3–5 years of the event — far too early for legendary development. Legends require the passage of generations, not months. Eyewitnesses were still alive and could have been consulted or contradicted.</p></div>
+      </div>
+    </div>
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>Why is the early date of the 1 Corinthians 15 creed so significant for the historicity of the resurrection?</li>
+        <li>Wright says neither the empty tomb alone nor the appearances alone are sufficient — but together they are powerful. Why?</li>
+        <li>If you had to explain all five minimal facts without the resurrection, what would you propose? Does your explanation account for all five?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">Why do scholars consider the pre-Pauline creed in 1 Corinthians 15 so historically significant?</p>
+      <div class="quiz-options" id="qa7-options">
+        <button class="quiz-option" onclick="answerAdv(this,'qa7',false)">A. Because Paul personally witnessed the resurrection.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa7',true)">B. Because it dates the core resurrection proclamation to within 3–5 years of the events — far too early for legendary development, and within the lifetime of eyewitnesses.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa7',false)">C. Because it was written before the Gospels and therefore must be more accurate.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa7',false)">D. Because it is the longest creed in the New Testament.</button>
+      </div>
+      <div class="quiz-feedback" id="qa7-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p><strong>Five minimal facts — accepted by virtually all historians — demand an explanation.</strong> Alternative theories (hallucination, conspiracy, legend) each fail to account for all the evidence. The pre-Pauline creed dates the resurrection proclamation to within years, not centuries. As Wright concludes, the bodily resurrection remains the best historical explanation for the totality of the data.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('adv-archaeology')">← Lesson 6: Archaeology</button>
+      <button class="btn-primary" style="background:#4a90d9;" onclick="showLesson('adv-evil')">Next: Problem of Evil →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- LESSON ADV-07: BELL'S INEQUALITY & CONSCIOUSNESS   -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-adv-bells" class="page">
+  <div class="progress-bar">
+    <span>LESSON 09 OF 09 · ADVANCED</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot current"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons-advanced')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 09 · DEEPER ANALYSIS · QUANTUM PHYSICS & CONSCIOUSNESS</div>
+      <h1>Quantum Physics, Non-Locality & Consciousness</h1>
+      <p class="intro">In 1964, physicist John Bell proved that the universe is fundamentally non-local — that distant particles can be connected in ways no classical theory can explain. In 2022, the Nobel Prize in Physics was awarded for experimentally confirming this. What does this discovery tell us about the nature of reality — and consciousness?</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The EPR Paradox: Where It Started</h2>
+      <p>In 1935, Albert Einstein, Boris Podolsky, and Nathan Rosen published a thought experiment designed to show that quantum mechanics was incomplete. Their argument went like this:</p>
+      <p>Take two particles that have interacted and become "entangled." Separate them by any distance — even light-years. Quantum mechanics predicts that measuring one particle will instantly affect what you find when measuring the other. Einstein called this "spooky action at a distance" and refused to accept it. He believed there must be "hidden variables" — pre-existing properties that the particles carried with them, like a pair of gloves in separate boxes.</p>
+      <p>If the particles already had definite properties before measurement, no mysterious connection was needed. Quantum mechanics would simply be incomplete — missing information about these hidden variables.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Bell's Theorem: The Proof</h2>
+      <p>In 1964, physicist John Stewart Bell did something remarkable. He derived a mathematical inequality — now called <strong>Bell's inequality</strong> — that must hold true if Einstein's hidden variable explanation is correct. Specifically, if particles carry pre-determined values and no faster-than-light communication occurs between them, the statistical correlations between measurement results must remain below a certain limit.</p>
+      <p>Bell then showed that quantum mechanics predicts violations of this limit. The two views — local hidden variables and quantum mechanics — make different, testable predictions.</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>If local hidden variables are correct:</strong> correlations between measurements on entangled particles must satisfy Bell's inequality (a specific mathematical bound).</div></li>
+        <li><div class="step-num">2</div><div><strong>Quantum mechanics predicts:</strong> these correlations will violate Bell's inequality, exceeding the bound.</div></li>
+        <li><div class="step-num">3</div><div><strong>Experiment decides.</strong> Starting with Alain Aspect's landmark experiments in 1982, and continuing through increasingly rigorous tests culminating in the 2022 Nobel Prize work of Aspect, Clauser, and Zeilinger — the results are unambiguous: <strong>Bell's inequality is violated.</strong> Nature is non-local.</div></li>
+      </ul>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">🏆 2022 NOBEL PRIZE IN PHYSICS</div>
+      <p>The 2022 Nobel Prize was awarded to Alain Aspect, John Clauser, and Anton Zeilinger <strong>"for experiments with entangled photons, establishing the violation of Bell inequalities and pioneering quantum information science."</strong> Their work confirmed one of the most profound discoveries in physics: reality does not behave the way classical, local, materialist intuitions suggest.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>What Non-Locality Means</h2>
+      <p>The violation of Bell's inequality tells us something profound about the structure of reality. At minimum, it means:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>Spatial separation is not fundamental.</strong> Two particles separated by any distance can exhibit correlations that exceed what any local mechanism could produce. Yet these correlations cannot be used to send signals — they appear only when measurement results from both sides are compared.</div></li>
+        <li><div class="step-num">2</div><div><strong>Local hidden variables are ruled out.</strong> Einstein's hope — that particles carry pre-determined properties explaining their correlations — has been experimentally falsified. Whatever is going on, it is not classical.</div></li>
+        <li><div class="step-num">3</div><div><strong>The choice between interpretations remains open.</strong> Physicists disagree about what non-locality means. The Copenhagen interpretation invokes wave function collapse. Many-Worlds posits branching realities. Pilot-wave theory embraces explicit non-locality. Each interprets the same mathematical formalism differently.</div></li>
+      </ul>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Challenge to Materialism</h2>
+      <p>Standard materialism conceives reality as composed of localized entities interacting via forces that propagate at or below the speed of light. Quantum entanglement directly challenges this picture.</p>
+      <p>How can two particles separated by light-years exhibit correlations exceeding classical limits, without any signal passing between them? The standard materialist response is to accept non-locality as a <em>brute fact</em> — that is simply how quantum fields behave, and no deeper explanation is needed or available.</p>
+      <p>But this is a significant concession. It means the materialist framework cannot explain <em>why</em> reality has this structure. The non-local connections revealed by Bell's theorem exist, but they remain philosophically puzzling within a worldview that takes spatial separation and local causation as fundamental.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Consciousness and the Ontological Ground</h2>
+      <p>A growing number of philosophers and physicists have proposed that the non-local structure of reality becomes <em>less</em> puzzling if we reconsider the relationship between consciousness and the physical world.</p>
+      <p>The argument proceeds as follows:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>Non-locality shows that spatial separation is not the deepest feature of reality.</strong> Entangled particles behave as though the space between them is, at some fundamental level, irrelevant.</div></li>
+        <li><div class="step-num">2</div><div><strong>If physical reality is grounded in a deeper, non-spatial reality</strong> — a conscious ground that is itself timeless and non-spatial — then non-local correlations become <em>expected</em> rather than paradoxical. Particles that appear separated in space remain connected because their existence derives from a common ground that transcends spatial separation.</div></li>
+        <li><div class="step-num">3</div><div><strong>This also addresses the "hard problem" of consciousness.</strong> Philosopher David Chalmers identified the hard problem: why does physical processing give rise to subjective experience at all? If consciousness is fundamental rather than emergent — if it is the ground rather than a byproduct — this explanatory gap dissolves.</div></li>
+      </ul>
+      <p>This line of reasoning has been developed by analytic idealist Bernardo Kastrup, by philosopher Philip Goff's work on panpsychism, and in Chalmers and McQueen's exploration of consciousness-collapse interpretations. It echoes David Bohm's concept of an "implicate order" — an underlying, undivided wholeness from which the apparent separateness of physical objects unfolds.</p>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header">💡 ANALOGY: THE OCEAN AND THE WAVES</div>
+      <div class="analogy-body">
+        Imagine two waves on opposite sides of an ocean that move in perfect synchrony. From the surface, they appear to be separate phenomena. But they are both expressions of the same underlying ocean. Their correlation is not mysterious once you understand they share a common ground. In this analogy, the ocean is the deeper reality — and entangled particles are like synchronized waves whose connection only seems paradoxical if you forget the ocean exists.
+      </div>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>What This Means — and What It Doesn't</h2>
+      <p>Let us be clear about the scope of this argument:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">✓</div><div><strong>It does mean:</strong> Bell's theorem and its experimental confirmation reveal that reality has a structure that is not fully intelligible within standard materialist assumptions. The non-local connections are real, Nobel Prize-verified, and philosophically significant.</div></li>
+        <li><div class="step-num">✓</div><div><strong>It does mean:</strong> A framework in which consciousness is fundamental — rather than an accidental byproduct of matter — renders these non-local connections more intelligible, not less.</div></li>
+        <li><div class="step-num">✗</div><div><strong>It does not mean:</strong> Quantum physics "proves" God exists. This is a philosophical argument about explanatory coherence, not a scientific proof. All quantum interpretations predict the same experimental outcomes — the question is which ontological picture best makes sense of what we observe.</div></li>
+        <li><div class="step-num">✗</div><div><strong>It does not mean:</strong> Human consciousness creates physical reality. The proposal is that fundamental consciousness — a transcendent, self-existent conscious ground — underlies and gives rise to the physical order, not that your brain controls quantum experiments.</div></li>
+      </ul>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">📎 CONNECTING TO THEISM</div>
+      <p>The idea that physical reality is grounded in a transcendent, conscious, rational ground is strikingly compatible with classical theism. The properties attributed to this ground — <strong>timelessness, non-spatiality, unity, intrinsic rationality</strong> — are precisely the attributes that the great philosophical tradition has attributed to God. Bell's theorem does not prove God. But it reveals a structure of reality that theism anticipated long before quantum mechanics was conceived.</p>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">BELL'S INEQUALITY</div><div class="term-def">A mathematical limit on correlations between distant measurements, derived by John Bell in 1964. Its experimental violation proves nature is non-local.</div></div>
+      <div class="term-card"><div class="term-name">ENTANGLEMENT</div><div class="term-def">A quantum phenomenon where two particles become correlated in ways that cannot be explained by local, classical physics. Schrödinger called it the defining feature of quantum mechanics.</div></div>
+      <div class="term-card"><div class="term-name">NON-LOCALITY</div><div class="term-def">The experimentally verified fact that spatially separated quantum systems exhibit correlations exceeding classical limits, without any signal between them.</div></div>
+      <div class="term-card"><div class="term-name">HARD PROBLEM</div><div class="term-def">David Chalmers's term for the fundamental question: why does physical processing produce subjective experience? Materialism has no satisfactory answer.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="content-block reveal">
+      <h2>Common Objections</h2>
+      <div class="objection-block">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"You're using quantum mechanics to smuggle in mysticism. This is pseudoscience."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>The physics is not in dispute — Bell's inequality, entanglement, and non-locality are experimentally established and recognized by the Nobel Prize committee. What we are doing is <em>philosophy</em>: asking what ontological picture best makes sense of these established physical facts. That is exactly what the founders of quantum mechanics — Bohr, Heisenberg, Schrödinger, and Bohm — spent their careers doing. Philosophical interpretation of physics is not pseudoscience; it is how foundational physics has always worked.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"Materialism can just accept non-locality as a brute fact. No consciousness needed."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>That is a logically available position. But calling something a "brute fact" is not an explanation — it is the refusal to explain. The question is whether an alternative framework offers greater intelligibility. If non-local correlations are <em>expected</em> under a consciousness-first ontology and merely <em>accepted</em> as brute under materialism, the consciousness-first view has a genuine explanatory advantage — even if both views predict the same experimental outcomes.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"This argument isn't falsifiable — it's just philosophy."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>All quantum interpretations share this feature — Copenhagen, Many-Worlds, pilot-wave, and consciousness-based models all predict identical experimental outcomes. This is why they are called <em>interpretations</em>, not competing theories. The choice among them is necessarily philosophical, evaluated on coherence, parsimony, and explanatory power. Demanding falsifiability as the sole criterion of meaningfulness would eliminate every major quantum interpretation — including the ones materialists prefer.</p></div>
+      </div>
+    </div>
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>Einstein believed hidden variables would save locality. Bell proved they cannot. What does this tell us about the limits of classical intuition?</li>
+        <li>Why does accepting non-locality as a "brute fact" fail to satisfy as an explanation? When is it appropriate to accept brute facts, and when should we seek deeper explanations?</li>
+        <li>If consciousness is fundamental and the physical world is derivative, does this change how you think about the mind-body problem?</li>
+        <li>How does the timelessness and non-spatiality of a conscious ground relate to the traditional philosophical attributes of God?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">What did the experimental violation of Bell's inequality establish?</p>
+      <div class="quiz-options" id="qa9-options">
+        <button class="quiz-option" onclick="answerAdv(this,'qa9',false)">A. That Einstein's theory of relativity is wrong.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa9',false)">B. That consciousness causes quantum particles to collapse.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa9',true)">C. That nature is non-local — spatially separated particles exhibit correlations that no local hidden variable theory can explain.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa9',false)">D. That quantum mechanics is incomplete and needs new mathematics.</button>
+      </div>
+      <div class="quiz-feedback" id="qa9-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p>Bell's theorem and its Nobel Prize-winning experimental confirmation reveal that <strong>reality is fundamentally non-local</strong> — a feature that materialism must accept as brute fact but that a consciousness-first ontology renders intelligible. The properties of a transcendent conscious ground — timelessness, non-spatiality, unity, and intrinsic rationality — align with what the classical philosophical tradition has always attributed to God. Quantum physics does not prove God, but it reveals a universe far stranger than materialism anticipated.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('adv-evil')">← Lesson 8: Problem of Evil</button>
+      <button class="btn-primary" style="background:#4a90d9;" onclick="showPage('lessons-advanced')">← All Lessons</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- LESSON ADV-08: PROBLEM OF EVIL                     -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-adv-evil" class="page">
+  <div class="progress-bar">
+    <span>LESSON 08 OF 09 · ADVANCED</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot current"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons-advanced')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 08 · PROBLEM OF EVIL</div>
+      <h1>The Problem of Evil: A Philosophical Deep Dive</h1>
+      <p class="intro">The Problem of Evil is the most powerful objection to theism. It deserves rigorous treatment — not hand-waving. As we will see, the logical version has been largely resolved, the evidential version remains debated, and the problem itself cuts in surprising directions.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Two Versions of the Problem</h2>
+      <p>Philosophers distinguish between two formulations:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>The Logical Problem of Evil.</strong> The claim that God's existence is <em>logically incompatible</em> with the existence of evil. If an all-powerful, all-knowing, all-good God exists, evil logically cannot exist. But evil exists. Therefore, God does not exist.</div></li>
+        <li><div class="step-num">2</div><div><strong>The Evidential Problem of Evil.</strong> The claim that the <em>amount and distribution</em> of evil in the world makes God's existence improbable — not impossible, but unlikely. This is a weaker but more persistent form of the objection.</div></li>
+      </ul>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Plantinga's Free Will Defense</h2>
+      <p>Alvin Plantinga's Free Will Defense is widely considered to have resolved the logical problem of evil. Even atheist philosopher J.L. Mackie — who first formulated the logical problem — acknowledged that Plantinga's argument was successful.</p>
+      <p>The argument uses modal logic (the logic of possibility and necessity):</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">P1</div><div>It is <em>possible</em> that God has morally sufficient reasons for permitting evil.</div></li>
+        <li><div class="step-num">P2</div><div>It is <em>possible</em> that a world containing creatures with genuine free will — and the good that free will makes possible — could not exist without also containing the possibility of evil.</div></li>
+        <li><div class="step-num">∴</div><div>Therefore, God's existence and evil's existence are not logically contradictory.</div></li>
+      </ul>
+      <p>Note what Plantinga does not do: he does not explain <em>why</em> God permits specific evils. He shows that there is no logical contradiction between God and evil. The burden was on the atheist to prove impossibility; Plantinga demonstrated that no such proof succeeds.</p>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">📎 EVEN ATHEISTS CONCEDE</div>
+      <p>Philosopher William Rowe, an atheist, acknowledged: <strong>"Some philosophers have contended that the existence of evil is logically inconsistent with the existence of the theistic God. No one, I think, has succeeded in establishing such an extravagant claim."</strong> The logical problem of evil is, in academic philosophy, a largely closed question.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Evidential Problem: Skeptical Theism</h2>
+      <p>The evidential version is harder. It doesn't claim God is impossible — it claims the sheer amount of apparently pointless suffering makes God improbable. Skeptical theism offers a sophisticated response:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>Our cognitive limitations.</strong> We cannot survey the total consequences of any event across the entirety of time and space. What appears pointless from a human perspective may serve purposes we cannot perceive — not because those purposes are hidden, but because we lack the cognitive scope to grasp them.</div></li>
+        <li><div class="step-num">2</div><div><strong>The "noseeum" inference fails.</strong> The argument "I cannot see a reason, therefore there is no reason" is a weak inference — like a child concluding that a painful medical procedure has no purpose because they cannot understand it. Our inability to see a justification does not entail that no justification exists.</div></li>
+        <li><div class="step-num">3</div><div><strong>Complexity of causal chains.</strong> The ripple effects of any event extend through time in ways we cannot possibly track. Events that seem pointlessly evil may be necessary links in causal chains producing goods we cannot foresee.</div></li>
+      </ul>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Soul-Making Theodicy</h2>
+      <p>Philosopher John Hick proposed the "soul-making" theodicy: a world designed solely for comfort could never produce moral character. Virtues like courage, compassion, perseverance, and self-sacrifice are only possible in a world where genuine difficulty exists.</p>
+      <p>Hick argues that God's purpose is not to maximize our pleasure but to facilitate our moral and spiritual development. A world without challenge would be a world without genuine growth — and therefore a world without genuine goodness.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Problem of Evil Cuts Both Ways</h2>
+      <p>Perhaps the most powerful theistic response is this: the Problem of Evil <em>presupposes</em> objective moral standards.</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div>To say there is "too much evil" or "gratuitous suffering" is to make an objective moral claim — that some things are genuinely evil, not merely disliked.</div></li>
+        <li><div class="step-num">2</div><div>But as the Moral Argument shows (Lesson 2), objective moral facts require a transcendent ground — God.</div></li>
+        <li><div class="step-num">3</div><div>Therefore, the very premise that makes the Problem of Evil work — "evil is real" — itself points toward the God whose existence it questions.</div></li>
+      </ul>
+      <p>C.S. Lewis described this realization from his own experience: he abandoned atheism partly because his argument against God from evil required a standard of justice that, on his own worldview, had no ground to stand on.</p>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">📎 C.S. LEWIS'S TURNING POINT</div>
+      <p>Lewis wrote: <strong>"My argument against God was that the universe seemed so cruel and unjust. But how had I got this idea of just and unjust? A man does not call a line crooked unless he has some idea of a straight line."</strong> The problem of evil, pursued honestly, led Lewis not away from God but toward Him.</p>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">LOGICAL PROBLEM</div><div class="term-def">The claim that God and evil are logically incompatible. Widely considered solved by Plantinga's Free Will Defense.</div></div>
+      <div class="term-card"><div class="term-name">EVIDENTIAL PROBLEM</div><div class="term-def">The claim that the amount/distribution of evil makes God's existence improbable. Addressed by skeptical theism.</div></div>
+      <div class="term-card"><div class="term-name">SKEPTICAL THEISM</div><div class="term-def">The view that our cognitive limitations prevent us from inferring that apparently pointless evil is actually pointless.</div></div>
+      <div class="term-card"><div class="term-name">SOUL-MAKING THEODICY</div><div class="term-def">John Hick's argument that moral and spiritual growth requires a world containing genuine challenge and suffering.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="content-block reveal">
+      <h2>Common Objections</h2>
+      <div class="objection-block">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"The Holocaust and childhood cancer cannot possibly serve any purpose. No God would allow this."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>This is the most emotionally powerful objection, and it deserves deep respect. The honest answer is: we may not know what specific purposes are served by specific horrors. But "I cannot see a reason" is a statement about our cognitive limitations, not about reality. Skeptical theism does not minimize suffering — it maintains humility about our ability to see the full picture. A responsible answer combines intellectual honesty ("I don't know why this specific evil was permitted") with philosophical clarity ("the inability to see a reason does not demonstrate that no reason exists").</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"God could have created free beings who always choose good — He's omnipotent."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Omnipotence means the ability to do anything logically possible. A being with free will that is <em>guaranteed</em> to always choose good is a logical contradiction — like a married bachelor. It is not a limitation of God's power; it is incoherent language. Genuine freedom entails the genuine possibility of choosing wrongly. God can create free beings; God cannot create free beings who are unfree.</p></div>
+      </div>
+    </div>
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>Why is the distinction between the logical and evidential problems of evil important? Which is stronger?</li>
+        <li>Lewis said the Problem of Evil actually <em>led him to God</em>. How does the argument that "evil is real" presuppose objective morality?</li>
+        <li>Is skeptical theism a satisfying response to suffering, or does it feel like a dodge? What is the difference between "I don't know" as intellectual humility and "I don't know" as evasion?</li>
+        <li>If a world without any suffering would also be a world without courage, compassion, or self-sacrifice — would that be a better world?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">Why is the logical problem of evil considered largely resolved in academic philosophy?</p>
+      <div class="quiz-options" id="qa8-options">
+        <button class="quiz-option" onclick="answerAdv(this,'qa8',false)">A. Because philosophers stopped caring about it.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa8',false)">B. Because science proved evil doesn't exist.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa8',true)">C. Because Plantinga's Free Will Defense demonstrated there is no logical contradiction between God's existence and the existence of evil — even prominent atheist philosophers have acknowledged this.</button>
+        <button class="quiz-option" onclick="answerAdv(this,'qa8',false)">D. Because the Bible explains every instance of evil.</button>
+      </div>
+      <div class="quiz-feedback" id="qa8-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p><strong>The logical problem of evil has been largely resolved</strong> by Plantinga's Free Will Defense — acknowledged even by atheist philosophers. The evidential problem is addressed by skeptical theism and the soul-making theodicy. And the very premise of the argument — "evil is real" — itself presupposes the objective moral standard that, as the Moral Argument shows, points back toward God.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('adv-resurrection')">← Lesson 7: Resurrection</button>
+      <button class="btn-primary" style="background:#7c5cbf;" onclick="showLesson('adv-bells')">Deeper Analysis: Quantum Physics →</button>
+    </div>
+
+    <!-- CONTINUE YOUR JOURNEY -->
+    <div class="ttb-block reveal">
+      <div class="ttb-label">CONTINUE YOUR JOURNEY</div>
+      <div class="ttb-inner">
+        <div class="ttb-text">
+          <h3 class="ttb-title">You know <em>why</em> to believe. Now go deeper into <em>what</em> to believe.</h3>
+          <p class="ttb-desc">Thru the Bible with J. Vernon McGee is a free, verse-by-verse journey through the entire Bible — available in over 100 languages. It's been quietly shaping believers for over 50 years. A natural next step from here.</p>
+          <a href="https://ttb.org" target="_blank" rel="noopener noreferrer" class="ttb-link">Visit ttb.org →</a>
+        </div>
+        <div class="ttb-logo-area">📖</div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- ABOUT PAGE -->
 <div id="page-about" class="page">
   <div class="about-container">
     <h1>About This Site</h1>
-    <p>This is a free curriculum designed for students in grades 6–8 who want to understand not just <em>what</em> Christians believe — but <em>why</em> there is real evidence and reasoned argument behind those beliefs.</p>
+    <p>This is a free curriculum designed for students in <strong>grades 6–12</strong> who want to understand not just <em>what</em> Christians believe — but <em>why</em> there is real evidence and reasoned argument behind those beliefs.</p>
     <p>Many students in Christian schools and churches can recite Bible verses and church doctrine, but when a skeptical classmate or professor asks, "But <em>why</em> do you believe that?" — they find themselves without an answer. This site exists to change that.</p>
+
+    <h2>Two Tracks, One Mission</h2>
+    <p>The <strong>Grades 6–8 track</strong> uses everyday analogies, simple step-by-step arguments, and plain language to introduce core apologetics topics — cosmological reasoning, moral arguments, manuscript evidence, archaeology, and the resurrection. No jargon. No prerequisites.</p>
+    <p>The <strong>Grades 9–12 track</strong> goes deeper. It engages with formal philosophical arguments, primary historical sources, peer-reviewed scientific evidence, and advanced topics including quantum physics and consciousness. These lessons prepare students for the intellectual challenges they will face in college and beyond.</p>
 
     <h2>What is Apologetics?</h2>
     <p>The word <em>apologetics</em> comes from the Greek word <em>apologia</em> — meaning "a defense" or "a reasoned answer." It doesn't mean apologizing for your faith. It means being able to give thoughtful reasons for what you believe.</p>
-    <p>The apostle Peter wrote: <em>"Always be prepared to give an answer to everyone who asks you to give the reason for the hope that you have."</em> (1 Peter 3:15) This site is about doing exactly that — at a 6th grade level, with logic, evidence, and no jargon.</p>
+    <p>The apostle Peter wrote: <em>"Always be prepared to give an answer to everyone who asks you to give the reason for the hope that you have."</em> (1 Peter 3:15) This site is about doing exactly that — with logic, evidence, and intellectual honesty.</p>
 
-    <h2>Who made this?</h2>
-    <p>This is an open educational resource. The content draws on centuries of Christian philosophical tradition — including thinkers like Aristotle, Thomas Aquinas, William Lane Craig, Alvin Plantinga, and C.S. Lewis — translated into plain language for middle schoolers.</p>
+    <h2>Thinkers Who Shaped This Curriculum</h2>
+    <p>The arguments and evidence presented here draw on the work of some of the finest minds in Christian thought, philosophy, and science:</p>
+    <div class="key-terms" style="margin:1.5rem 0;">
+      <div class="term-card">
+        <div class="term-name">WILLIAM LANE CRAIG</div>
+        <div class="term-def">Philosopher and theologian. Leading defender of the Kalam Cosmological Argument and one of the most prominent Christian debaters in the world.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">JOHN LENNOX</div>
+        <div class="term-def">Oxford mathematician and philosopher of science. Author of <em>God's Undertaker</em> and <em>Can Science Explain Everything?</em> Has publicly debated Richard Dawkins and Christopher Hitchens. <a href="https://johnlennox.org" target="_blank" rel="noopener noreferrer" style="color:var(--gold);border-bottom:1px solid rgba(200,146,42,0.3);text-decoration:none;">johnlennox.org</a></div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">JAMES TOUR</div>
+        <div class="term-def">Rice University professor and one of the world's top synthetic organic chemists. A leading scientific voice on the limits of origin-of-life research. <a href="https://jmtour.com" target="_blank" rel="noopener noreferrer" style="color:var(--gold);border-bottom:1px solid rgba(200,146,42,0.3);text-decoration:none;">jmtour.com</a></div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">ALVIN PLANTINGA</div>
+        <div class="term-def">One of the most influential philosophers of the 20th century. Developed the Free Will Defense and the Evolutionary Argument Against Naturalism.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">C.S. LEWIS</div>
+        <div class="term-def">Oxford and Cambridge scholar. Author of <em>Mere Christianity</em> and <em>The Problem of Pain</em>. Perhaps the most widely read Christian apologist in history.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">GARY HABERMAS</div>
+        <div class="term-def">Historian and philosopher. Developer of the "Minimal Facts" approach to the resurrection — using only facts accepted by skeptical scholars.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">N.T. WRIGHT</div>
+        <div class="term-def">New Testament scholar and historian. Author of <em>The Resurrection of the Son of God</em>, one of the most comprehensive historical treatments of Easter.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">THOMAS AQUINAS</div>
+        <div class="term-def">13th-century philosopher and theologian. His "Five Ways" remain foundational arguments for God's existence in Western philosophy.</div>
+      </div>
+    </div>
+    <p>Additional insights in the advanced track draw on the work of physicists and philosophers including Roger Penrose, Paul Davies, Robin Collins, David Chalmers, and Bernardo Kastrup — as well as current peer-reviewed research in quantum foundations and philosophy of mind.</p>
 
     <h2>Is this just for Christians?</h2>
-    <p>No. Any student who wants to think carefully about big questions — Does God exist? Where does right and wrong come from? — will find value here. The arguments are presented as philosophical reasoning, not as Bible-thumping. You're invited to think, question, and disagree along the way.</p>
+    <p>No. Any student who wants to think carefully about big questions — Does God exist? Where does right and wrong come from? What does quantum physics tell us about reality? — will find value here. The arguments are presented as philosophical and scientific reasoning. You're invited to think, question, and disagree along the way.</p>
+
+    <h2>Further Resources</h2>
+    <p>The scholars and institutions below offer outstanding resources for going deeper:</p>
+    <div style="margin:1rem 0 1.5rem;display:flex;flex-direction:column;gap:0.5rem;">
+      <a href="https://johnlennox.org" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;font-size:1rem;">John Lennox — johnlennox.org →</a>
+      <a href="https://jmtour.com" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;font-size:1rem;">James Tour — jmtour.com →</a>
+      <a href="https://www.reasonablefaith.org" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;font-size:1rem;">William Lane Craig — reasonablefaith.org →</a>
+      <a href="https://reasons.org" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;font-size:1rem;">Hugh Ross — reasons.org →</a>
+    </div>
 
     <h2>Continue Your Journey</h2>
     <p>This curriculum is designed to answer <em>why</em> Christianity is reasonable. But apologetics is just the doorway — the life of faith goes much deeper. Once you've worked through these lessons, a wonderful next step is <a href="https://ttb.org" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,146,42,0.4);">Thru the Bible with J. Vernon McGee</a> — a free, verse-by-verse study of the entire Bible available in over 100 languages at <strong>ttb.org</strong>.</p>
 
     <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
-      <button class="btn-primary" onclick="showPage('lessons')">Start with Lesson 1 →</button>
+      <button class="btn-primary" onclick="showPage('lessons')">Grades 6–8 →</button>
+      <button class="btn-primary" onclick="showPage('lessons-advanced')" style="background:#4a90d9;">Grades 9–12 →</button>
       <a href="https://ttb.org" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);border:1px solid;padding:0.85rem 2rem;border-radius:4px;font-family:'Source Serif 4',serif;font-size:1rem;text-decoration:none;transition:all 0.2s;">Visit ttb.org →</a>
     </div>
   </div>
@@ -1710,6 +3023,12 @@
 })();
 
 // ── NAVIGATION ──
+let currentGrade = '6-8';
+
+function setGrade(grade) {
+  currentGrade = grade;
+}
+
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -1717,6 +3036,7 @@ function showPage(name) {
   if(page) { page.classList.add('active'); window.scrollTo(0,0); }
   const btn = document.querySelector(`.nav-btn[data-page="${name}"]`);
   if(btn) btn.classList.add('active');
+  updateFooter();
   triggerReveal();
 }
 
@@ -1774,6 +3094,49 @@ function answer(btn, id, correct) {
   fb.className = `quiz-feedback show ${correct ? 'correct-fb' : 'wrong-fb'}`;
 }
 
+// ── ADVANCED QUIZ ──
+const advCorrectFeedback = [
+  "✓ Correct! A timeless mechanistic cause would produce its effect from eternity. Only a personal agent with free will can choose to create at a finite moment — producing a temporal effect from a timeless state.",
+  "✓ Correct! The Modified Divine Command Theory holds that morality is grounded in God's essential nature — God does not decide what is good arbitrarily, nor is goodness independent of God. God IS the standard of goodness.",
+  "✓ Correct! In a random multiverse, individual brains with false memories would be incomprehensibly more probable than entire fine-tuned universes — meaning we should not expect to be real observers in a real universe.",
+  "✓ Correct! Miller-Urey used the wrong atmospheric gases, produced mostly intractable tar with only the simplest amino acids, and producing scattered building blocks is not remotely the same as producing a functional living cell.",
+  "✓ Correct! Having thousands of manuscripts gives scholars multiple independent chains to compare — errors in one copy are revealed by comparing it to thousands of others. The variant count reflects abundance of evidence, not corruption.",
+  "✓ Correct! Luke's accuracy with dozens of verifiable geographical and political details — confirmed by archaeology and acknowledged by formerly skeptical historians — establishes him as a first-rate ancient historian.",
+  "✓ Correct! The creed's early date places the resurrection proclamation squarely within the lifetime of eyewitnesses — far too early for legendary development, which typically requires the passage of generations.",
+  "✓ Correct! Plantinga demonstrated that God and evil are not logically contradictory. Even leading atheist philosophers like J.L. Mackie and William Rowe have acknowledged this.",
+  "✓ Correct! Bell's inequality violations demonstrate that spatially separated particles exhibit correlations beyond what any local hidden variable theory can explain — nature is fundamentally non-local."
+];
+const advWrongFeedback = [
+  "Think again. The key issue is how a timeless cause can produce an effect at a specific moment. What kind of causation allows this?",
+  "Review the Euthyphro section. The theistic answer takes neither horn of the dilemma — where does it locate morality instead?",
+  "Re-read the Boltzmann Brain section. In a random multiverse, what kind of observer is statistically most likely to exist?",
+  "Review the section on what the Miller-Urey experiment actually produced. What gases did it use, what was the main product, and why are building blocks not the same as a building?",
+  "Think about it: if you had 5,800 recordings of the same speech, would errors in individual recordings mean the speech was corrupted — or that you could easily detect and correct those errors?",
+  "Review the Luke section. What specific kinds of details does Luke get right, and who confirmed them?",
+  "Consider: legends require generations to develop. How many years elapsed between the crucifixion and the formulation of this creed?",
+  "Review Plantinga's argument. He showed that it is possible for God to have morally sufficient reasons for permitting evil — which defeats the claim of logical incompatibility.",
+  "Review what Bell's inequality constrains. The experiments test whether local hidden variable theories can explain quantum correlations. What did they find?"
+];
+
+let advAnswered = [false,false,false,false,false,false,false,false,false];
+
+function answerAdv(btn, id, correct) {
+  const idx = parseInt(id.replace('qa',''))-1;
+  if(advAnswered[idx]) return;
+  advAnswered[idx] = true;
+  const opts = document.querySelectorAll(`#${id}-options .quiz-option`);
+  opts.forEach(o => { o.disabled = true; });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  if(!correct) {
+    opts.forEach(o => {
+      if(o.onclick.toString().includes(', true)')) o.classList.add('correct');
+    });
+  }
+  const fb = document.getElementById(`${id}-feedback`);
+  fb.textContent = correct ? advCorrectFeedback[idx] : advWrongFeedback[idx];
+  fb.className = `quiz-feedback show ${correct ? 'correct-fb' : 'wrong-fb'}`;
+}
+
 // ── SCROLL REVEAL ──
 function triggerReveal() {
   setTimeout(() => {
@@ -1798,7 +3161,7 @@ triggerReveal();
   <div class="footer-inner">
     <div class="footer-left">
       <div class="footer-logo">Why Believe?</div>
-      <div class="footer-tagline">Free apologetics curriculum · Grades 6–8</div>
+      <div class="footer-tagline">Free apologetics curriculum · Grades 6–12</div>
       <div class="footer-free">
         <span class="free-badge">100% FREE</span>
         No account. No cost. No catch. Share it freely.
@@ -1810,13 +3173,13 @@ triggerReveal();
         <button class="share-btn" onclick="copyLink()">
           <span id="copy-label">📋 Copy Link</span>
         </button>
-        <a class="share-btn" href="/cdn-cgi/l/email-protection#09367a7c6b636c6a7d344f7b6c6c2c3b3948796665666e6c7d606a7a2c3b394a7c7b7b606a7c657c642c3b396f667b2c3b3942606d7a2f6b666d70344a616c6a622c3b39667c7d2c3b397d61607a2c3b396f7b6c6c2c3b396a7c7b7b606a7c657c642c3b397d61687d2c3b397d6c686a616c7a2c3b397a7d7c6d6c677d7a2c3b395e41502c3b394a617b607a7d606867607d702c3b39607a2c3b397d7b7c6c2c3b4a2c3b3967667d2c3b39637c7a7d2c3b397e61687d2c3b397d662c3b396b6c65606c7f6c2c3a482c3b39617d7d797a2c3a482c3b4f2c3b4f7e61706b6c65606c7f6c276f68607d61" target="_blank">
+        <a class="share-btn" href="mailto:?subject=Check%20out%20Why%20Believe&body=A%20free%20apologetics%20curriculum%20for%20students.%20Evidence%20for%20God%20using%20logic%2C%20history%2C%20and%20science.%0A%0Ahttps%3A%2F%2Fwhybelieve.faith" target="_blank">
           ✉️ Share via Email
         </a>
       </div>
       <div class="footer-section-label" style="margin-top:1.25rem;">CONTACT</div>
-      <a class="footer-email" href="/cdn-cgi/l/email-protection#b7c0dfced5d2dbded2c1d299d1d6dec3dff7c7da99dad2">
-        <span class="__cf_email__" data-cfemail="bfc8d7c6dddad3d6dac9da91d9ded6cbd7ffcfd291d2da">[email&#160;protected]</span>
+      <a class="footer-email" href="mailto:whybelieve.faith@pm.me">
+        whybelieve.faith@pm.me
       </a>
       <div class="footer-email-note">Questions, feedback, or want to contribute a lesson?</div>
     </div>
@@ -1940,11 +3303,25 @@ triggerReveal();
   }
 </style>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // Show footer on all pages except home
 function updateFooter() {
   const footer = document.getElementById('site-footer');
   const activePage = document.querySelector('.page.active');
   if(activePage && activePage.id === 'page-home') {
     footer.style.display = 'none';
-  } e
+  } else {
+    footer.style.display = 'block';
+  }
+}
+
+function copyLink() {
+  navigator.clipboard.writeText('https://whybelieve.faith').then(() => {
+    const label = document.getElementById('copy-label');
+    label.textContent = '✓ Copied!';
+    setTimeout(() => { label.textContent = '📋 Copy Link'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
