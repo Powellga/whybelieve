@@ -30,7 +30,7 @@ Two tracks, one mission:
 | 7 | The Empty Tomb: What Really Happened? | Resurrection Evidence |
 | 8 | If God is Good, Why Is There Evil? | Problem of Evil |
 
-### Grades 9–12 (9 Lessons)
+### Grades 9–12 (13 Lessons)
 
 | # | Lesson | Topic |
 |---|--------|-------|
@@ -38,11 +38,15 @@ Two tracks, one mission:
 | 2 | The Moral Argument: From Objective Values to God | Euthyphro, Divine Command Theory, moral realism |
 | 3 | Cosmic Fine-Tuning and the Design Inference | Penrose, Collins, Lennox, Boltzmann Brains |
 | 4 | The Origin of Life: What Chemistry Actually Shows | James Tour's five unsolved problems, chirality, Miller-Urey |
-| 5 | Textual Criticism and the New Testament | P52, 400K variants, Ehrman's own data |
-| 6 | Archaeology, Extra-Biblical Sources & the Historical Method | Pilate Stone, criteria of authenticity, Ramsay on Luke |
-| 7 | The Resurrection: A Historical Investigation | Habermas minimal facts, pre-Pauline creed, N.T. Wright |
-| 8 | The Problem of Evil: A Philosophical Deep Dive | Plantinga's Free Will Defense, skeptical theism, Lewis |
-| 9 | Quantum Physics, Non-Locality & Consciousness *(Deeper Analysis)* | Bell's inequality, 2022 Nobel Prize, consciousness-first ontology |
+| 5 | The Human Genome: DNA as the Language of God | Collins, Clinton announcement, DNA as code, information argument |
+| 6 | Something From Nothing? The Quantum Vacuum Fallacy | Krauss critique, equivocation fallacy, David Albert's review |
+| 7 | The Bacterial Flagellum: A Molecular Machine | Rotor, stator, drive shaft, ion power, irreducible complexity |
+| 8 | The Complexity of Life Requires a Designer | Capstone: cell as factory, information theory, Tour + Collins + Behe |
+| 9 | Textual Criticism and the New Testament | P52, 400K variants, Ehrman's own data |
+| 10 | Archaeology, Extra-Biblical Sources & the Historical Method | Pilate Stone, criteria of authenticity, Ramsay on Luke |
+| 11 | The Resurrection: A Historical Investigation | Habermas minimal facts, pre-Pauline creed, N.T. Wright |
+| 12 | The Problem of Evil: A Philosophical Deep Dive | Plantinga's Free Will Defense, skeptical theism, Lewis |
+| 13 | Quantum Physics, Non-Locality & Consciousness *(Deeper Analysis)* | Bell's inequality, 2022 Nobel Prize, consciousness-first ontology |
 
 ## Features
 
@@ -70,12 +74,14 @@ The curriculum draws on the work of:
 - **Thomas Aquinas** — Five Ways, classical theism
 - **Roger Penrose** — Fine-tuning, initial entropy conditions
 - **Robin Collins** — Likelihood Principle, design inference
+- **Michael Behe** — Irreducible complexity, bacterial flagellum
+- **William Dembski** — Specified complexity, information theory
 - **David Chalmers** — Hard problem of consciousness
 - **Bernardo Kastrup** — Analytic idealism
 
 ## Tech Stack
 
-- Single `index.html` file (~3,300 lines)
+- Single `index.html` file (~3,800 lines)
 - Vanilla HTML, CSS, and JavaScript — no build tools
 - Google Fonts: Playfair Display, Source Serif 4, JetBrains Mono
 - Hosted on [Netlify](https://www.netlify.com/) (free tier)
