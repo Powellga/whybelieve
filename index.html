@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Believe? | Evidence for God</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1f3d;
+    --navy-mid: #1a3260;
+    --gold: #c8922a;
+    --gold-light: #e8b84b;
+    --cream: #f5f0e8;
+    --cream-dark: #ede5d5;
+    --text: #1c1c2e;
+    --text-muted: #5a5a72;
+    --white: #ffffff;
+    --green: #2d6a4f;
+    --green-light: #52b788;
+    --red-soft: #9b2335;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--navy);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-light);
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 0.4rem; }
+  .nav-btn {
+    background: none; border: none; cursor: pointer;
+    color: rgba(255,255,255,0.7);
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    background: rgba(200,146,42,0.25);
+    color: var(--gold-light);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,146,42,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 80% at 80% 100%, rgba(26,50,96,0.8) 0%, transparent 60%);
+  }
+  .star-field {
+    position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: var(--min-op, 0.2); }
+    50% { opacity: var(--max-op, 0.9); }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(200,146,42,0.2);
+    border: 1px solid rgba(200,146,42,0.5);
+    color: var(--gold-light);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    position: relative;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.0;
+    position: relative;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .hero h1 span { color: var(--gold-light); }
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: rgba(255,255,255,0.65);
+    max-width: 560px;
+    margin: 1.5rem auto 0;
+    line-height: 1.7;
+    font-weight: 300;
+    font-style: italic;
+    position: relative;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    margin-top: 3rem;
+    position: relative;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    border: none; cursor: pointer;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,146,42,0.4); }
+  .btn-secondary {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.3); cursor: pointer;
+    font-family: 'Source Serif 4', serif;
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── PAGES ── */
+  .page { display: none; padding-top: 60px; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ── LESSONS LIST ── */
+  .lessons-hero {
+    background: var(--navy);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+  }
+  .lessons-hero h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+  .lessons-hero p { color: rgba(255,255,255,0.6); font-style: italic; font-size: 1.05rem; }
+
+  .lessons-grid {
+    max-width: 960px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .lesson-card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: all 0.25s;
+    border-top: 4px solid var(--gold);
+  }
+  .lesson-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+  .lesson-card-inner { padding: 1.75rem; }
+  .lesson-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .lesson-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+  .lesson-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+  .lesson-tag {
+    display: inline-block;
+    background: var(--cream-dark);
+    color: var(--navy-mid);
+    font-size: 0.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    margin-top: 1rem;
+    letter-spacing: 0.08em;
+  }
+  .lesson-card.locked { opacity: 0.55; cursor: default; border-top-color: #ccc; }
+  .lesson-card.locked:hover { transform: none; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+  .coming-soon { color: #aaa; font-size: 0.8rem; font-style: italic; }
+
+  /* ── LESSON VIEW ── */
+  .lesson-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem 6rem;
+  }
+  .lesson-back {
+    background: none; border: none; cursor: pointer;
+    color: var(--gold);
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.9rem;
+    display: flex; align-items: center; gap: 0.4rem;
+    margin-bottom: 2.5rem;
+    padding: 0;
+    transition: color 0.2s;
+  }
+  .lesson-back:hover { color: var(--gold-light); }
+
+  .lesson-header { margin-bottom: 3rem; }
+  .lesson-header .lesson-number { font-family: 'JetBrains Mono', monospace; color: var(--gold); letter-spacing: 0.12em; font-size: 0.75rem; margin-bottom: 0.5rem; }
+  .lesson-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); color: var(--navy); line-height: 1.15; margin-bottom: 1rem; }
+  .lesson-header .intro { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; font-style: italic; border-left: 3px solid var(--gold); padding-left: 1.25rem; }
+
+  /* Content blocks */
+  .content-block { margin-bottom: 2.5rem; }
+  .content-block h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--navy); margin-bottom: 1rem; }
+  .content-block h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--navy-mid); margin-bottom: 0.75rem; margin-top: 1.5rem; }
+  .content-block p { font-size: 1.05rem; line-height: 1.85; color: var(--text); margin-bottom: 1rem; }
+
+  /* Callout box */
+  .callout {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 6px;
+    padding: 1.5rem 1.75rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--gold);
+  }
+  .callout-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.6rem;
+  }
+  .callout p { color: rgba(255,255,255,0.9); font-size: 1rem; line-height: 1.75; margin-bottom: 0; }
+  .callout strong { color: var(--gold-light); }
+
+  /* Argument steps */
+  .argument-steps { list-style: none; margin: 1.5rem 0; }
+  .argument-steps li {
+    display: flex; gap: 1rem; align-items: flex-start;
+    margin-bottom: 1rem;
+    background: var(--white);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-left: 3px solid var(--gold);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text);
+  }
+  .step-num {
+    min-width: 28px; height: 28px;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Think About It */
+  .think-box {
+    background: linear-gradient(135deg, #1a3260 0%, #0f1f3d 100%);
+    border-radius: 8px;
+    padding: 1.75rem;
+    margin: 2rem 0;
+    color: white;
+  }
+  .think-box .think-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .think-box p { color: rgba(255,255,255,0.85); line-height: 1.75; font-size: 0.98rem; margin-bottom: 0.5rem; }
+  .think-box ul { padding-left: 1.25rem; color: rgba(255,255,255,0.8); }
+  .think-box ul li { margin-bottom: 0.5rem; line-height: 1.65; font-size: 0.97rem; }
+
+  /* Interactive Quiz */
+  .quiz-block {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid var(--cream-dark);
+  }
+  .quiz-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .quiz-question { font-size: 1rem; color: var(--text); line-height: 1.65; margin-bottom: 1.25rem; }
+  .quiz-options { display: flex; flex-direction: column; gap: 0.6rem; }
+  .quiz-option {
+    background: var(--cream);
+    border: 2px solid var(--cream-dark);
+    border-radius: 6px;
+    padding: 0.85rem 1.1rem;
+    cursor: pointer;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.97rem;
+    text-align: left;
+    transition: all 0.2s;
+    color: var(--text);
+  }
+  .quiz-option:hover:not(:disabled) { border-color: var(--gold); background: #fdf6e8; }
+  .quiz-option.correct { background: #d4edda; border-color: var(--green-light); color: var(--green); }
+  .quiz-option.wrong { background: #f8d7da; border-color: #f5a9b0; color: var(--red-soft); }
+  .quiz-option:disabled { cursor: default; }
+  .quiz-feedback {
+    margin-top: 1rem;
+    padding: 0.85rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    display: none;
+  }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct-fb { background: #d4edda; color: var(--green); }
+  .quiz-feedback.wrong-fb { background: #f8d7da; color: var(--red-soft); }
+
+  /* Analogy card */
+  .analogy-card {
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+  .analogy-header {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 0.75rem 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+  .analogy-body {
+    background: #fdf6e8;
+    padding: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text);
+    border: 1px solid var(--cream-dark);
+    border-top: none;
+  }
+
+  /* Key terms */
+  .key-terms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .term-card {
+    background: var(--white);
+    border-radius: 6px;
+    padding: 1.1rem 1.25rem;
+    border-top: 3px solid var(--navy);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .term-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--navy);
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .term-def { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* Objection/Response */
+  .objection-block { margin: 1.5rem 0; }
+  .objection {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    border-radius: 0 6px 6px 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .objection-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #856404; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+  .objection p { font-size: 0.97rem; line-height: 1.65; color: #533f03; margin: 0; }
+  .response {
+    background: #d4edda;
+    border-left: 4px solid var(--green-light);
+    border-radius: 0 6px 6px 0;
+    padding: 1rem 1.25rem;
+  }
+  .response-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--green); letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+  .response p { font-size: 0.97rem; line-height: 1.65; color: #155724; margin: 0; }
+
+  /* Section divider */
+  .divider { border: none; border-top: 2px solid var(--cream-dark); margin: 3rem 0; }
+
+  /* Progress dots */
+  .progress-bar {
+    background: var(--navy);
+    padding: 0.75rem 2rem;
+    display: flex; align-items: center; gap: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.08em;
+  }
+  .progress-dots { display: flex; gap: 0.4rem; }
+  .progress-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+  .progress-dot.done { background: var(--gold-light); }
+  .progress-dot.current { background: var(--white); }
+
+  /* About page */
+  .about-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+  .about-container h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--navy); margin-bottom: 2rem; }
+  .about-container p { font-size: 1.05rem; line-height: 1.85; color: var(--text); margin-bottom: 1.25rem; }
+  .about-container h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--navy); margin: 2.5rem 0 1rem; }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .nav-links .nav-btn:not(.always) { display: none; }
+    .nav-btn[data-page="lessons"] { display: inline-block; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Why Believe?</div>
+  <div class="nav-links">
+    <button class="nav-btn always active" data-page="home">Home</button>
+    <button class="nav-btn always" data-page="lessons">Lessons</button>
+    <button class="nav-btn" data-page="about">About</button>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="star-field" id="starField"></div>
+    <div class="hero-badge">FREE CURRICULUM · GRADES 6–8</div>
+    <h1>Why <span>Believe?</span></h1>
+    <p class="hero-sub">Not just what Christians believe — but <em>why</em> there is real evidence that God exists.</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="showPage('lessons')">Start Learning →</button>
+      <button class="btn-secondary" onclick="showPage('about')">What is this?</button>
+    </div>
+  </div>
+</div>
+
+<!-- LESSONS PAGE -->
+<div id="page-lessons" class="page">
+  <div class="lessons-hero">
+    <h2>Choose a Lesson</h2>
+    <p>Each lesson teaches one reason to believe — using logic, history, and evidence. Not just feelings.</p>
+  </div>
+  <div style="max-width:960px;margin:1rem auto;padding:0 2rem;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-muted);letter-spacing:0.1em;margin-bottom:0.5rem;">UNIT 1 — PHILOSOPHY: DOES GOD EXIST?</div>
+  </div>
+  <div class="lessons-grid" style="padding-bottom:0.5rem;">
+    <div class="lesson-card" onclick="showLesson('cosmological')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 01</div>
+        <h3>Does God Exist? The Universe Needs a Cause</h3>
+        <p>Everything that begins to exist has a cause. Scientists agree the universe had a beginning. So what caused it?</p>
+        <div class="lesson-tag">COSMOLOGICAL ARGUMENT</div>
+      </div>
+    </div>
+    <div class="lesson-card" onclick="showLesson('moral')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 02</div>
+        <h3>Right & Wrong: Where Does Morality Come From?</h3>
+        <p>Torturing children is wrong — everywhere, always, for everyone. If that's truly true, what does it tell us about God?</p>
+        <div class="lesson-tag">MORAL ARGUMENT</div>
+      </div>
+    </div>
+    <div class="lesson-card" onclick="showLesson('finetuning')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 03</div>
+        <h3>The Universe Was Built for Life — On Purpose?</h3>
+        <p>The odds of our universe supporting life are astronomically precise. Was it an accident — or design?</p>
+        <div class="lesson-tag">FINE-TUNING ARGUMENT</div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:960px;margin:1.5rem auto 0.5rem;padding:0 2rem;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-muted);letter-spacing:0.1em;">UNIT 2 — HISTORY: CAN WE TRUST THE BIBLE?</div>
+  </div>
+  <div class="lessons-grid" style="padding-bottom:0.5rem;">
+    <div class="lesson-card" onclick="showLesson('manuscript')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 04</div>
+        <h3>Can We Trust the Bible? The Manuscript Evidence</h3>
+        <p>With 5,800+ Greek manuscripts, the New Testament is the most documented ancient text in history. What does that mean?</p>
+        <div class="lesson-tag">BIBLICAL RELIABILITY</div>
+      </div>
+    </div>
+    <div class="lesson-card" onclick="showLesson('archaeology')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 05</div>
+        <h3>Did Archaeologists Prove the Bible Right?</h3>
+        <p>For centuries, critics said the Bible invented cities and kings. Then archaeologists started digging. What they found was stunning.</p>
+        <div class="lesson-tag">ARCHAEOLOGICAL EVIDENCE</div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:960px;margin:1.5rem auto 0.5rem;padding:0 2rem;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-muted);letter-spacing:0.1em;">UNIT 3 — HISTORY: DID JESUS REALLY EXIST AND RISE?</div>
+  </div>
+  <div class="lessons-grid" style="padding-bottom:0.5rem;">
+    <div class="lesson-card" onclick="showLesson('historicaljesus')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 06</div>
+        <h3>Non-Christian Sources Confirm Jesus Existed</h3>
+        <p>Roman historians, Jewish scholars, and enemies of Christianity all wrote about Jesus. What did they say?</p>
+        <div class="lesson-tag">HISTORICAL SOURCES</div>
+      </div>
+    </div>
+    <div class="lesson-card" onclick="showLesson('resurrection')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 07</div>
+        <h3>The Empty Tomb: What Really Happened?</h3>
+        <p>Even Jesus's enemies admitted the tomb was empty. Historians call five facts about the resurrection "minimal facts." What are they?</p>
+        <div class="lesson-tag">RESURRECTION EVIDENCE</div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:960px;margin:1.5rem auto 0.5rem;padding:0 2rem;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-muted);letter-spacing:0.1em;">UNIT 4 — HARD QUESTIONS</div>
+  </div>
+  <div class="lessons-grid" style="padding-bottom:3rem;">
+    <div class="lesson-card" onclick="showLesson('evil')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 08</div>
+        <h3>If God is Good, Why Is There Evil?</h3>
+        <p>This is the hardest question skeptics ask. It deserves a real answer — not just "trust God." Let's think it through carefully.</p>
+        <div class="lesson-tag">PROBLEM OF EVIL</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON: COSMOLOGICAL -->
+<div id="page-lesson-cosmological" class="page">
+  <div class="progress-bar">
+    <span>LESSON 01 OF 08</span>
+    <div class="progress-dots">
+      <div class="progress-dot current"></div>
+      <div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+      <div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons')">← Back to Lessons</button>
+
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 01 · COSMOLOGICAL ARGUMENT</div>
+      <h1>The Universe Needs a Cause</h1>
+      <p class="intro">Scientists and philosophers agree: the universe had a beginning. But something cannot come from nothing. So what — or who — started it all?</p>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="content-block reveal">
+      <h2>Start With Something Simple</h2>
+      <p>Imagine you're walking in the woods and you find a brand-new iPhone sitting on a rock. Would you think, <em>"Huh, that must have just appeared out of nowhere"</em>?</p>
+      <p>Of course not. You'd immediately think: <strong>someone made this and left it here.</strong> Things don't pop into existence for no reason — especially complex things.</p>
+      <p>Now zoom out. Way out. Past the trees, past the sky, past the Milky Way galaxy. What about the entire universe itself? Did it just appear? Or does it need a cause too?</p>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header">💡 EVERYDAY ANALOGY</div>
+      <div class="analogy-body">
+        <strong>The Dominos Game.</strong> Imagine a row of dominoes falling. Each one is knocked over by the one before it. Now imagine someone tells you: <em>"The dominoes have been falling forever — there's no first one."</em> That sounds weird, right? Because if there's no first domino, nothing would ever have started falling. Philosophers call this the problem of infinite regress — and it's a big clue that the universe had a true beginning.
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="content-block reveal">
+      <h2>What Science Tells Us</h2>
+      <p>For most of human history, many scientists assumed the universe had always existed — no beginning, no end, just eternal. Then in the 20th century, everything changed.</p>
+      <p>In 1929, astronomer Edwin Hubble discovered that galaxies are flying away from each other in all directions. If you run that film <em>backwards</em>, everything comes together at a single starting point. Scientists called this the <strong>Big Bang</strong> — the moment when all space, time, matter, and energy began to exist.</p>
+      <p>Today, virtually every scientist in the world accepts this: <strong>the universe had a beginning.</strong> It is not eternal. It came into existence roughly 13.8 billion years ago.</p>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">🔭 WHAT SCIENTISTS ACTUALLY SAY</div>
+      <p>"The universe had a beginning. Before the Big Bang, there was no matter, no energy, no space, and <strong>no time.</strong>" — This is the scientific consensus today, accepted by astronomers, physicists, and cosmologists worldwide.</p>
+    </div>
+
+    <!-- SECTION 3: THE ARGUMENT -->
+    <div class="content-block reveal">
+      <h2>The Argument — Step by Step</h2>
+      <p>Philosophers call this the <strong>Cosmological Argument</strong> (from the Greek word <em>kosmos</em>, meaning "universe"). Here's how it works:</p>
+
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>Everything that begins to exist has a cause.</strong> A chair was caused by a carpenter. You were caused by your parents. Nothing that begins to exist just pops into being from nothing.</div></li>
+        <li><div class="step-num">2</div><div><strong>The universe began to exist.</strong> The Big Bang tells us the universe — all space, time, matter, and energy — had a starting point.</div></li>
+        <li><div class="step-num">3</div><div><strong>Therefore, the universe has a cause.</strong> Something caused the universe to begin. That cause must exist <em>outside</em> of space, time, and matter — because it caused those things to begin.</div></li>
+      </ul>
+
+      <p>What kind of thing could exist outside of space and time, and have the power to create an entire universe? That sounds a lot like what every major religion calls God.</p>
+    </div>
+
+    <!-- KEY TERMS -->
+    <div class="content-block reveal">
+      <h2>Key Words to Know</h2>
+      <div class="key-terms">
+        <div class="term-card">
+          <div class="term-name">COSMOLOGICAL</div>
+          <div class="term-def">From the Greek word for "universe." This argument reasons from the existence of the universe to its cause.</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">CAUSE</div>
+          <div class="term-def">What makes something happen or exist. Every effect has a cause that explains it.</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">INFINITE REGRESS</div>
+          <div class="term-def">The impossible idea that causes go back forever with no starting point. Something must be first.</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">TRANSCENDENT</div>
+          <div class="term-def">Existing outside of — and independent from — the physical universe. God would have to be transcendent.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- OBJECTIONS -->
+    <div class="content-block reveal">
+      <h2>Common Questions & Objections</h2>
+      <p>Good thinkers ask hard questions. Here are some you'll probably hear — and how to respond:</p>
+
+      <div class="objection-block">
+        <div class="objection">
+          <div class="objection-label">❓ OBJECTION</div>
+          <p>"If everything needs a cause, what caused God?"</p>
+        </div>
+        <div class="response">
+          <div class="response-label">✓ RESPONSE</div>
+          <p>The argument says <em>everything that begins to exist</em> needs a cause. God, by definition, never began to exist — He is eternal. You only need a cause if you started. Think of it this way: a first domino doesn't need to have been knocked over by another domino. It just needs to exist and be the one that starts the chain.</p>
+        </div>
+      </div>
+
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection">
+          <div class="objection-label">❓ OBJECTION</div>
+          <p>"Maybe the Big Bang just happened on its own — from nothing."</p>
+        </div>
+        <div class="response">
+          <div class="response-label">✓ RESPONSE</div>
+          <p>Scientists use the phrase "from nothing" very loosely — they usually mean "from a quantum vacuum" which is itself something, not true nothingness. True nothing means no space, no time, no energy, no quantum fields. Nothing at all. And from true nothing, nothing can come. As the ancient philosophers said: <em>ex nihilo, nihil fit</em> — out of nothing, nothing comes.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- THINK ABOUT IT -->
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It — Discussion Questions</div>
+      <ul>
+        <li>If the universe had a cause, why do you think that cause would have to be <em>personal</em> rather than just a random force?</li>
+        <li>Can you think of anything in your experience that started existing without a cause?</li>
+        <li>What would it feel like to exist "outside of time"? Is that even imaginable?</li>
+        <li>How does knowing the universe had a beginning change how you think about your own existence?</li>
+      </ul>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check — Question 1</div>
+      <p class="quiz-question">According to the Cosmological Argument, what does the universe's beginning tell us?</p>
+      <div class="quiz-options" id="q1-options">
+        <button class="quiz-option" onclick="answer(this, 'q1', false)">A. Nothing — the universe could have started itself.</button>
+        <button class="quiz-option" onclick="answer(this, 'q1', true)">B. The universe needs a cause that exists outside of space and time.</button>
+        <button class="quiz-option" onclick="answer(this, 'q1', false)">C. Science and faith can never agree on anything.</button>
+        <button class="quiz-option" onclick="answer(this, 'q1', false)">D. The Big Bang proves there is no God.</button>
+      </div>
+      <div class="quiz-feedback" id="q1-feedback"></div>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check — Question 2</div>
+      <p class="quiz-question">Someone says, "If God caused the universe, then who caused God?" What's the best response?</p>
+      <div class="quiz-options" id="q2-options">
+        <button class="quiz-option" onclick="answer(this, 'q2', false)">A. "Nobody knows — it's a mystery."</button>
+        <button class="quiz-option" onclick="answer(this, 'q2', false)">B. "That's a great point — the argument doesn't work."</button>
+        <button class="quiz-option" onclick="answer(this, 'q2', true)">C. "The argument only applies to things that <em>begin</em> to exist. God never began — He's eternal."</button>
+        <button class="quiz-option" onclick="answer(this, 'q2', false)">D. "You just have to have faith."</button>
+      </div>
+      <div class="quiz-feedback" id="q2-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top: 3rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p>The Cosmological Argument shows that <strong>the universe's beginning points to a cause outside of space and time.</strong> This isn't blind faith — it's following the evidence where it leads. The argument was made by ancient philosophers like Aristotle and Thomas Aquinas, and today it is supported by modern cosmology. You can now explain it to anyone — without using the Bible.</p>
+    </div>
+
+    <div style="display:flex; gap:1rem; margin-top:2.5rem; flex-wrap:wrap;">
+      <button class="btn-primary" onclick="showLesson('finetuning')">Next Lesson: Fine-Tuning →</button>
+      <button class="btn-secondary" style="color:var(--navy); border-color:var(--navy-mid);" onclick="showPage('lessons')">← All Lessons</button>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON: MORAL -->
+<div id="page-lesson-moral" class="page">
+  <div class="progress-bar">
+    <span>LESSON 02 OF 08</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div>
+      <div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+      <div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons')">← Back to Lessons</button>
+
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 02 · MORAL ARGUMENT</div>
+      <h1>Right & Wrong: Where Does Morality Come From?</h1>
+      <p class="intro">Torturing innocent children for fun is wrong. Not just "wrong for you" — wrong for everyone, everywhere, always. But if that's truly true, what does it tell us about the universe?</p>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="content-block reveal">
+      <h2>Something Everyone Already Knows</h2>
+      <p>Before you read another word, answer this in your head: <em>Was the Holocaust wrong?</em></p>
+      <p>You didn't need to think very long, did you? You didn't need to look it up in a rulebook. You didn't need to ask your parents. You just <strong>know</strong> it was wrong — deeply, obviously, certainly wrong.</p>
+      <p>Now here's the question philosophers ask: <em>How do you know?</em></p>
+      <p>Where does that certainty come from? You didn't invent it. Your country didn't vote on it. Even if every government on earth said the Holocaust was fine — it still wouldn't be fine. That sense of wrongness feels like it comes from somewhere <em>outside</em> of us.</p>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">💬 A FAMOUS THOUGHT EXPERIMENT</div>
+      <p>C.S. Lewis — one of the most brilliant Christian thinkers of the 20th century — noticed that when people argue, they say things like <strong>"That's not fair!"</strong> or <strong>"You had no right to do that!"</strong> Without realizing it, they're appealing to a standard of right and wrong that both people are supposed to already know. Where does that shared standard come from?</p>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="content-block reveal">
+      <h2>Two Types of "Wrong"</h2>
+      <p>There's a really important difference that philosophers make:</p>
+
+      <ul class="argument-steps">
+        <li><div class="step-num">A</div><div><strong>Relative morality:</strong> "Wrong" just means "my group doesn't like it." If society changes, what's "wrong" changes. There's no real right or wrong — just opinions and preferences. Like preferring chocolate over vanilla.</div></li>
+        <li><div class="step-num">B</div><div><strong>Objective morality:</strong> Some things are really, truly wrong — regardless of what anyone thinks, feels, votes for, or was raised to believe. These moral facts exist independently, like math facts.</div></li>
+      </ul>
+
+      <p>Here's the key question: Which one is true?</p>
+      <p>Think about it carefully. If morality is just relative — if there is no real right or wrong — then we can't say the Holocaust was <em>truly</em> wrong. We can only say, "We don't prefer it." Most people find that deeply unsatisfying, because in their gut they <em>know</em> it was genuinely wrong, not just unpopular.</p>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header">💡 EVERYDAY ANALOGY</div>
+      <div class="analogy-body">
+        <strong>Math Facts vs. Taste Preferences.</strong> "2 + 2 = 4" is true whether you like it or not. It doesn't change if a million people vote that 2 + 2 = 5. Now consider: "Torturing babies for fun is wrong." Is that more like a math fact (objectively true) or more like "I prefer chocolate ice cream" (just a personal taste)? If it feels more like a math fact, then objective moral truths exist — and they need an explanation.
+      </div>
+    </div>
+
+    <!-- SECTION 3: THE ARGUMENT -->
+    <div class="content-block reveal">
+      <h2>The Argument — Step by Step</h2>
+      <p>The <strong>Moral Argument</strong> for God's existence goes like this:</p>
+
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>If objective moral facts exist, then God exists.</strong> Objective moral facts need a foundation. They can't float free in the universe with no explanation. The best explanation for why some things are <em>truly</em> right or wrong — outside of human opinion — is that a morally perfect God exists and created moral reality.</div></li>
+        <li><div class="step-num">2</div><div><strong>Objective moral facts do exist.</strong> You already know this. Torturing children is genuinely wrong. Kindness is genuinely good. These aren't just opinions — they're moral truths that exist whether anyone agrees with them or not.</div></li>
+        <li><div class="step-num">3</div><div><strong>Therefore, God exists.</strong> The existence of real moral facts — facts about right and wrong that are true for everyone, always — is best explained by a morally perfect Creator who is the source of those facts.</div></li>
+      </ul>
+    </div>
+
+    <!-- KEY TERMS -->
+    <div class="content-block reveal">
+      <h2>Key Words to Know</h2>
+      <div class="key-terms">
+        <div class="term-card">
+          <div class="term-name">OBJECTIVE</div>
+          <div class="term-def">True regardless of what anyone thinks or feels. Objective facts don't change based on opinion or culture.</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">SUBJECTIVE</div>
+          <div class="term-def">Depends on the person or group. "My favorite color is blue" is subjective — it's just my preference.</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">MORAL ARGUMENT</div>
+          <div class="term-def">The philosophical argument that the existence of real right and wrong requires God as its foundation.</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">MORAL REALISM</div>
+          <div class="term-def">The view that objective moral facts are real — not invented by humans, but discovered by them.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- OBJECTIONS -->
+    <div class="content-block reveal">
+      <h2>Common Questions & Objections</h2>
+
+      <div class="objection-block">
+        <div class="objection">
+          <div class="objection-label">❓ OBJECTION</div>
+          <p>"We don't need God to know right from wrong. Evolution gave us morality."</p>
+        </div>
+        <div class="response">
+          <div class="response-label">✓ RESPONSE</div>
+          <p>Evolution might explain <em>why we feel</em> certain things are wrong — but it can't explain <em>why they actually are</em> wrong. Evolution is about survival, not truth. If evolution shaped us to think murder is wrong, that only tells us it helped us survive, not that murder is <em>genuinely, really wrong</em>. The moral argument isn't about where our feelings come from — it's about why objective moral facts exist at all.</p>
+        </div>
+      </div>
+
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection">
+          <div class="objection-label">❓ OBJECTION</div>
+          <p>"Different cultures have different morals. There's no one moral truth."</p>
+        </div>
+        <div class="response">
+          <div class="response-label">✓ RESPONSE</div>
+          <p>Cultures do disagree on many things — but they agree on the big ones. No culture celebrates torturing babies for fun. No culture thinks cowardice is better than courage. And even when cultures disagree, they're <em>arguing</em> about what's truly right — which means they all assume there is a true answer to find. When a culture does something monstrous (like slavery), we don't say "well, it was right for them." We say they were <em>wrong</em>. That means we believe in an objective standard.</p>
+        </div>
+      </div>
+
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection">
+          <div class="objection-label">❓ OBJECTION</div>
+          <p>"If God made morality, couldn't He make torturing children good if He wanted to?"</p>
+        </div>
+        <div class="response">
+          <div class="response-label">✓ RESPONSE</div>
+          <p>No — because God's nature <em>is</em> goodness itself. He doesn't decide what's good like choosing a menu item. His very character is the standard of goodness. "Could God make torturing children good?" is like asking "Could a circle be square?" The question contradicts what we mean by God. A perfectly good being cannot want evil — it's not a limitation, it's a definition.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- THINK ABOUT IT -->
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It — Discussion Questions</div>
+      <ul>
+        <li>Can you think of something you believe is truly wrong — not just "my culture doesn't like it" — but <em>really</em> wrong for everyone everywhere? What is it?</li>
+        <li>If there's no God and morality is just made up by humans, does that change how you see justice? What happens to the idea of human rights?</li>
+        <li>C.S. Lewis said noticing the "Law of Nature" (right and wrong) was the first step toward believing in God. Does that idea make sense to you? Why or why not?</li>
+        <li>How would you explain the Moral Argument to a friend who doesn't believe in God?</li>
+      </ul>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check — Question 1</div>
+      <p class="quiz-question">What is "objective morality"?</p>
+      <div class="quiz-options" id="q3-options">
+        <button class="quiz-option" onclick="answer(this, 'q3', false)">A. Rules your parents taught you.</button>
+        <button class="quiz-option" onclick="answer(this, 'q3', false)">B. Whatever the majority of people in a society believe is right.</button>
+        <button class="quiz-option" onclick="answer(this, 'q3', true)">C. Moral facts that are true regardless of what anyone thinks or feels.</button>
+        <button class="quiz-option" onclick="answer(this, 'q3', false)">D. The feeling you get in your gut when something seems wrong.</button>
+      </div>
+      <div class="quiz-feedback" id="q3-feedback"></div>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check — Question 2</div>
+      <p class="quiz-question">Someone says, "Different cultures have different morals, so there's no absolute right and wrong." What's the best response?</p>
+      <div class="quiz-options" id="q4-options">
+        <button class="quiz-option" onclick="answer(this, 'q4', false)">A. "You're right — morality is completely different everywhere."</button>
+        <button class="quiz-option" onclick="answer(this, 'q4', true)">B. "Even when cultures disagree, we still judge some cultures as <em>wrong</em> — like slavery. That means we believe in a standard above culture."</button>
+        <button class="quiz-option" onclick="answer(this, 'q4', false)">C. "That's a good argument. I guess morality is just opinions."</button>
+        <button class="quiz-option" onclick="answer(this, 'q4', false)">D. "The Bible says there is absolute right and wrong."</button>
+      </div>
+      <div class="quiz-feedback" id="q4-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top: 3rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p>The Moral Argument shows that <strong>the existence of real, objective right and wrong points to a morally perfect God as their source.</strong> This argument was made by philosophers like Immanuel Kant and C.S. Lewis, and it starts not with the Bible — but with something you already know deep in your conscience.</p>
+    </div>
+
+    <div style="display:flex; gap:1rem; margin-top:2.5rem; flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy); border-color:var(--navy-mid);" onclick="showLesson('cosmological')">← Lesson 1: Cosmological</button>
+      <button class="btn-primary" onclick="showLesson('finetuning')">Next: Fine-Tuning →</button>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON: FINE-TUNING -->
+<div id="page-lesson-finetuning" class="page">
+  <div class="progress-bar">
+    <span>LESSON 03 OF 08</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot current"></div><div class="progress-dot"></div>
+      <div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 03 · FINE-TUNING ARGUMENT</div>
+      <h1>The Universe Was Built for Life — On Purpose?</h1>
+      <p class="intro">The odds of our universe having exactly the right conditions for life are so astronomically precise that many scientists call it the most powerful evidence for a Designer.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Imagine Building a Universe</h2>
+      <p>Pretend you're in charge of designing a universe. You have to set dozens of "dials" — things like the strength of gravity, the charge of electrons, the ratio of matter to antimatter. Each dial can be set to trillions of different values.</p>
+      <p>Here's the problem: if almost any dial is off by even a tiny amount, the universe either collapses immediately, explodes too fast for stars to form, or never produces chemistry complex enough for life.</p>
+      <p>Scientists call this <strong>fine-tuning</strong>. And the more physicists study the universe's constants, the more they find: the numbers look like they were chosen very, very carefully.</p>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">🔬 WHAT PHYSICISTS ACTUALLY SAY</div>
+      <p>Physicist Paul Davies wrote that the numerical values the universe's constants take <strong>"appear to have been almost incredibly finely tuned."</strong> Cambridge cosmologist Martin Rees identified six fundamental numbers that, if altered even slightly, would make life impossible — anywhere in the universe.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Three Examples of Fine-Tuning</h2>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>Gravity's strength.</strong> If gravity were slightly stronger, all stars would burn out in millions of years — not billions — leaving no time for life to develop. If slightly weaker, stars would never form at all. The actual strength sits in an incredibly narrow "life-permitting" range.</div></li>
+        <li><div class="step-num">2</div><div><strong>The cosmological constant.</strong> This controls how fast the universe expands. Physicists calculate it is fine-tuned to 1 part in 10<sup>120</sup> — that's a 1 followed by 120 zeros. Even the world's greatest lottery winners have better odds than this.</div></li>
+        <li><div class="step-num">3</div><div><strong>Carbon production.</strong> Carbon — the backbone of all life — is produced inside stars through a process that requires three nuclear resonance levels to line up almost perfectly. Astronomer Fred Hoyle (an atheist at the time) said this looked so designed that it "shook his atheism."</div></li>
+      </ul>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header">💡 EVERYDAY ANALOGY</div>
+      <div class="analogy-body">
+        <strong>The Sniper Analogy.</strong> Imagine you're about to be executed by a firing squad of 100 expert marksmen. They all fire. They all miss. You're alive.<br><br>Now — do you shrug and say, "Well, <em>someone</em> had to survive, so I shouldn't be surprised"? Or do you think: <em>something is going on here</em>? The fine-tuning of the universe is like surviving a trillion firing squads all at once. The "someone had to survive" answer starts to feel pretty hollow.
+      </div>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Argument — Step by Step</h2>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>The fine-tuning of the universe is either due to physical necessity, chance, or design.</strong> Those are really the only three options.</div></li>
+        <li><div class="step-num">2</div><div><strong>It is not due to physical necessity.</strong> There's no known law of physics that <em>requires</em> the constants to have the values they do. They could, in principle, have been different.</div></li>
+        <li><div class="step-num">3</div><div><strong>It is not due to chance.</strong> The odds are so incomprehensibly small that even scientists who want to avoid God find pure chance unconvincing.</div></li>
+        <li><div class="step-num">4</div><div><strong>Therefore, fine-tuning is best explained by design</strong> — by an intelligent Creator who set the constants intentionally to permit life.</div></li>
+      </ul>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">FINE-TUNING</div><div class="term-def">When the constants of physics fall within an extremely narrow range required to permit a life-supporting universe.</div></div>
+      <div class="term-card"><div class="term-name">COSMOLOGICAL CONSTANT</div><div class="term-def">A number describing the energy density of empty space. Its precise value is one of the most striking examples of fine-tuning.</div></div>
+      <div class="term-card"><div class="term-name">TELEOLOGICAL</div><div class="term-def">From the Greek word for "purpose" or "end." The Teleological Argument says the universe shows signs of purposeful design.</div></div>
+      <div class="term-card"><div class="term-name">MULTIVERSE</div><div class="term-def">A proposed (unproven) theory that infinite universes exist, so one lucky one was bound to be life-permitting. The main skeptical response to fine-tuning.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="content-block reveal">
+      <h2>Common Objections</h2>
+      <div class="objection-block">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"Maybe there are infinite universes (a multiverse). One of them was bound to get lucky."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>The multiverse is an interesting idea, but there's currently zero scientific evidence for it — it was largely invented to avoid the design conclusion. Even if it were true, it just pushes the question back: what fine-tuned the multiverse-generating mechanism? Also, philosopher Robin Collins points out that a universe-designer is actually a simpler, more elegant explanation than an infinite number of unobservable universes.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"Of course we find ourselves in a life-permitting universe — we couldn't exist to observe any other kind."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>This is called the "Anthropic Principle," and while it's true, it doesn't actually explain the fine-tuning. Think back to the firing squad: just because you <em>had to</em> be alive to notice you survived doesn't mean the survival needs no explanation. The question isn't whether life-permitting universes can be observed — it's <em>why one exists at all.</em></p></div>
+      </div>
+    </div>
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>If you found a note that said "I love you" written in the sand on a beach, would you think the waves did it by accident or that a person wrote it? How is fine-tuning similar?</li>
+        <li>Why do you think some scientists prefer the multiverse theory even without evidence for it?</li>
+        <li>Does fine-tuning prove Christianity specifically — or just that a Designer exists? What's the difference?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">The fine-tuning argument says the universe's precise constants are best explained by what?</p>
+      <div class="quiz-options" id="q5-options">
+        <button class="quiz-option" onclick="answer(this,'q5',false)">A. Pure luck — with enough universes, one had to work.</button>
+        <button class="quiz-option" onclick="answer(this,'q5',false)">B. The laws of physics require these values — there was no other option.</button>
+        <button class="quiz-option" onclick="answer(this,'q5',true)">C. Intentional design by an intelligent Creator who set the values to permit life.</button>
+        <button class="quiz-option" onclick="answer(this,'q5',false)">D. We don't know, so we shouldn't draw any conclusions.</button>
+      </div>
+      <div class="quiz-feedback" id="q5-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p>The Fine-Tuning Argument shows that <strong>the precise values of the universe's physical constants — values that make life possible — are best explained by an intelligent Designer.</strong> This argument is taken seriously by physicists and philosophers worldwide, and it doesn't require the Bible to make.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('moral')">← Lesson 2: Moral</button>
+      <button class="btn-primary" onclick="showLesson('manuscript')">Next: Manuscript Evidence →</button>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON: MANUSCRIPT EVIDENCE -->
+<div id="page-lesson-manuscript" class="page">
+  <div class="progress-bar">
+    <span>LESSON 04 OF 08</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot current"></div>
+      <div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 04 · BIBLICAL RELIABILITY</div>
+      <h1>Can We Trust the Bible? The Manuscript Evidence</h1>
+      <p class="intro">How do we know what ancient documents really said? By counting surviving copies and measuring the gap between when they were written and when they were copied. By those measures, the New Testament is the most well-documented ancient book in history.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>How Historians Verify Ancient Documents</h2>
+      <p>No original manuscript of any ancient text survives. We don't have Julius Caesar's handwritten notes. We don't have Plato's original dialogues. What we have are <strong>copies of copies</strong> — made by scribes over centuries.</p>
+      <p>Historians evaluate ancient texts using two key questions:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>How many manuscript copies exist?</strong> More copies = more ways to cross-check and confirm the original wording. A single copy is easy to corrupt; thousands of independent copies are not.</div></li>
+        <li><div class="step-num">2</div><div><strong>How close are the copies to the original?</strong> If a document was written in 50 AD and the earliest copy we have is from 1300 AD, that's a 1,250-year gap — lots of room for errors. A short gap means higher reliability.</div></li>
+      </ul>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>How Does the New Testament Compare?</h2>
+      <p>Let's put the New Testament side by side with other ancient texts historians trust without question:</p>
+      <div style="overflow-x:auto;margin:1.5rem 0;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.92rem;font-family:'Source Serif 4',serif;">
+          <thead>
+            <tr style="background:var(--navy);color:white;">
+              <th style="padding:0.75rem 1rem;text-align:left;">Ancient Work</th>
+              <th style="padding:0.75rem 1rem;text-align:center;">Manuscripts</th>
+              <th style="padding:0.75rem 1rem;text-align:center;">Earliest Copy Gap</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:white;"><td style="padding:0.7rem 1rem;border-bottom:1px solid var(--cream-dark);">Homer's Iliad</td><td style="padding:0.7rem 1rem;text-align:center;border-bottom:1px solid var(--cream-dark);">~1,800</td><td style="padding:0.7rem 1rem;text-align:center;border-bottom:1px solid var(--cream-dark);">~400 years</td></tr>
+            <tr style="background:var(--cream);"><td style="padding:0.7rem 1rem;border-bottom:1px solid var(--cream-dark);">Caesar's Gallic Wars</td><td style="padding:0.7rem 1rem;text-align:center;border-bottom:1px solid var(--cream-dark);">~10</td><td style="padding:0.7rem 1rem;text-align:center;border-bottom:1px solid var(--cream-dark);">~1,000 years</td></tr>
+            <tr style="background:white;"><td style="padding:0.7rem 1rem;border-bottom:1px solid var(--cream-dark);">Plato's Dialogues</td><td style="padding:0.7rem 1rem;text-align:center;border-bottom:1px solid var(--cream-dark);">~200</td><td style="padding:0.7rem 1rem;text-align:center;border-bottom:1px solid var(--cream-dark);">~1,200 years</td></tr>
+            <tr style="background:#e8f4e8;"><td style="padding:0.7rem 1rem;font-weight:600;color:var(--green);">New Testament (Greek)</td><td style="padding:0.7rem 1rem;text-align:center;font-weight:600;color:var(--green);">5,800+</td><td style="padding:0.7rem 1rem;text-align:center;font-weight:600;color:var(--green);">~25–50 years</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>When you add manuscripts in other languages (Latin, Syriac, Coptic), the total exceeds <strong>24,000 copies</strong>. No other ancient document is even close.</p>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">📜 WHAT SECULAR SCHOLARS SAY</div>
+      <p>Sir Frederic Kenyon, former director of the British Museum and one of the world's foremost experts on ancient manuscripts, wrote: <strong>"The interval between the dates of original composition and the earliest existing evidence becomes so small as to be negligible, and the last foundation for any doubt that the Scriptures have come down to us substantially as they were written has now been removed."</strong></p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>What About Errors in Copying?</h2>
+      <p>Scribes did make copying errors — this is well-known and openly studied by Bible scholars (called "textual critics"). But here's the key insight: having thousands of manuscripts means we can <em>identify and correct</em> those errors by comparing copies.</p>
+      <p>Scholars estimate that about 99% of the New Testament text is firmly established, and the remaining variants are mostly spelling differences or word-order changes. <strong>Not a single core Christian doctrine rests on a disputed passage.</strong></p>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">MANUSCRIPT</div><div class="term-def">A handwritten copy of a document. Before printing presses, scribes copied texts by hand.</div></div>
+      <div class="term-card"><div class="term-name">TEXTUAL CRITICISM</div><div class="term-def">The academic field that studies manuscript copies to reconstruct the original text of ancient documents.</div></div>
+      <div class="term-card"><div class="term-name">CODEX</div><div class="term-def">An ancient book form (pages bound together), as opposed to scrolls. Many early New Testament manuscripts are codices.</div></div>
+      <div class="term-card"><div class="term-name">PAPYRUS</div><div class="term-def">An early writing material made from plants. The oldest New Testament fragments are written on papyrus and date to within decades of the originals.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="content-block reveal">
+      <h2>Common Objections</h2>
+      <div class="objection-block">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"The Bible has been translated so many times — it must have changed a lot."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Modern Bible translations go back directly to the original Greek and Hebrew manuscripts — not from a chain of translations. Thanks to thousands of manuscripts, we have an extremely accurate picture of what was originally written. Translating carefully from the original is very different from playing a centuries-long game of telephone.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"The Council of Nicaea in 325 AD changed the Bible and removed books."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>This is a popular myth. The Council of Nicaea dealt with theological debates — it did not select or modify biblical books. The New Testament canon developed gradually through widespread use in churches, and the books included were already in circulation for centuries before Nicaea. Historians have thoroughly examined this claim and found it to be historically unfounded.</p></div>
+      </div>
+    </div>
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>If someone told you Caesar's Gallic Wars is a reliable historical document (most historians do), what does that mean for the New Testament with 580 times more manuscripts?</li>
+        <li>Why do you think people often assume the Bible has been changed, when the manuscript evidence suggests the opposite?</li>
+        <li>What's the difference between "the Bible contains errors in copying" and "the Bible's message has been corrupted"?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">What makes the New Testament stand out compared to other ancient historical documents?</p>
+      <div class="quiz-options" id="q6-options">
+        <button class="quiz-option" onclick="answer(this,'q6',false)">A. It's the oldest document ever written.</button>
+        <button class="quiz-option" onclick="answer(this,'q6',true)">B. It has far more manuscript copies and a much shorter gap to the original than any comparable ancient text.</button>
+        <button class="quiz-option" onclick="answer(this,'q6',false)">C. It has never been questioned by any scholar.</button>
+        <button class="quiz-option" onclick="answer(this,'q6',false)">D. The original handwritten copies still survive today.</button>
+      </div>
+      <div class="quiz-feedback" id="q6-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p>By the standards historians use to evaluate <em>any</em> ancient document, <strong>the New Testament is extraordinarily well-attested.</strong> 5,800+ Greek manuscripts. A copy gap of 25–50 years. If you trust Caesar and Plato based on far thinner evidence, intellectual honesty requires taking the New Testament seriously.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('finetuning')">← Lesson 3: Fine-Tuning</button>
+      <button class="btn-primary" onclick="showLesson('archaeology')">Next: Archaeology →</button>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON: ARCHAEOLOGY -->
+<div id="page-lesson-archaeology" class="page">
+  <div class="progress-bar">
+    <span>LESSON 05 OF 08</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 05 · ARCHAEOLOGICAL EVIDENCE</div>
+      <h1>Did Archaeologists Prove the Bible Right?</h1>
+      <p class="intro">For centuries, critics claimed the Bible invented places, kings, and events. Then archaeologists began excavating the Middle East. Discovery after discovery confirmed what the Bible described — in remarkable detail.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Archaeology and the Bible</h2>
+      <p>Archaeology is the study of ancient civilizations through physical evidence — digging up cities, artifacts, inscriptions, and coins. It can't prove theological claims like "Jesus is God," but it <em>can</em> confirm or deny whether the Bible's historical details are accurate.</p>
+      <p>In the 1800s, many scholars confidently said the Bible's historical claims were myths. Cities mentioned in the Bible didn't appear in any other records. Kings the Bible described had no evidence outside Scripture. Critics used this as evidence that the Bible was legend, not history.</p>
+      <p>Then archaeologists started digging. And the picture changed dramatically.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Famous Archaeological Confirmations</h2>
+
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>The Pool of Bethesda (John 5).</strong> Critics called this pool fictional — it wasn't mentioned anywhere outside the Bible. Then in the 19th century, archaeologists in Jerusalem excavated it exactly where John's Gospel said it was, with five porticoes, just as described.</div></li>
+        <li><div class="step-num">2</div><div><strong>The Hittites.</strong> For decades, scholars called the Hittite people (mentioned over 40 times in the Old Testament) an invention. In 1906, archaeologists discovered the Hittite capital Hattusa in modern Turkey — revealing an entire empire the Bible had described accurately for centuries.</div></li>
+        <li><div class="step-num">3</div><div><strong>King David's existence.</strong> For years, skeptics said David was a legend. In 1993, archaeologists discovered the Tel Dan Stele — a stone monument from the 9th century BC referencing the "House of David." It was the first non-biblical mention of David ever found.</div></li>
+        <li><div class="step-num">4</div><div><strong>Pontius Pilate.</strong> For centuries, Pilate — the Roman governor who sentenced Jesus — was known only from the Bible and a few Roman texts. In 1961, archaeologists excavating Caesarea Maritima found a stone inscription bearing Pilate's name and title, exactly as described in the Gospels.</div></li>
+        <li><div class="step-num">5</div><div><strong>The City of Jericho.</strong> The Bible describes Jericho as an ancient, walled city. Archaeological excavations confirmed a large settlement at Jericho dating back thousands of years — one of the oldest continuously inhabited cities ever discovered.</div></li>
+      </ul>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">🏺 WHAT ARCHAEOLOGISTS SAY</div>
+      <p>Nelson Glueck, one of the greatest archaeologists of the 20th century (and not a Christian), stated: <strong>"It may be stated categorically that no archaeological discovery has ever controverted a biblical reference."</strong> He added that archaeological finds have confirmed biblical descriptions again and again.</p>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header">💡 THINK OF IT THIS WAY</div>
+      <div class="analogy-body">
+        Imagine someone hands you a novel claiming to be a true account of 1940s New York City. At first you're skeptical — it might be fiction. But then historians start checking: every street name is accurate, every subway line exists, every public figure mentioned checks out, every building described is confirmed by photographs. At what point does "I'm skeptical this is historical" become harder to defend than "this author really was there"?
+      </div>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">ARCHAEOLOGY</div><div class="term-def">The scientific study of ancient civilizations through physical remains — buildings, artifacts, inscriptions, and coins.</div></div>
+      <div class="term-card"><div class="term-name">STELE</div><div class="term-def">A standing stone slab with an inscription. Ancient rulers used them to record victories, laws, or important events.</div></div>
+      <div class="term-card"><div class="term-name">CORROBORATION</div><div class="term-def">When two independent sources confirm the same fact. Archaeological corroboration of a biblical claim strengthens its historical credibility.</div></div>
+      <div class="term-card"><div class="term-name">EXTRA-BIBLICAL</div><div class="term-def">Evidence from outside the Bible. Archaeologists and historians look for extra-biblical sources to verify biblical claims.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="content-block reveal">
+      <h2>Common Objections</h2>
+      <div class="objection-block">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"Archaeology confirming historical details doesn't prove the miracles are real."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Absolutely true — and that's not the claim being made. Archaeological evidence doesn't prove the Resurrection or that Jesus is God. What it does is establish that the Bible is a <em>reliable historical document</em> that accurately describes real places, real people, and real events. A document that consistently gets verifiable facts right deserves more trust when it describes events we can't independently verify.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"Some things in the Bible still haven't been confirmed by archaeology."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>True. Absence of evidence is not evidence of absence — especially in a region where many sites remain unexcavated or were destroyed. The pattern matters: in case after case where critics said "this is legendary," archaeology later said "actually, it's real." That pattern matters for how we assess unconfirmed claims.</p></div>
+      </div>
+    </div>
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>If a friend said "The Bible is just myths and legends," how would you use the Hittites or the Tel Dan Stele in your response?</li>
+        <li>What is the difference between archaeology proving the Bible is <em>historically reliable</em> vs. proving it is <em>divinely inspired</em>?</li>
+        <li>Why do you think the discovery of Pontius Pilate's inscription matters to historians?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">The Tel Dan Stele, discovered in 1993, was significant because it did what?</p>
+      <div class="quiz-options" id="q7-options">
+        <button class="quiz-option" onclick="answer(this,'q7',false)">A. Proved that the Exodus happened exactly as described.</button>
+        <button class="quiz-option" onclick="answer(this,'q7',true)">B. Provided the first non-biblical reference to the "House of David," confirming David was a historical figure.</button>
+        <button class="quiz-option" onclick="answer(this,'q7',false)">C. Disproved a key claim of the New Testament.</button>
+        <button class="quiz-option" onclick="answer(this,'q7',false)">D. Confirmed the exact date of the Exodus.</button>
+      </div>
+      <div class="quiz-feedback" id="q7-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p><strong>Archaeological discoveries have repeatedly confirmed the Bible's historical accuracy</strong> — from cities and kings to governors and pools. This doesn't prove every theological claim, but it powerfully establishes that the Bible describes real history, written by people who knew what they were talking about.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('manuscript')">← Lesson 4: Manuscripts</button>
+      <button class="btn-primary" onclick="showLesson('historicaljesus')">Next: Historical Jesus →</button>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON: HISTORICAL JESUS -->
+<div id="page-lesson-historicaljesus" class="page">
+  <div class="progress-bar">
+    <span>LESSON 06 OF 08</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 06 · HISTORICAL SOURCES</div>
+      <h1>Non-Christian Sources Confirm Jesus Existed</h1>
+      <p class="intro">Some people claim Jesus never existed. But historians — including atheist and Jewish scholars — agree almost unanimously that Jesus of Nazareth was a real historical person. Here's how we know, from sources that had no reason to make him look good.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Why Non-Christian Sources Matter</h2>
+      <p>Imagine you're trying to verify someone is a real historical figure. If only their friends and followers wrote about them, a skeptic could say, "Of course they said nice things — they were biased." But if enemies, neutral outsiders, and people who disagreed with them <em>also</em> wrote about them — that's much harder to dismiss.</p>
+      <p>When it comes to Jesus, we have exactly that. Roman historians, Jewish scholars, and others who had no interest in promoting Christianity wrote about Jesus as a real historical figure. Let's look at the evidence.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Non-Christian Sources</h2>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>Tacitus (Roman historian, ~116 AD).</strong> In his Annals, Tacitus describes the Great Fire of Rome and how Emperor Nero blamed Christians: "Christus, from whom the name had its origin, suffered the extreme penalty [execution] during the reign of Tiberius at the hands of one of our procurators, Pontius Pilatus." Tacitus was no friend of Christianity — he called it a "destructive superstition." But he confirmed the basic historical facts: Jesus existed, was executed under Pilate, and his followers spread after his death.</div></li>
+        <li><div class="step-num">2</div><div><strong>Josephus (Jewish historian, ~93 AD).</strong> Josephus was a Jewish historian writing for Roman audiences. He mentions Jesus twice. In one passage (even allowing for some later Christian editing), he refers to "James the brother of Jesus who was called Christ." In another, he describes Jesus as a wise man who was condemned by Pilate and whose followers continued after his death.</div></li>
+        <li><div class="step-num">3</div><div><strong>Pliny the Younger (Roman governor, ~112 AD).</strong> In a letter to Emperor Trajan, Pliny describes Christians in his region who "sing hymns to Christ as to a god" and meet regularly. He's asking how to deal with them — evidence that the early Christian movement was real, active, and growing rapidly.</div></li>
+        <li><div class="step-num">4</div><div><strong>The Talmud (Jewish writings, ~200 AD).</strong> Jewish rabbinical writings from this period mention "Yeshu" (Jesus) and describe his execution on the eve of Passover. Importantly, these texts don't deny Jesus existed — they argue about who he was. Even critics of Jesus acknowledged his historical existence.</div></li>
+      </ul>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">📚 WHAT HISTORIANS (INCLUDING ATHEISTS) SAY</div>
+      <p>Atheist New Testament scholar Bart Ehrman — one of the most prominent critics of traditional Christianity — writes: <strong>"The historical Jesus existed, and those who deny it simply create more problems than they solve."</strong> The question for serious historians is not <em>whether</em> Jesus existed but <em>who he claimed to be.</em></p>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header">💡 THE ENEMY CRITERION</div>
+      <div class="analogy-body">
+        Historians have a rule of thumb called the "Enemy Criterion": if a hostile or neutral source confirms something about a person, that confirmation is especially trustworthy — because they had no motivation to be nice. Tacitus hated Christians. The Jewish Talmud was written to argue <em>against</em> Jesus. Yet both confirm he was a real person who was executed. That's powerful evidence.
+      </div>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">TACITUS</div><div class="term-def">Roman senator and historian (56–120 AD). One of the most respected ancient historians. Confirmed Jesus's execution under Pilate.</div></div>
+      <div class="term-card"><div class="term-name">JOSEPHUS</div><div class="term-def">First-century Jewish historian who wrote for Roman audiences. Mentioned Jesus and his brother James in his historical works.</div></div>
+      <div class="term-card"><div class="term-name">ENEMY CRITERION</div><div class="term-def">A historical method: if someone hostile to a person or movement still confirms a fact about them, that fact is especially credible.</div></div>
+      <div class="term-card"><div class="term-name">EXTRA-BIBLICAL SOURCES</div><div class="term-def">Historical evidence for Jesus from outside the Bible — Roman, Jewish, and other ancient writers.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="content-block reveal">
+      <h2>Common Objections</h2>
+      <div class="objection-block">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"These sources were written decades after Jesus — they can't be reliable."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Tacitus wrote about 80 years after Jesus. By ancient standards, that's actually quite close — and he was drawing on official Roman records. Most ancient history is written well over a century after the events. We don't dismiss Tacitus on Julius Caesar because he wrote 150 years later. The same standard should apply here.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"The Josephus passages were added by Christian scribes — they're forgeries."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Scholars agree that one of Josephus's two Jesus passages was probably embellished by later Christian copyists. But they also agree that the core of both passages is authentic — the editing is visible because it sounds more glowing than Josephus's typically neutral style. And the mention of "James the brother of Jesus called Christ" is almost universally accepted as original and unedited.</p></div>
+      </div>
+    </div>
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>If even Jesus's enemies and critics wrote about him as a real person, what does that tell you about the "Jesus never existed" claim?</li>
+        <li>Why is the "Enemy Criterion" useful as a historical tool? Can you think of other examples in history where enemy confirmation matters?</li>
+        <li>What is the difference between confirming Jesus <em>existed</em> and confirming he was <em>who he claimed to be</em>?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">Why are non-Christian sources for Jesus especially important to historians?</p>
+      <div class="quiz-options" id="q8-options">
+        <button class="quiz-option" onclick="answer(this,'q8',false)">A. Because they are always more accurate than Christian sources.</button>
+        <button class="quiz-option" onclick="answer(this,'q8',false)">B. Because the New Testament is not a reliable document.</button>
+        <button class="quiz-option" onclick="answer(this,'q8',true)">C. Because hostile or neutral sources confirming Jesus's existence had no motivation to do so — making their testimony especially credible.</button>
+        <button class="quiz-option" onclick="answer(this,'q8',false)">D. Because the Bible never claims Jesus is a historical person.</button>
+      </div>
+      <div class="quiz-feedback" id="q8-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p><strong>Roman, Jewish, and other non-Christian sources independently confirm that Jesus of Nazareth was a real historical person</strong> who lived in first-century Judea, gathered followers, and was executed under Pontius Pilate. This is accepted by virtually every serious historian — including atheists.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('archaeology')">← Lesson 5: Archaeology</button>
+      <button class="btn-primary" onclick="showLesson('resurrection')">Next: The Empty Tomb →</button>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON: RESURRECTION -->
+<div id="page-lesson-resurrection" class="page">
+  <div class="progress-bar">
+    <span>LESSON 07 OF 08</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot current"></div><div class="progress-dot"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 07 · RESURRECTION EVIDENCE</div>
+      <h1>The Empty Tomb: What Really Happened?</h1>
+      <p class="intro">The Resurrection is Christianity's central claim. If it happened, everything changes. Historians — including skeptics — accept five basic facts about what happened after Jesus died. The question is: what's the best explanation?</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Minimal Facts Approach</h2>
+      <p>New Testament scholar Gary Habermas developed what he calls the <strong>"Minimal Facts" approach</strong>. Instead of assuming the Bible is true and arguing from there, he starts only with facts that are:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">a</div><div>Strongly evidenced by multiple independent historical sources, and</div></li>
+        <li><div class="step-num">b</div><div>Accepted by the vast majority of scholars — including skeptics, atheists, and non-Christians.</div></li>
+      </ul>
+      <p>What he found is remarkable: even using this very strict standard, five facts emerge that virtually all scholars — regardless of their beliefs — accept as historically reliable.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Five Minimal Facts</h2>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>Jesus died by crucifixion.</strong> Confirmed by Roman historians (Tacitus, Josephus), Paul's early letters (written within 20–25 years of the event), and all four Gospels. Roman crucifixion was designed to be certain — soldiers were professionals whose lives depended on doing it correctly.</div></li>
+        <li><div class="step-num">2</div><div><strong>The disciples sincerely believed they saw Jesus risen.</strong> This is not disputed even by skeptics. The disciples went from hiding in fear after Jesus's death to boldly preaching his resurrection — within weeks. Something dramatic happened to cause that transformation. They clearly believed it.</div></li>
+        <li><div class="step-num">3</div><div><strong>Paul — a persecutor of Christians — suddenly converted.</strong> Paul (formerly Saul) was actively hunting and imprisoning Christians. He then claimed to see the risen Jesus and became Christianity's greatest missionary. His transformation is one of the most remarkable in history and has no clear natural explanation.</div></li>
+        <li><div class="step-num">4</div><div><strong>James — Jesus's skeptical brother — suddenly converted.</strong> During Jesus's ministry, the Gospels say his own brothers didn't believe in him (John 7:5). After the crucifixion, James became a leader of the Jerusalem church and died for his belief in the Resurrection. What changed his mind?</div></li>
+        <li><div class="step-num">5</div><div><strong>The tomb was empty.</strong> Even Jesus's enemies — the Jewish leaders who had him killed — did not claim the tomb was full. Instead, they spread a story that the disciples stole the body (Matthew 28:13). If the tomb weren't empty, the easiest way to stop the Resurrection claims would have been to produce the body. They couldn't.</div></li>
+      </ul>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">🔍 THE BEST EXPLANATION</div>
+      <p>Habermas and fellow scholar Michael Licona challenged critics: <strong>come up with a natural explanation that accounts for ALL five facts.</strong> Alternative theories fail: the "wrong tomb" theory doesn't explain the appearances; the "hallucination" theory doesn't explain the empty tomb or Paul's conversion; the "disciples stole the body" theory doesn't explain their willingness to die for a lie. The Resurrection remains the single theory that accounts for all the evidence.</p>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header">💡 WOULD YOU DIE FOR A LIE YOU INVENTED?</div>
+      <div class="analogy-body">
+        People die for things they believe are true — even if they're wrong. But people don't typically die for things they know are false. The disciples didn't just believe the Resurrection from a distance. Most of them were tortured and executed for it. They had every opportunity to recant and save their lives. They didn't. That kind of willingness to die is powerful evidence they genuinely believed what they were saying.
+      </div>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">MINIMAL FACTS</div><div class="term-def">Facts about the Resurrection accepted by nearly all scholars — including critics — because they are multiply attested and historically reliable.</div></div>
+      <div class="term-card"><div class="term-name">CRUCIFIXION</div><div class="term-def">A Roman execution method. Historians universally confirm Jesus died this way.</div></div>
+      <div class="term-card"><div class="term-name">POST-MORTEM APPEARANCES</div><div class="term-def">The accounts of Jesus appearing alive after his death. Accepted by scholars as genuine reports of what the disciples sincerely claimed to experience.</div></div>
+      <div class="term-card"><div class="term-name">INFERENCE TO BEST EXPLANATION</div><div class="term-def">A logical method: given all the evidence, which explanation accounts for all the facts most simply and completely?</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="content-block reveal">
+      <h2>Common Objections</h2>
+      <div class="objection-block">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"They just had hallucinations. Grief does strange things to people."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Hallucinations are individual and private — they don't appear to groups of people simultaneously (Paul mentions over 500 people at once in 1 Corinthians 15, written within 25 years of the event). Hallucinations also don't explain the empty tomb, and they don't explain the sudden conversions of Paul and James, who were not grieving followers but active skeptics or enemies.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"The disciples just made it up — it's all legend."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Legends take time to develop. Paul's creed in 1 Corinthians 15 — listing eyewitnesses — is dated by scholars to within 3–5 years of the crucifixion, far too early for legend. Additionally, if the disciples invented the story, why did they make women the first witnesses? In 1st-century Jewish culture, women's testimony was not respected in court. Inventors would have used more credible witnesses. The fact that women are named as first witnesses suggests the account is honest, not invented.</p></div>
+      </div>
+    </div>
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>If you had to explain all five minimal facts without using the Resurrection, what would you say happened? Does your explanation feel satisfying?</li>
+        <li>Why does James's conversion matter so much? What is unique about a family member's testimony?</li>
+        <li>What's the difference between "dying for what you believe is true" vs. "dying for something you know you made up"?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">Why is the "hallucination theory" an inadequate explanation for the resurrection appearances?</p>
+      <div class="quiz-options" id="q9-options">
+        <button class="quiz-option" onclick="answer(this,'q9',false)">A. Because hallucinations are impossible.</button>
+        <button class="quiz-option" onclick="answer(this,'q9',true)">B. Because hallucinations are private and individual — they don't appear to groups simultaneously — and they don't explain the empty tomb or the conversions of Paul and James.</button>
+        <button class="quiz-option" onclick="answer(this,'q9',false)">C. Because the Bible says hallucinations are wrong.</button>
+        <button class="quiz-option" onclick="answer(this,'q9',false)">D. Because grief never affects people's perceptions.</button>
+      </div>
+      <div class="quiz-feedback" id="q9-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p><strong>Five minimal facts — accepted by virtually all historians — demand an explanation.</strong> The bodily resurrection of Jesus is not just a matter of blind faith. It is the single explanation that best accounts for the empty tomb, the transformed disciples, Paul's conversion, James's conversion, and the explosive growth of the early church.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('historicaljesus')">← Lesson 6: Historical Jesus</button>
+      <button class="btn-primary" onclick="showLesson('evil')">Next: Problem of Evil →</button>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON: PROBLEM OF EVIL -->
+<div id="page-lesson-evil" class="page">
+  <div class="progress-bar">
+    <span>LESSON 08 OF 08</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div>
+      <div class="progress-dot current"></div>
+    </div>
+  </div>
+  <div class="lesson-container">
+    <button class="lesson-back" onclick="showPage('lessons')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number">LESSON 08 · PROBLEM OF EVIL</div>
+      <h1>If God is Good, Why Is There Evil?</h1>
+      <p class="intro">This is the hardest question skeptics ask — and it deserves a real answer. Not "just trust God." Not "it's a mystery." A genuine, thoughtful response that takes the pain seriously and still makes sense.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>First: Take the Question Seriously</h2>
+      <p>When someone asks this question, they're often not just being philosophical. They might have lost someone they loved. They might have been hurt deeply. They might be watching news of war, famine, or abuse and genuinely struggling.</p>
+      <p>The first thing a thoughtful Christian should do is <strong>not rush to an answer</strong>. Acknowledge that the question is real. The pain is real. And the question deserves more than a slogan.</p>
+      <p>With that said — there are actually very good reasons to believe that the existence of evil and suffering is <em>compatible</em> with a good, all-powerful God. Let's think through them carefully.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Two Types of Evil</h2>
+      <ul class="argument-steps">
+        <li><div class="step-num">A</div><div><strong>Moral evil</strong> — evil caused by human choices. War, murder, abuse, theft. This evil flows from people choosing to do wrong things.</div></li>
+        <li><div class="step-num">B</div><div><strong>Natural evil</strong> — suffering caused by natural events. Earthquakes, cancer, tsunamis, disease. This type is harder — it doesn't seem to be anyone's fault.</div></li>
+      </ul>
+      <p>The two types need different responses. Most of the evil in human history is <em>moral</em> evil — caused by humans. The question then becomes: could God have made a world without moral evil?</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Free Will Defense</h2>
+      <p>For moral evil, the most powerful response is the <strong>Free Will Defense</strong>, developed by philosopher Alvin Plantinga.</p>
+      <p>The argument goes like this: love and goodness are only meaningful if they are freely chosen. A robot programmed to say "I love you" doesn't actually love anyone. God, wanting creatures capable of genuine love, goodness, and relationship, had to create beings with real free will.</p>
+      <p>But here's the problem with free will: if it's real, it can be used to choose evil as well as good. You cannot have a world where people genuinely love, serve, and choose God — and also guarantee that no one ever does anything wrong. The two are logically incompatible.</p>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">💡 PLANTINGA'S KEY INSIGHT</div>
+      <p>Philosopher Alvin Plantinga showed that the existence of evil does not logically contradict the existence of God. Even an all-powerful God <strong>cannot create beings with genuine free will and also guarantee those beings never choose evil.</strong> That's not a limitation of God's power — it's a logical impossibility, like making a square circle.</p>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header">💡 EVERYDAY ANALOGY</div>
+      <div class="analogy-body">
+        <strong>The Parent and the Child.</strong> A good parent raises their child with real freedom — they don't chain them to a wall to prevent them from ever getting hurt or doing wrong. Why? Because a child who is forced to behave well hasn't actually developed character, wisdom, or love. Good parents accept that real freedom means real risk. They grieve when their children choose wrongly. Does that make them bad parents — or does it make them parents who value something deeper than mere safety?
+      </div>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>What About Natural Evil?</h2>
+      <p>Natural evil is harder. Why would a good God allow earthquakes and childhood cancer? A few responses:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num">1</div><div><strong>The soul-making argument.</strong> Philosopher John Hick argued that a world of constant comfort and safety couldn't produce courage, compassion, patience, or faith. These virtues only grow through difficulty. C.S. Lewis wrote: "God whispers to us in our pleasures, speaks in our conscience, but <em>shouts in our pains</em> — it is His megaphone to rouse a deaf world."</div></li>
+        <li><div class="step-num">2</div><div><strong>We can't see the whole picture.</strong> A young child in a doctor's office receiving a painful shot has no idea why the parent is allowing this. From the child's perspective, the parent seems cruel. But the parent sees something the child doesn't. This doesn't mean we shouldn't grieve suffering — but it suggests humility about concluding that no good purpose could possibly exist.</div></li>
+        <li><div class="step-num">3</div><div><strong>The Bible doesn't promise comfort — it promises presence.</strong> Christianity doesn't claim God will prevent all suffering. It claims God entered into suffering Himself (in Jesus), walks through it with us, and promises that suffering is not the final word.</div></li>
+      </ul>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Problem of Evil Cuts Both Ways</h2>
+      <p>Here's something most people miss: the Problem of Evil actually <em>assumes</em> objective moral standards — which, as we learned in Lesson 2, point toward God.</p>
+      <p>When someone says "there is too much evil in the world for God to exist," they're assuming that some things are <em>genuinely evil</em> — not just unpleasant or unpopular. But objective evil requires an objective moral standard. And objective moral standards, as the Moral Argument shows, require God.</p>
+      <p>The very complaint against God — "this is truly evil" — smuggles in a premise that actually supports the existence of a moral lawgiver.</p>
+    </div>
+
+    <div class="key-terms reveal">
+      <div class="term-card"><div class="term-name">MORAL EVIL</div><div class="term-def">Suffering caused by human choices — war, cruelty, abuse. The free will defense addresses this type.</div></div>
+      <div class="term-card"><div class="term-name">NATURAL EVIL</div><div class="term-def">Suffering from natural events — disease, earthquakes, disasters. Doesn't result directly from human choices.</div></div>
+      <div class="term-card"><div class="term-name">FREE WILL DEFENSE</div><div class="term-def">The argument that genuine freedom — necessary for real love and goodness — makes moral evil possible but not God's fault.</div></div>
+      <div class="term-card"><div class="term-name">THEODICY</div><div class="term-def">A philosophical attempt to justify belief in a good God given the existence of evil and suffering.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="content-block reveal">
+      <h2>Common Objections</h2>
+      <div class="objection-block">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"God could have just made people with free will who always choose good."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>Plantinga addresses this directly. A being "with free will that always chooses good" is a contradiction in terms — if it's guaranteed to always choose good, it doesn't truly have free will. True freedom means the genuine ability to choose otherwise. God could have created robots that always behave well — but that would not be the same as creating beings capable of real love and genuine goodness.</p></div>
+      </div>
+      <div class="objection-block" style="margin-top:1rem">
+        <div class="objection"><div class="objection-label">❓ OBJECTION</div><p>"The Holocaust was so extreme — no good purpose could justify it."</p></div>
+        <div class="response"><div class="response-label">✓ RESPONSE</div><p>This is the most emotionally powerful form of the objection, and it deserves respect. A Christian should never minimize the Holocaust or claim to know exactly what God's purpose was. The honest answer is: we don't know why God permitted it specifically. But "I don't know why this happened" is different from "there is no God." Our inability to see a purpose doesn't mean no purpose exists — it may mean we don't have God's perspective. This calls for humility, not certainty in either direction.</p></div>
+      </div>
+    </div>
+
+    <div class="think-box reveal">
+      <div class="think-title">🤔 Think About It</div>
+      <ul>
+        <li>If God removed all suffering from the world right now — by preventing every bad choice — what would have to be removed along with it?</li>
+        <li>Can you think of a time in your life when something hard eventually led to something good? Does that change how you think about this argument?</li>
+        <li>How is the Problem of Evil actually an argument that assumes God's existence at the same time it argues against it?</li>
+        <li>What is the difference between an intellectual answer to suffering and an emotional response to suffering? Do both matter?</li>
+      </ul>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title">📝 Quick Check</div>
+      <p class="quiz-question">Why can't God simply create beings with free will who always choose good?</p>
+      <div class="quiz-options" id="q10-options">
+        <button class="quiz-option" onclick="answer(this,'q10',false)">A. God isn't powerful enough to do that.</button>
+        <button class="quiz-option" onclick="answer(this,'q10',false)">B. The Bible says God chose not to.</button>
+        <button class="quiz-option" onclick="answer(this,'q10',true)">C. A being guaranteed to always choose good doesn't truly have free will — it's a logical contradiction, not a limit on God's power.</button>
+        <button class="quiz-option" onclick="answer(this,'q10',false)">D. Evil is actually necessary for the universe to function physically.</button>
+      </div>
+      <div class="quiz-feedback" id="q10-feedback"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem;">
+      <div class="callout-label">🎯 WHAT YOU LEARNED</div>
+      <p><strong>The existence of evil does not disprove God.</strong> Moral evil flows from the free will that makes genuine love possible. Natural evil may serve purposes we can't fully see from our limited vantage point. And ironically, calling something "truly evil" already assumes an objective moral standard — which points back toward God.</p>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('resurrection')">← Lesson 7: Resurrection</button>
+      <button class="btn-primary" onclick="showPage('lessons')">← All Lessons</button>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT PAGE -->
+<div id="page-about" class="page">
+  <div class="about-container">
+    <h1>About This Site</h1>
+    <p>This is a free curriculum designed for students in grades 6–8 who want to understand not just <em>what</em> Christians believe — but <em>why</em> there is real evidence and reasoned argument behind those beliefs.</p>
+    <p>Many students in Christian schools and churches can recite Bible verses and church doctrine, but when a skeptical classmate or professor asks, "But <em>why</em> do you believe that?" — they find themselves without an answer. This site exists to change that.</p>
+
+    <h2>What is Apologetics?</h2>
+    <p>The word <em>apologetics</em> comes from the Greek word <em>apologia</em> — meaning "a defense" or "a reasoned answer." It doesn't mean apologizing for your faith. It means being able to give thoughtful reasons for what you believe.</p>
+    <p>The apostle Peter wrote: <em>"Always be prepared to give an answer to everyone who asks you to give the reason for the hope that you have."</em> (1 Peter 3:15) This site is about doing exactly that — at a 6th grade level, with logic, evidence, and no jargon.</p>
+
+    <h2>Who made this?</h2>
+    <p>This is an open educational resource. The content draws on centuries of Christian philosophical tradition — including thinkers like Aristotle, Thomas Aquinas, William Lane Craig, Alvin Plantinga, and C.S. Lewis — translated into plain language for middle schoolers.</p>
+
+    <h2>Is this just for Christians?</h2>
+    <p>No. Any student who wants to think carefully about big questions — Does God exist? Where does right and wrong come from? — will find value here. The arguments are presented as philosophical reasoning, not as Bible-thumping. You're invited to think, question, and disagree along the way.</p>
+
+    <div style="margin-top:2.5rem;">
+      <button class="btn-primary" onclick="showPage('lessons')">Start with Lesson 1 →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── STARS ──
+(function(){
+  const field = document.getElementById('starField');
+  if(!field) return;
+  for(let i=0;i<120;i++){
+    const s = document.createElement('div');
+    s.className='star';
+    const size = Math.random()*2.5+0.5;
+    const delay = Math.random()*5;
+    const dur = Math.random()*4+2;
+    const minOp = Math.random()*0.15+0.05;
+    const maxOp = Math.random()*0.6+0.3;
+    s.style.cssText=`
+      width:${size}px;height:${size}px;
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      --d:${dur}s;--delay:${delay}s;
+      --min-op:${minOp};--max-op:${maxOp};
+    `;
+    field.appendChild(s);
+  }
+})();
+
+// ── NAVIGATION ──
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const page = document.getElementById('page-' + name);
+  if(page) { page.classList.add('active'); window.scrollTo(0,0); }
+  const btn = document.querySelector(`.nav-btn[data-page="${name}"]`);
+  if(btn) btn.classList.add('active');
+  triggerReveal();
+}
+
+function showLesson(name) {
+  showPage('lesson-' + name);
+}
+
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => showPage(btn.dataset.page));
+});
+
+// ── QUIZ ──
+const correctFeedback = [
+  "✓ Correct! The universe's beginning requires a cause that exists outside of space and time — which is exactly what a transcendent God would be.",
+  "✓ Correct! The argument's first premise is about things that begin to exist. God, by definition, is eternal — He never began.",
+  "✓ Correct! Objective moral facts are true for everyone, regardless of opinion — just like math facts.",
+  "✓ Correct! The fact that we judge historical atrocities as truly wrong shows we believe in a standard above any single culture.",
+  "✓ Correct! Fine-tuning is not physically required and is statistically far beyond chance — design by an intelligent Creator is the most compelling explanation.",
+  "✓ Correct! With 5,800+ Greek manuscripts and a copy gap of just 25–50 years, the New Testament dramatically outperforms every comparable ancient text.",
+  "✓ Correct! The Tel Dan Stele was the first non-biblical inscription ever found referencing the House of David, confirming David as a historical figure.",
+  "✓ Correct! The Enemy Criterion means hostile sources confirming a fact are especially credible — they had no reason to do so.",
+  "✓ Correct! Hallucinations are private events — they don't appear to large groups simultaneously, and they can't explain the empty tomb or Paul's conversion.",
+  "✓ Correct! 'Free will that is guaranteed to always choose good' is a logical contradiction — not a limit on God's power but an incoherent concept."
+];
+const wrongFeedback = [
+  "Not quite. Think again — if the universe began to exist, what does Premise 1 tell us must be true about it?",
+  "Think about it more carefully. The argument says everything that *begins* to exist needs a cause. Does God begin to exist?",
+  "Not quite. Think about the difference between a preference (like a favorite food) and a fact (like math). Which is objective morality more like?",
+  "Think again. When we say slavery was wrong even in cultures that practiced it, we're appealing to something above any culture's opinion. What does that tell us?",
+  "Review the three options: physical necessity, chance, or design. Which one best accounts for constants fine-tuned to 1 in 10¹²⁰?",
+  "Think about the two measures historians use: number of manuscripts and closeness to the original. How does the New Testament score on both?",
+  "Re-read the description of the Tel Dan Stele. What specific biblical figure did it reference for the first time in non-biblical history?",
+  "Think about the Enemy Criterion. Why does testimony from someone hostile to Christianity carry special weight?",
+  "Re-read the section on hallucinations. They're individual experiences — what does that mean for group sightings and the empty tomb?",
+  "Think carefully: if a being is 'guaranteed to always choose good,' does it still truly have the freedom to choose otherwise?"
+];
+
+let answered = [false,false,false,false,false,false,false,false,false,false];
+
+function answer(btn, id, correct) {
+  const idx = parseInt(id.replace('q',''))-1;
+  if(answered[idx]) return;
+  answered[idx] = true;
+
+  const opts = document.querySelectorAll(`#${id}-options .quiz-option`);
+  opts.forEach(o => { o.disabled = true; });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  if(!correct) {
+    opts.forEach(o => {
+      if(o.onclick.toString().includes(', true)')) o.classList.add('correct');
+    });
+  }
+  const fb = document.getElementById(`${id}-feedback`);
+  fb.textContent = correct ? correctFeedback[idx] : wrongFeedback[idx];
+  fb.className = `quiz-feedback show ${correct ? 'correct-fb' : 'wrong-fb'}`;
+}
+
+// ── SCROLL REVEAL ──
+function triggerReveal() {
+  setTimeout(() => {
+    const reveals = document.querySelectorAll('.page.active .reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => obs.observe(r));
+    // Immediately reveal anything already in view
+    reveals.forEach(r => {
+      const rect = r.getBoundingClientRect();
+      if(rect.top < window.innerHeight) r.classList.add('visible');
+    });
+  }, 50);
+}
+
+triggerReveal();
+</script>
+
+<!-- FOOTER -->
+<footer id="site-footer" style="display:none;">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-logo">Why Believe?</div>
+      <div class="footer-tagline">Free apologetics curriculum · Grades 6–8</div>
+      <div class="footer-free">
+        <span class="free-badge">100% FREE</span>
+        No account. No cost. No catch. Share it freely.
+      </div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-section-label">SHARE THIS SITE</div>
+      <div class="footer-share-buttons">
+        <button class="share-btn" onclick="copyLink()">
+          <span id="copy-label">📋 Copy Link</span>
+        </button>
+        <a class="share-btn" href="mailto:?subject=Free%20Apologetics%20Curriculum%20for%20Kids&body=Check%20out%20this%20free%20curriculum%20that%20teaches%20students%20WHY%20Christianity%20is%20true%2C%20not%20just%20what%20to%20believe%3A%20https%3A%2F%2Fwhybelieve.faith" target="_blank">
+          ✉️ Share via Email
+        </a>
+      </div>
+      <div class="footer-section-label" style="margin-top:1.25rem;">CONTACT</div>
+      <a class="footer-email" href="mailto:whybelieve.faith@pm.me">
+        whybelieve.faith@pm.me
+      </a>
+      <div class="footer-email-note">Questions, feedback, or want to contribute a lesson?</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 whybelieve.faith · Free forever · Built for students, teachers & parents</span>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(200,146,42,0.2);
+    padding: 3rem 2rem 1.5rem;
+    margin-top: auto;
+  }
+  .footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-light);
+    font-size: 1.3rem;
+    margin-bottom: 0.35rem;
+  }
+  .footer-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .footer-free {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+  .free-badge {
+    background: rgba(200,146,42,0.2);
+    border: 1px solid rgba(200,146,42,0.4);
+    color: var(--gold-light);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    font-style: normal;
+    white-space: nowrap;
+  }
+  .footer-right {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer-section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.6rem;
+  }
+  .footer-share-buttons {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .share-btn {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.6);
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.82rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .share-btn:hover {
+    background: rgba(200,146,42,0.15);
+    border-color: rgba(200,146,42,0.4);
+    color: var(--gold-light);
+  }
+  .footer-email {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .footer-email:hover {
+    color: var(--gold-light);
+  }
+  .footer-email-note {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.25);
+    font-style: italic;
+    margin-top: 0.3rem;
+  }
+  .footer-bottom {
+    max-width: 900px;
+    margin: 2rem auto 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.2);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+</style>
+
+<script>
+// Show footer on all pages except home
+function updateFooter() {
+  const footer = document.getElementById('site-footer');
+  const activePage = document.querySelector('.page.active');
+  if(activePage && activePage.id === 'page-home') {
+    footer.style.display = 'none';
+  } else {
+    footer.style.display = 'block';
+  }
+}
+
+// Patch showPage to update footer
+const _origShowPage = showPage;
+window.showPage = function(name) {
+  _origShowPage(name);
+  updateFooter();
+};
+
+function copyLink() {
+  navigator.clipboard.writeText('https://whybelieve.faith').then(() => {
+    const label = document.getElementById('copy-label');
+    label.textContent = '✅ Copied!';
+    setTimeout(() => label.textContent = '📋 Copy Link', 2000);
+  });
+}
+
+updateFooter();
+</script>
+</body>
+</html>
