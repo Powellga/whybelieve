@@ -473,6 +473,63 @@
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  /* TTB Continue Your Journey block */
+  .ttb-block {
+    margin-top: 3.5rem;
+    border-top: 1px solid var(--cream-dark);
+    padding-top: 2.5rem;
+  }
+  .ttb-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 1.25rem;
+    opacity: 0.7;
+  }
+  .ttb-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--white);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid rgba(200,146,42,0.4);
+    border-radius: 8px;
+    padding: 1.75rem;
+  }
+  .ttb-text { flex: 1; }
+  .ttb-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+  .ttb-title em { color: var(--gold); font-style: italic; }
+  .ttb-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .ttb-link {
+    display: inline-block;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid rgba(200,146,42,0.3);
+    padding-bottom: 1px;
+    transition: all 0.2s;
+  }
+  .ttb-link:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+  .ttb-logo-area {
+    font-size: 2.5rem;
+    opacity: 0.35;
+    flex-shrink: 0;
+  }
+
   /* Responsive */
   @media (max-width: 600px) {
     .nav-links .nav-btn:not(.always) { display: none; }
@@ -1584,6 +1641,20 @@
       <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('resurrection')">← Lesson 7: Resurrection</button>
       <button class="btn-primary" onclick="showPage('lessons')">← All Lessons</button>
     </div>
+
+    <!-- CONTINUE YOUR JOURNEY -->
+    <div class="ttb-block reveal">
+      <div class="ttb-label">CONTINUE YOUR JOURNEY</div>
+      <div class="ttb-inner">
+        <div class="ttb-text">
+          <h3 class="ttb-title">You know <em>why</em> to believe. Now go deeper into <em>what</em> to believe.</h3>
+          <p class="ttb-desc">Thru the Bible with J. Vernon McGee is a free, verse-by-verse journey through the entire Bible — available in over 100 languages. It's been quietly shaping believers for over 50 years. A natural next step from here.</p>
+          <a href="https://ttb.org" target="_blank" rel="noopener noreferrer" class="ttb-link">Visit ttb.org →</a>
+        </div>
+        <div class="ttb-logo-area">📖</div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1604,8 +1675,12 @@
     <h2>Is this just for Christians?</h2>
     <p>No. Any student who wants to think carefully about big questions — Does God exist? Where does right and wrong come from? — will find value here. The arguments are presented as philosophical reasoning, not as Bible-thumping. You're invited to think, question, and disagree along the way.</p>
 
-    <div style="margin-top:2.5rem;">
+    <h2>Continue Your Journey</h2>
+    <p>This curriculum is designed to answer <em>why</em> Christianity is reasonable. But apologetics is just the doorway — the life of faith goes much deeper. Once you've worked through these lessons, a wonderful next step is <a href="https://ttb.org" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,146,42,0.4);">Thru the Bible with J. Vernon McGee</a> — a free, verse-by-verse study of the entire Bible available in over 100 languages at <strong>ttb.org</strong>.</p>
+
+    <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
       <button class="btn-primary" onclick="showPage('lessons')">Start with Lesson 1 →</button>
+      <a href="https://ttb.org" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);border:1px solid;padding:0.85rem 2rem;border-radius:4px;font-family:'Source Serif 4',serif;font-size:1rem;text-decoration:none;transition:all 0.2s;">Visit ttb.org →</a>
     </div>
   </div>
 </div>
@@ -1735,13 +1810,13 @@ triggerReveal();
         <button class="share-btn" onclick="copyLink()">
           <span id="copy-label">📋 Copy Link</span>
         </button>
-        <a class="share-btn" href="mailto:?subject=Free%20Apologetics%20Curriculum%20for%20Kids&body=Check%20out%20this%20free%20curriculum%20that%20teaches%20students%20WHY%20Christianity%20is%20true%2C%20not%20just%20what%20to%20believe%3A%20https%3A%2F%2Fwhybelieve.faith" target="_blank">
+        <a class="share-btn" href="/cdn-cgi/l/email-protection#09367a7c6b636c6a7d344f7b6c6c2c3b3948796665666e6c7d606a7a2c3b394a7c7b7b606a7c657c642c3b396f667b2c3b3942606d7a2f6b666d70344a616c6a622c3b39667c7d2c3b397d61607a2c3b396f7b6c6c2c3b396a7c7b7b606a7c657c642c3b397d61687d2c3b397d6c686a616c7a2c3b397a7d7c6d6c677d7a2c3b395e41502c3b394a617b607a7d606867607d702c3b39607a2c3b397d7b7c6c2c3b4a2c3b3967667d2c3b39637c7a7d2c3b397e61687d2c3b397d662c3b396b6c65606c7f6c2c3a482c3b39617d7d797a2c3a482c3b4f2c3b4f7e61706b6c65606c7f6c276f68607d61" target="_blank">
           ✉️ Share via Email
         </a>
       </div>
       <div class="footer-section-label" style="margin-top:1.25rem;">CONTACT</div>
-      <a class="footer-email" href="mailto:whybelieve.faith@pm.me">
-        whybelieve.faith@pm.me
+      <a class="footer-email" href="/cdn-cgi/l/email-protection#b7c0dfced5d2dbded2c1d299d1d6dec3dff7c7da99dad2">
+        <span class="__cf_email__" data-cfemail="bfc8d7c6dddad3d6dac9da91d9ded6cbd7ffcfd291d2da">[email&#160;protected]</span>
       </a>
       <div class="footer-email-note">Questions, feedback, or want to contribute a lesson?</div>
     </div>
@@ -1865,34 +1940,11 @@ triggerReveal();
   }
 </style>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Show footer on all pages except home
 function updateFooter() {
   const footer = document.getElementById('site-footer');
   const activePage = document.querySelector('.page.active');
   if(activePage && activePage.id === 'page-home') {
     footer.style.display = 'none';
-  } else {
-    footer.style.display = 'block';
-  }
-}
-
-// Patch showPage to update footer
-const _origShowPage = showPage;
-window.showPage = function(name) {
-  _origShowPage(name);
-  updateFooter();
-};
-
-function copyLink() {
-  navigator.clipboard.writeText('https://whybelieve.faith').then(() => {
-    const label = document.getElementById('copy-label');
-    label.textContent = '✅ Copied!';
-    setTimeout(() => label.textContent = '📋 Copy Link', 2000);
-  });
-}
-
-updateFooter();
-</script>
-</body>
-</html>
+  } e
