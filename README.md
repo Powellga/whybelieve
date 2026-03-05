@@ -1,6 +1,6 @@
 # Why Believe?
 
-**Free online apologetics curriculum for grades 6–12**
+**Free online apologetics curriculum for grades 3–12**
 
 [whybelieve.faith](https://whybelieve.faith)
 
@@ -10,12 +10,24 @@
 
 A free, interactive, single-page website that teaches students *why* there is evidence for the existence of God — using logic, philosophy, history, science, and archaeology. Not just what Christians believe, but why the evidence supports it.
 
-Two tracks, one mission:
+Three tracks, one mission:
 
-- **Grades 6–8** — 8 lessons using everyday analogies, plain language, and step-by-step reasoning
-- **Grades 9–12** — 9 lessons engaging formal philosophical arguments, peer-reviewed science, primary historical sources, and advanced topics including quantum physics and consciousness
+- **Grades 3–5 (Explorer)** — 6 lessons using wonder, stories, and simple questions for young minds
+- **Grades 6–8 (Foundations)** — 8 lessons using everyday analogies, plain language, and step-by-step reasoning
+- **Grades 9–12 (Advanced)** — 13 lessons engaging formal philosophical arguments, peer-reviewed science, primary historical sources, and advanced topics including quantum physics and consciousness
 
 ## Curriculum Overview
+
+### Grades 3–5 (6 Lessons — Explorer Track)
+
+| # | Lesson | Topic |
+|---|--------|-------|
+| 1 | Who Made All This? | The Creator — everything made has a maker |
+| 2 | How Do You Know Right From Wrong? | The moral compass inside you |
+| 3 | Is the Bible Just an Old Book? | Manuscripts, copies, and archaeology |
+| 4 | Was Jesus a Real Person? | Enemy attestation — even critics confirmed him |
+| 5 | What Happened on Easter? | The empty tomb and transformed disciples |
+| 6 | Why Does God Let Bad Things Happen? | Free will, suffering, and hope |
 
 ### Grades 6–8 (8 Lessons)
 
@@ -50,12 +62,18 @@ Two tracks, one mission:
 
 ## Features
 
+- **Three grade-level tracks** — Explorer (3–5), Foundations (6–8), Advanced (9–12)
+- **27 total lessons** — 6 + 8 + 13 across the three tracks
 - **Interactive quizzes** with instant feedback in every lesson
-- **Objection/Response blocks** addressing common skeptical challenges
-- **Key terms** with definitions for each lesson
+- **Objection/Response blocks** addressing common skeptical challenges (6–8, 9–12)
+- **"Questions Kids Ask"** with warm, age-appropriate answers (3–5)
+- **"Wonder of the Day"** boxes sparking curiosity (3–5)
+- **"Talk About It With Your Family"** discussion prompts (3–5)
+- **Key terms** with definitions for each lesson (6–8, 9–12)
 - **Discussion questions** for classroom or small group use
-- **Progress tracking** with visual progress dots
-- **Grade selector** on homepage — one site, two tracks
+- **Progress tracking** with visual progress dots (6–8, 9–12)
+- **Grade selector** on homepage — one site, three tracks
+- **Track progression** — each track's final lesson links to the next level
 - **Fully responsive** — works on desktop, tablet, and mobile
 - **No dependencies** — single HTML file, no build step, no frameworks
 - **100% free** — no account, no cost, no catch
@@ -67,6 +85,7 @@ The curriculum draws on the work of:
 - **William Lane Craig** — Kalam Cosmological Argument
 - **John Lennox** — Science and faith, fine-tuning ([johnlennox.org](https://johnlennox.org))
 - **James Tour** — Origin of life, synthetic chemistry ([jmtour.com](https://jmtour.com))
+- **Francis Collins** — Human Genome Project, DNA as language of God
 - **Alvin Plantinga** — Free Will Defense, modal logic
 - **C.S. Lewis** — Moral argument, problem of evil
 - **Gary Habermas** — Minimal facts approach to the resurrection
@@ -81,7 +100,7 @@ The curriculum draws on the work of:
 
 ## Tech Stack
 
-- Single `index.html` file (~3,800 lines)
+- Single `index.html` file (~4,600 lines)
 - Vanilla HTML, CSS, and JavaScript — no build tools
 - Google Fonts: Playfair Display, Source Serif 4, JetBrains Mono
 - Hosted on [Netlify](https://www.netlify.com/) (free tier)
