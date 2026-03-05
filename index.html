@@ -215,6 +215,44 @@
   .lesson-card.adv-card .lesson-tag { background: #e3edf7; color: #2a5a8f; }
   .lesson-card.adv-card .lesson-number { color: #4a90d9; }
 
+  /* 3-5 explorer accent color */
+  .lesson-card.exp-card { border-top-color: #52b788; }
+  .lesson-card.exp-card .lesson-tag { background: #d8f3e6; color: #1b5e3b; }
+  .lesson-card.exp-card .lesson-number { color: #52b788; }
+
+  /* Explorer lesson content - larger text, warmer feel */
+  .explorer-content p { font-size: 1.12rem; line-height: 1.95; }
+  .wonder-box {
+    background: linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin: 1.5rem 0;
+    color: white;
+  }
+  .wonder-box .wonder-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #95d5b2;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .wonder-box p { color: rgba(255,255,255,0.9); line-height: 1.85; font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .family-talk {
+    background: #f0faf4;
+    border: 2px solid #b7e4c7;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .family-talk-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: #2d6a4f;
+    margin-bottom: 0.75rem;
+  }
+  .family-talk ul { padding-left: 1.25rem; color: #1b4332; }
+  .family-talk ul li { margin-bottom: 0.5rem; line-height: 1.7; font-size: 1rem; }
+
   /* ── PAGES ── */
   .page { display: none; padding-top: 60px; min-height: 100vh; }
   .page.active { display: block; }
@@ -595,6 +633,7 @@
   <div class="nav-logo">Why Believe?</div>
   <div class="nav-links">
     <button class="nav-btn always active" data-page="home">Home</button>
+    <button class="nav-btn always" data-page="lessons-explorer" id="nav-lessons-35">3–5</button>
     <button class="nav-btn always" data-page="lessons" id="nav-lessons-68">6–8</button>
     <button class="nav-btn always" data-page="lessons-advanced" id="nav-lessons-912">9–12</button>
     <button class="nav-btn" data-page="about">About</button>
@@ -605,12 +644,16 @@
 <div id="page-home" class="page active">
   <div class="hero">
     <div class="star-field" id="starField"></div>
-    <div class="hero-badge">FREE CURRICULUM · GRADES 6–12</div>
+    <div class="hero-badge">FREE CURRICULUM · GRADES 3–12</div>
     <h1>Why <span>Believe?</span></h1>
     <p class="hero-sub">Not just what Christians believe — but <em>why</em> there is real evidence that God exists.</p>
     <div class="grade-selector" style="position:relative;animation:fadeUp 0.8s 0.4s ease both;">
       <div class="grade-selector-label">CHOOSE YOUR TRACK</div>
       <div class="grade-selector-btns">
+        <button class="grade-btn" onclick="setGrade('3-5');showPage('lessons-explorer')">
+          <span class="grade-btn-grade">Grades 3–5</span>
+          <span class="grade-btn-desc">Explorer — wonder and discovery</span>
+        </button>
         <button class="grade-btn" onclick="setGrade('6-8');showPage('lessons')">
           <span class="grade-btn-grade">Grades 6–8</span>
           <span class="grade-btn-desc">Foundations — clear and simple</span>
@@ -627,6 +670,523 @@
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- GRADES 3-5 EXPLORER TRACK                          -->
+<!-- ═══════════════════════════════════════════════════ -->
+
+<!-- EXPLORER LESSONS PAGE -->
+<div id="page-lessons-explorer" class="page">
+  <div class="lessons-hero" style="background:linear-gradient(135deg,#1b4332 0%,#2d6a4f 100%);">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:#95d5b2;letter-spacing:0.2em;margin-bottom:0.75rem;">GRADES 3–5 · EXPLORER TRACK</div>
+    <h2>Explore the Evidence</h2>
+    <p>Big questions. Simple answers. Real evidence. Let's discover together why there are good reasons to believe.</p>
+    <button class="btn-secondary" style="margin-top:1rem;font-size:0.85rem;padding:0.5rem 1.25rem;" onclick="showPage('lessons')">Switch to Grades 6–8 →</button>
+  </div>
+  <div class="lessons-grid" style="margin-top:2rem;">
+    <div class="lesson-card exp-card" onclick="showLesson('exp-whomade')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 01</div>
+        <h3>Who Made All This?</h3>
+        <p>Stars, oceans, butterflies, your brain — everything that's made has a maker. So who made the universe?</p>
+        <div class="lesson-tag">THE CREATOR</div>
+      </div>
+    </div>
+    <div class="lesson-card exp-card" onclick="showLesson('exp-rightwrong')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 02</div>
+        <h3>How Do You Know Right From Wrong?</h3>
+        <p>You already know bullying is wrong. But where does that feeling come from? Did someone put it inside you?</p>
+        <div class="lesson-tag">RIGHT & WRONG</div>
+      </div>
+    </div>
+    <div class="lesson-card exp-card" onclick="showLesson('exp-bible')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 03</div>
+        <h3>Is the Bible Just an Old Book?</h3>
+        <p>The Bible has more copies than any other old book ever. Way more. And archaeologists keep finding the places it describes.</p>
+        <div class="lesson-tag">THE BIBLE</div>
+      </div>
+    </div>
+    <div class="lesson-card exp-card" onclick="showLesson('exp-jesusreal')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 04</div>
+        <h3>Was Jesus a Real Person?</h3>
+        <p>Even people who didn't like Jesus wrote about him. Roman leaders. Jewish teachers. His enemies agreed: he was real.</p>
+        <div class="lesson-tag">REAL JESUS</div>
+      </div>
+    </div>
+    <div class="lesson-card exp-card" onclick="showLesson('exp-easter')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 05</div>
+        <h3>What Happened on Easter?</h3>
+        <p>Jesus's friends were so scared they hid. Then suddenly they were braver than anyone. What changed everything?</p>
+        <div class="lesson-tag">THE RESURRECTION</div>
+      </div>
+    </div>
+    <div class="lesson-card exp-card" onclick="showLesson('exp-badthings')">
+      <div class="lesson-card-inner">
+        <div class="lesson-number">LESSON 06</div>
+        <h3>Why Does God Let Bad Things Happen?</h3>
+        <p>This is the hardest question there is. Let's think about it carefully — and honestly.</p>
+        <div class="lesson-tag">HARD QUESTIONS</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- EXPLORER LESSON 01: WHO MADE ALL THIS?             -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-exp-whomade" class="page">
+  <div style="background:#2d6a4f;padding:0.6rem 2rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;">EXPLORER · LESSON 01 OF 06</div>
+  <div class="lesson-container explorer-content">
+    <button class="lesson-back" onclick="showPage('lessons-explorer')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number" style="color:#52b788;">LESSON 01 · THE CREATOR</div>
+      <h1>Who Made All This?</h1>
+      <p class="intro" style="border-left-color:#52b788;">Look around you. Trees. Stars. Oceans. Your own hands. The world is full of amazing things. But have you ever stopped and wondered: where did all of this come from?</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Everything Made Has a Maker</h2>
+      <p>Imagine you're walking in the forest and you find a brand-new bicycle leaning against a tree. Would you think, "Wow, that bicycle just appeared out of nowhere"?</p>
+      <p>Of course not! You'd think: <strong>someone made this and left it here.</strong></p>
+      <p>That's because you know that things like bicycles don't just show up by themselves. Someone had to design them, build them, and put them together.</p>
+      <p>Now think about something way more amazing than a bicycle: <strong>a butterfly.</strong> A butterfly starts as a tiny egg, turns into a caterpillar, wraps itself in a cocoon, and comes out with wings covered in thousands of tiny colorful scales. It can fly. It can find flowers from miles away. It can migrate thousands of miles without a map.</p>
+      <p>A butterfly is more complicated than any bicycle ever made. So if a bicycle needs a maker... what about a butterfly?</p>
+    </div>
+
+    <div class="wonder-box reveal">
+      <div class="wonder-title">🌟 Wonder of the Day</div>
+      <p>Your brain has about <strong>86 billion nerve cells</strong> — and every single one is connected to thousands of others. That's more connections than there are stars in the Milky Way galaxy. Your brain is the most complicated thing scientists have ever studied. And it grew from a single tiny cell. Who wrote the instructions for that?</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Big Idea</h2>
+      <p>Scientists have discovered that the universe — everything that exists: all the stars, all the planets, all of space — had a <strong>beginning</strong>. They call it the Big Bang. Before that moment, there was no space, no time, no matter. Nothing.</p>
+      <p>Here's the big question: <strong>if everything that's made has a maker, who made the universe?</strong></p>
+      <p>Whatever caused the universe to exist must be really, really powerful — powerful enough to create everything. And it must exist <em>outside</em> the universe, because it created the universe.</p>
+      <p>That sounds a lot like what people call <strong>God</strong>.</p>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header" style="background:#52b788;">🎨 THINK ABOUT IT THIS WAY</div>
+      <div class="analogy-body" style="background:#f0faf4;border-color:#b7e4c7;">
+        Imagine a huge row of dominoes falling — each one knocking over the next. Now imagine someone says, "The dominoes have been falling forever. There's no first one." That sounds wrong, doesn't it? Because if nobody pushed the first domino, nothing would ever start falling. The universe is like those dominoes. <strong>Something had to start it.</strong>
+      </div>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Questions Kids Ask</h2>
+      <div class="objection-block">
+        <div class="objection" style="background:#fef9e7;border-left-color:#52b788;">
+          <div class="objection-label" style="color:#2d6a4f;">🤔 QUESTION</div>
+          <p style="color:#1b4332;">"If God made everything, who made God?"</p>
+        </div>
+        <div class="response" style="background:#f0faf4;border-left-color:#52b788;">
+          <div class="response-label" style="color:#2d6a4f;">💡 GREAT QUESTION!</div>
+          <p style="color:#1b4332;">Here's the key: only things that <em>start existing</em> need a maker. A bicycle started existing when someone built it. The universe started existing at the Big Bang. But God didn't start existing — God has always been there. He's the one thing that doesn't need a maker, because He never began. He's the first domino that was always there.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title" style="color:#2d6a4f;">📝 Quick Check</div>
+      <p class="quiz-question">If everything that begins to exist has a maker, and the universe began to exist, what does that tell us?</p>
+      <div class="quiz-options" id="qe1-options">
+        <button class="quiz-option" onclick="answerExp(this,'qe1',false)">A. Nothing — the universe could have made itself.</button>
+        <button class="quiz-option" onclick="answerExp(this,'qe1',true)">B. The universe must have a maker — something powerful enough to create everything from nothing.</button>
+        <button class="quiz-option" onclick="answerExp(this,'qe1',false)">C. Scientists don't know if the universe had a beginning.</button>
+      </div>
+      <div class="quiz-feedback" id="qe1-feedback"></div>
+    </div>
+
+    <div class="family-talk reveal">
+      <div class="family-talk-title">💬 Talk About It With Your Family</div>
+      <ul>
+        <li>What's the most amazing thing in nature you've ever seen? Do you think it could have happened by accident?</li>
+        <li>If a painting needs a painter, and a building needs a builder, what does the universe need?</li>
+        <li>What does it feel like to think about a God who is powerful enough to make everything?</li>
+      </ul>
+    </div>
+
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-primary" style="background:#52b788;color:#1b4332;" onclick="showLesson('exp-rightwrong')">Next: Right & Wrong →</button>
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showPage('lessons-explorer')">← All Lessons</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- EXPLORER LESSON 02: RIGHT AND WRONG                -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-exp-rightwrong" class="page">
+  <div style="background:#2d6a4f;padding:0.6rem 2rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;">EXPLORER · LESSON 02 OF 06</div>
+  <div class="lesson-container explorer-content">
+    <button class="lesson-back" onclick="showPage('lessons-explorer')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number" style="color:#52b788;">LESSON 02 · RIGHT & WRONG</div>
+      <h1>How Do You Know Right From Wrong?</h1>
+      <p class="intro" style="border-left-color:#52b788;">You already know that stealing is wrong. You know that being kind is good. You know that hurting someone on purpose is bad. But here's the real question: <em>how</em> do you know?</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>A Test You Already Passed</h2>
+      <p>Let me ask you something. Don't think too hard — just answer in your head:</p>
+      <p><strong>Is it wrong to bully someone just because you can?</strong></p>
+      <p>You said yes, right? Of course you did. You didn't need to look it up. You didn't need anyone to tell you. You just <em>know</em>.</p>
+      <p>But think about that for a second. <strong>Where does that "knowing" come from?</strong></p>
+      <p>Your parents taught you some rules. Your school has rules. But the feeling that bullying is wrong goes deeper than rules. Even if your school didn't have a rule about it — even if no one ever told you — you'd still feel that it's wrong. It feels like it's written somewhere inside you.</p>
+    </div>
+
+    <div class="wonder-box reveal">
+      <div class="wonder-title">🌟 Wonder of the Day</div>
+      <p>Every culture in the world — from tiny villages in Africa to huge cities in China to tribes in the Amazon — has a sense of right and wrong. They don't all agree on every rule, but they all agree on the big ones: don't murder innocent people, don't steal, take care of children, keep your promises. <strong>How did everyone, everywhere, get the same basic idea of fairness?</strong></p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Big Idea</h2>
+      <p>Here's what thinkers have noticed for thousands of years:</p>
+      <p>If right and wrong are just made up by people — like the rules of a board game — then they could be changed. Someone could say, "In my country, stealing is fine!" and that would make it okay. But you know that's not true. Stealing is wrong <em>even if a whole country says it's fine.</em></p>
+      <p>That means right and wrong aren't just opinions. They're <strong>real</strong> — like math facts. 2 + 2 = 4 whether anyone agrees with it or not. And "hurting innocent people is wrong" is true whether anyone agrees with it or not.</p>
+      <p>But if right and wrong are real — if they exist like facts — <strong>where did they come from?</strong> Facts about math exist because of the way the universe is built. Facts about right and wrong exist because... someone built them into us. Someone who IS good, and who made us to know good from evil.</p>
+      <p>That someone is God.</p>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header" style="background:#52b788;">🎨 THINK ABOUT IT THIS WAY</div>
+      <div class="analogy-body" style="background:#f0faf4;border-color:#b7e4c7;">
+        Imagine you have a compass. It always points north. You didn't make it point north — that's just how it works. Your sense of right and wrong is like a compass inside you. It always points toward what's good. You didn't put it there. God did. <strong>The fact that you have a moral compass is evidence that someone gave it to you.</strong>
+      </div>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Questions Kids Ask</h2>
+      <div class="objection-block">
+        <div class="objection" style="background:#fef9e7;border-left-color:#52b788;">
+          <div class="objection-label" style="color:#2d6a4f;">🤔 QUESTION</div>
+          <p style="color:#1b4332;">"But different people think different things are right and wrong. Doesn't that mean it's just opinions?"</p>
+        </div>
+        <div class="response" style="background:#f0faf4;border-left-color:#52b788;">
+          <div class="response-label" style="color:#2d6a4f;">💡 GREAT QUESTION!</div>
+          <p style="color:#1b4332;">People disagree about some things — but they agree on the big ones. No culture in history has ever thought torturing babies for fun is good. No culture has ever said cowardice is better than courage. And when someone does something truly horrible — like slavery — we don't say "well, it was right for them." We say they were <em>wrong</em>. That means we believe in a standard bigger than any one person or country.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title" style="color:#2d6a4f;">📝 Quick Check</div>
+      <p class="quiz-question">If right and wrong are real (not just opinions), what does that tell us?</p>
+      <div class="quiz-options" id="qe2-options">
+        <button class="quiz-option" onclick="answerExp(this,'qe2',false)">A. Nothing — people just made up rules.</button>
+        <button class="quiz-option" onclick="answerExp(this,'qe2',true)">B. Someone put a sense of right and wrong inside us — a moral compass that points to a God who is good.</button>
+        <button class="quiz-option" onclick="answerExp(this,'qe2',false)">C. Right and wrong are different in every country, so there's no real answer.</button>
+      </div>
+      <div class="quiz-feedback" id="qe2-feedback"></div>
+    </div>
+
+    <div class="family-talk reveal">
+      <div class="family-talk-title">💬 Talk About It With Your Family</div>
+      <ul>
+        <li>Can you think of something that's wrong everywhere — not just in our country, but everywhere in the world?</li>
+        <li>If right and wrong are real, who do you think put them there?</li>
+        <li>What does it mean that even little kids — before anyone teaches them — get upset when something is unfair?</li>
+      </ul>
+    </div>
+
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('exp-whomade')">← Lesson 1: Who Made All This?</button>
+      <button class="btn-primary" style="background:#52b788;color:#1b4332;" onclick="showLesson('exp-bible')">Next: Is the Bible Just an Old Book? →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- EXPLORER LESSON 03: IS THE BIBLE JUST AN OLD BOOK? -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-exp-bible" class="page">
+  <div style="background:#2d6a4f;padding:0.6rem 2rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;">EXPLORER · LESSON 03 OF 06</div>
+  <div class="lesson-container explorer-content">
+    <button class="lesson-back" onclick="showPage('lessons-explorer')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number" style="color:#52b788;">LESSON 03 · THE BIBLE</div>
+      <h1>Is the Bible Just an Old Book?</h1>
+      <p class="intro" style="border-left-color:#52b788;">Some people say the Bible is just old stories — like fairy tales. But what if we could check? What if there was a way to know whether the Bible is telling the truth? There is. And the evidence is amazing.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>How Do We Know What Old Books Really Said?</h2>
+      <p>Here's something cool: no original copy of <em>any</em> ancient book still exists. Not the Bible. Not the stories of Julius Caesar. Not anything written thousands of years ago. The originals wore out and fell apart long ago.</p>
+      <p>What we have are <strong>copies</strong> — made by people called scribes who carefully wrote out each word by hand, over and over, for hundreds of years.</p>
+      <p>So how do historians know if the copies are accurate? Two things:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num" style="background:#52b788;">1</div><div><strong>How many copies exist?</strong> The more copies you have, the easier it is to check if they match. If 5,000 people all copied the same letter and most of them match, you can be pretty sure you know what the original said.</div></li>
+        <li><div class="step-num" style="background:#52b788;">2</div><div><strong>How old are the copies?</strong> If a book was written in the year 50 and the oldest copy we have is from the year 80, that's a very small gap — good! If the oldest copy is from the year 1300, that's a huge gap — not as reliable.</div></li>
+      </ul>
+    </div>
+
+    <div class="wonder-box reveal">
+      <div class="wonder-title">🌟 Wonder of the Day</div>
+      <p>The writings of Julius Caesar — one of the most famous people in history — survive in only about <strong>10 copies</strong>. The earliest copy was made about 1,000 years after Caesar lived. Nobody doubts Caesar was real.</p>
+      <p>The New Testament has over <strong>5,800 copies in Greek alone</strong> — plus over 18,000 more in other languages. The earliest copies were made within <strong>25 to 50 years</strong> of when they were written. That's like comparing a single photograph to 5,800 photographs of the same thing.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Archaeologists Keep Finding Bible Places</h2>
+      <p>For a long time, some people said the Bible made up places and people. "There's no proof that city existed!" they'd say. Then archaeologists — scientists who dig up ancient things — started digging. And they kept finding exactly what the Bible described:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num" style="background:#52b788;">🏺</div><div>The <strong>Pool of Bethesda</strong> — a pool described in the Bible that critics said was fictional. Archaeologists found it exactly where the Bible said, with the exact features the Bible described.</div></li>
+        <li><div class="step-num" style="background:#52b788;">👑</div><div><strong>King David</strong> — skeptics said he was a legend. Then a stone inscription was found in 1993 that mentions the "House of David." He was real.</div></li>
+        <li><div class="step-num" style="background:#52b788;">🏛️</div><div><strong>Pontius Pilate</strong> — the Roman governor who sentenced Jesus. A stone with his name and title was found in 1961. Exactly like the Bible described.</div></li>
+      </ul>
+      <p>Over and over, the Bible has been proven right about places, people, and events. That doesn't mean a fairy tale. That sounds like history.</p>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title" style="color:#2d6a4f;">📝 Quick Check</div>
+      <p class="quiz-question">Why do historians trust that the Bible's text is accurate?</p>
+      <div class="quiz-options" id="qe3-options">
+        <button class="quiz-option" onclick="answerExp(this,'qe3',false)">A. Because it's a religious book and religious books are always right.</button>
+        <button class="quiz-option" onclick="answerExp(this,'qe3',true)">B. Because it has way more copies than any other ancient book, the copies are very close to the originals, and archaeologists keep confirming what it describes.</button>
+        <button class="quiz-option" onclick="answerExp(this,'qe3',false)">C. Because one person checked it and said it was fine.</button>
+      </div>
+      <div class="quiz-feedback" id="qe3-feedback"></div>
+    </div>
+
+    <div class="family-talk reveal">
+      <div class="family-talk-title">💬 Talk About It With Your Family</div>
+      <ul>
+        <li>If we trust Julius Caesar's writings based on 10 copies, what should we think about a book with 5,800 copies?</li>
+        <li>Why do you think people sometimes assume the Bible isn't reliable — even before checking the evidence?</li>
+        <li>Have you ever heard of archaeologists finding something the Bible described? How did that make you feel?</li>
+      </ul>
+    </div>
+
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('exp-rightwrong')">← Lesson 2: Right & Wrong</button>
+      <button class="btn-primary" style="background:#52b788;color:#1b4332;" onclick="showLesson('exp-jesusreal')">Next: Was Jesus Real? →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- EXPLORER LESSON 04: WAS JESUS A REAL PERSON?       -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-exp-jesusreal" class="page">
+  <div style="background:#2d6a4f;padding:0.6rem 2rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;">EXPLORER · LESSON 04 OF 06</div>
+  <div class="lesson-container explorer-content">
+    <button class="lesson-back" onclick="showPage('lessons-explorer')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number" style="color:#52b788;">LESSON 04 · REAL JESUS</div>
+      <h1>Was Jesus a Real Person?</h1>
+      <p class="intro" style="border-left-color:#52b788;">Some people say, "Jesus is just a story — like Santa Claus or a superhero." But historians — people whose job it is to figure out what really happened in the past — almost all agree: Jesus was a real person. Here's how we know.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Even His Enemies Wrote About Him</h2>
+      <p>When someone's friends say nice things about them, that's normal. But when someone's <em>enemies</em> talk about them? That's powerful evidence.</p>
+      <p>Here are people who did NOT like Jesus or his followers — but still wrote about him:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num" style="background:#52b788;">1</div><div><strong>Tacitus</strong> — a Roman historian. He thought Christians were foolish. But he wrote that "Christus" was executed by Pontius Pilate during the reign of Emperor Tiberius. He confirmed the basic facts of Jesus's life.</div></li>
+        <li><div class="step-num" style="background:#52b788;">2</div><div><strong>Josephus</strong> — a Jewish historian who worked for the Romans. He wrote about Jesus and about Jesus's brother James. He wasn't a Christian — he had no reason to make things up.</div></li>
+        <li><div class="step-num" style="background:#52b788;">3</div><div><strong>Jewish leaders</strong> — in their own writings, Jewish teachers wrote about Jesus and argued against him. But they never said, "He didn't exist." They said he was wrong — which means they knew he was real.</div></li>
+      </ul>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header" style="background:#52b788;">🎨 THINK ABOUT IT THIS WAY</div>
+      <div class="analogy-body" style="background:#f0faf4;border-color:#b7e4c7;">
+        <strong>The Enemy Rule.</strong> Imagine two kids at school who don't get along. If one of them says, "Yeah, she really did win the race" — even though he doesn't like her — you know it must be true. He has no reason to say something nice about her. When Jesus's enemies confirm that he existed, was executed, and had followers — that's especially strong evidence, because they had no reason to help the Christian story.
+      </div>
+    </div>
+
+    <div class="wonder-box reveal">
+      <div class="wonder-title">🌟 Wonder of the Day</div>
+      <p>Bart Ehrman is a famous scholar who does <strong>not</strong> believe Jesus was God. He's spent his life studying the New Testament as a critic. But even he says: <strong>"Jesus existed. Anyone who denies that is simply creating more problems than they solve."</strong> When even people who disagree with Christianity say Jesus was real, you can be pretty confident.</p>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title" style="color:#2d6a4f;">📝 Quick Check</div>
+      <p class="quiz-question">Why is it important that even Jesus's enemies wrote about him?</p>
+      <div class="quiz-options" id="qe4-options">
+        <button class="quiz-option" onclick="answerExp(this,'qe4',false)">A. Because enemies always tell the truth.</button>
+        <button class="quiz-option" onclick="answerExp(this,'qe4',true)">B. Because enemies have no reason to help — so when they confirm Jesus existed, it's especially trustworthy.</button>
+        <button class="quiz-option" onclick="answerExp(this,'qe4',false)">C. Because enemies wrote more than friends did.</button>
+      </div>
+      <div class="quiz-feedback" id="qe4-feedback"></div>
+    </div>
+
+    <div class="family-talk reveal">
+      <div class="family-talk-title">💬 Talk About It With Your Family</div>
+      <ul>
+        <li>If someone who didn't like you still said something good about you, would that be more or less believable than a friend saying it? Why?</li>
+        <li>Why do you think some people say Jesus wasn't real, even when historians disagree?</li>
+        <li>Does knowing that Roman and Jewish writers confirmed Jesus's existence change how you think about the Bible's story?</li>
+      </ul>
+    </div>
+
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('exp-bible')">← Lesson 3: The Bible</button>
+      <button class="btn-primary" style="background:#52b788;color:#1b4332;" onclick="showLesson('exp-easter')">Next: What Happened on Easter? →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- EXPLORER LESSON 05: WHAT HAPPENED ON EASTER?       -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-exp-easter" class="page">
+  <div style="background:#2d6a4f;padding:0.6rem 2rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;">EXPLORER · LESSON 05 OF 06</div>
+  <div class="lesson-container explorer-content">
+    <button class="lesson-back" onclick="showPage('lessons-explorer')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number" style="color:#52b788;">LESSON 05 · THE RESURRECTION</div>
+      <h1>What Happened on Easter?</h1>
+      <p class="intro" style="border-left-color:#52b788;">The most important claim in Christianity is that Jesus died and came back to life three days later. That's an incredible claim. So let's look at what even non-Christian historians agree actually happened — and then ask: what's the best explanation?</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Three Facts Almost Everyone Agrees On</h2>
+      <p>These aren't just things Christians believe. These are facts that almost all historians — including ones who are not Christians — accept:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num" style="background:#52b788;">1</div><div><strong>Jesus really died.</strong> Roman soldiers were experts at execution. They made sure people were dead. Multiple ancient sources — Roman, Jewish, and Christian — confirm Jesus was crucified and died.</div></li>
+        <li><div class="step-num" style="background:#52b788;">2</div><div><strong>The tomb was empty.</strong> Even the people who wanted Jesus dead didn't say the tomb was full. Instead, they made up a story that the disciples stole the body. But think about it: if they could have just shown everyone the body, Christianity would have ended right there. They couldn't. Because the tomb was empty.</div></li>
+        <li><div class="step-num" style="background:#52b788;">3</div><div><strong>Jesus's followers were completely changed.</strong> Before Easter, the disciples were terrified. They hid. Peter — Jesus's closest friend — denied even knowing him. Then something happened. Suddenly these same scared people were boldly telling everyone that Jesus was alive — even when it meant being arrested, beaten, and killed. Something dramatic happened to transform them.</div></li>
+      </ul>
+    </div>
+
+    <div class="wonder-box reveal">
+      <div class="wonder-title">🌟 Wonder of the Day</div>
+      <p>People sometimes die for things they <em>believe</em> are true — even if they're wrong. But people don't die for things they <em>know</em> are lies. The disciples were in a position to know whether they really saw Jesus alive. If they made it up, they knew it was a lie. And then every single one of them was willing to suffer and die for that lie — without any of them ever saying, "Okay, we made it up." <strong>That doesn't happen with liars.</strong></p>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header" style="background:#52b788;">🎨 THINK ABOUT IT THIS WAY</div>
+      <div class="analogy-body" style="background:#f0faf4;border-color:#b7e4c7;">
+        Imagine your friend tells you they saw a dog fly across the yard. You'd probably say, "Yeah right." But what if 10 of your friends all said they saw it — at the same time — and they all stuck to their story even when they got in trouble for it? And none of them ever changed their story? You'd start to think: <strong>maybe something really did happen.</strong> That's what the resurrection evidence looks like.
+      </div>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title" style="color:#2d6a4f;">📝 Quick Check</div>
+      <p class="quiz-question">Why is it important that the disciples were willing to die for what they saw?</p>
+      <div class="quiz-options" id="qe5-options">
+        <button class="quiz-option" onclick="answerExp(this,'qe5',false)">A. Because dying makes something true.</button>
+        <button class="quiz-option" onclick="answerExp(this,'qe5',true)">B. Because people don't die for something they know is a lie — and the disciples were in a position to know whether they really saw Jesus alive.</button>
+        <button class="quiz-option" onclick="answerExp(this,'qe5',false)">C. Because only brave people can be right.</button>
+      </div>
+      <div class="quiz-feedback" id="qe5-feedback"></div>
+    </div>
+
+    <div class="family-talk reveal">
+      <div class="family-talk-title">💬 Talk About It With Your Family</div>
+      <ul>
+        <li>If the disciples made up the resurrection, why would they be willing to die for it?</li>
+        <li>If the tomb wasn't empty, why couldn't Jesus's enemies just show everyone the body?</li>
+        <li>What do you think changed the disciples from being scared to being the bravest people in history?</li>
+      </ul>
+    </div>
+
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('exp-jesusreal')">← Lesson 4: Was Jesus Real?</button>
+      <button class="btn-primary" style="background:#52b788;color:#1b4332;" onclick="showLesson('exp-badthings')">Next: Why Bad Things Happen →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- EXPLORER LESSON 06: WHY DOES GOD LET BAD THINGS    -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lesson-exp-badthings" class="page">
+  <div style="background:#2d6a4f;padding:0.6rem 2rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;">EXPLORER · LESSON 06 OF 06</div>
+  <div class="lesson-container explorer-content">
+    <button class="lesson-back" onclick="showPage('lessons-explorer')">← Back to Lessons</button>
+    <div class="lesson-header reveal">
+      <div class="lesson-number" style="color:#52b788;">LESSON 06 · HARD QUESTIONS</div>
+      <h1>Why Does God Let Bad Things Happen?</h1>
+      <p class="intro" style="border-left-color:#52b788;">This is the hardest question anyone can ask about God. And it deserves a real answer — not "just don't think about it." Let's think about it together, carefully and honestly.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>The Question</h2>
+      <p>If God is good and God is powerful, why doesn't He stop bad things from happening? Why do people get sick? Why are there earthquakes? Why do some people choose to be cruel?</p>
+      <p>This is a really important question, and it's okay to ask it. Even people in the Bible asked it. Let's think it through step by step.</p>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>Most Bad Things Come From Choices</h2>
+      <p>Think about most of the bad things in the world: bullying, lying, stealing, fighting, wars. Where do those come from? <strong>People choosing to do wrong things.</strong></p>
+      <p>Now here's the key: God gave people the ability to choose. He didn't make us like robots that can only do what they're programmed to do. He made us with <strong>free will</strong> — the ability to choose between right and wrong.</p>
+      <p>Why? Because <strong>love has to be a choice</strong>. If someone is forced to say "I love you," that's not real love. Real love — real kindness, real courage, real goodness — only counts if you could have chosen not to do it.</p>
+      <p>But here's the problem: if people can choose good, they can also choose bad. You can't have one without the other. A world where people can truly love is also a world where people can truly hurt. That's not God's fault — it's the cost of freedom.</p>
+    </div>
+
+    <div class="analogy-card reveal">
+      <div class="analogy-header" style="background:#52b788;">🎨 THINK ABOUT IT THIS WAY</div>
+      <div class="analogy-body" style="background:#f0faf4;border-color:#b7e4c7;">
+        <strong>The Bike Ride.</strong> Imagine a parent teaching their child to ride a bike. The parent could hold on forever — and the child would never fall. But the child would also never really learn to ride. At some point, the parent has to let go. That means the child might fall. Does that make the parent bad? No — it means the parent values something deeper than just keeping the child safe. They value the child learning, growing, and becoming strong. God is like that parent. He lets us choose — and sometimes we fall.
+      </div>
+    </div>
+
+    <div class="content-block reveal">
+      <h2>What About Things That Aren't Anyone's Fault?</h2>
+      <p>What about earthquakes? Diseases? Those aren't caused by bad choices. These are harder to explain. Here are a few honest thoughts:</p>
+      <ul class="argument-steps">
+        <li><div class="step-num" style="background:#52b788;">1</div><div><strong>We can't see the whole picture.</strong> When you were little and got a shot at the doctor, it hurt. You might have thought your parents were being mean. But they could see something you couldn't — that the shot would protect you. We're like small children when it comes to understanding God's purposes. "I don't understand why this happened" is not the same as "there's no reason."</div></li>
+        <li><div class="step-num" style="background:#52b788;">2</div><div><strong>Hard times grow strong people.</strong> Courage can only exist when there's something to be afraid of. Compassion can only exist when someone is hurting. Patience can only exist when things are hard. The best qualities in people often grow in the toughest times.</div></li>
+        <li><div class="step-num" style="background:#52b788;">3</div><div><strong>God doesn't leave us alone in it.</strong> The Bible doesn't say God prevents all suffering. It says God is <em>with us</em> in suffering. Christians believe God Himself came to Earth as Jesus and suffered — so He understands what pain feels like from the inside.</div></li>
+      </ul>
+    </div>
+
+    <div class="wonder-box reveal">
+      <div class="wonder-title">🌟 Something Surprising</div>
+      <p>Here's something most people miss: <strong>when you say "bad things shouldn't happen," you're already assuming something important.</strong> You're assuming that some things are genuinely bad — genuinely wrong. But as we learned in Lesson 2, real right and wrong point to God. So the very feeling that makes you ask "why does God allow evil?" is itself evidence that God exists. The question actually points to the answer.</p>
+    </div>
+
+    <div class="quiz-block reveal">
+      <div class="quiz-title" style="color:#2d6a4f;">📝 Quick Check</div>
+      <p class="quiz-question">Why does God allow people to make bad choices?</p>
+      <div class="quiz-options" id="qe6-options">
+        <button class="quiz-option" onclick="answerExp(this,'qe6',false)">A. Because God doesn't care about us.</button>
+        <button class="quiz-option" onclick="answerExp(this,'qe6',false)">B. Because God isn't powerful enough to stop it.</button>
+        <button class="quiz-option" onclick="answerExp(this,'qe6',true)">C. Because real love and real goodness require freedom — and freedom means people can also choose wrong.</button>
+      </div>
+      <div class="quiz-feedback" id="qe6-feedback"></div>
+    </div>
+
+    <div class="family-talk reveal">
+      <div class="family-talk-title">💬 Talk About It With Your Family</div>
+      <ul>
+        <li>Can you think of a time when something hard eventually led to something good in your life?</li>
+        <li>If God stopped every bad choice, would we still have real freedom? Would love still mean anything?</li>
+        <li>What does it mean to you that God doesn't just watch suffering from far away — but came to experience it Himself?</li>
+      </ul>
+    </div>
+
+    <div class="callout reveal" style="border-left-color:#52b788;">
+      <div class="callout-label">🎯 YOU FINISHED THE EXPLORER TRACK!</div>
+      <p>You've learned six big ideas: the universe needs a Maker, right and wrong point to God, the Bible is backed by incredible evidence, Jesus was a real person confirmed by his enemies, the resurrection has evidence even skeptics accept, and suffering doesn't disprove God — it actually points back to Him. <strong>You're ready to explain to anyone why you believe — not just what you believe.</strong></p>
+    </div>
+
+    <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('exp-easter')">← Lesson 5: What Happened on Easter?</button>
+      <button class="btn-primary" style="background:#52b788;color:#1b4332;" onclick="showPage('lessons-explorer')">← All Lessons</button>
+    </div>
+
+    <!-- CONTINUE YOUR JOURNEY -->
+    <div class="ttb-block reveal">
+      <div class="ttb-label">CONTINUE YOUR JOURNEY</div>
+      <div class="ttb-inner">
+        <div class="ttb-text">
+          <h3 class="ttb-title">Ready for more? Try the <em>Grades 6–8</em> track next.</h3>
+          <p class="ttb-desc">The Foundations track goes deeper into every topic you just explored — with more evidence, more arguments, and more detail. You're ready for it.</p>
+          <a href="#" onclick="showPage('lessons');return false;" class="ttb-link">Start Grades 6–8 →</a>
+        </div>
+        <div class="ttb-logo-area">📖</div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- LESSONS PAGE -->
 <div id="page-lessons" class="page">
   <div class="lessons-hero">
@@ -1702,8 +2262,21 @@
       <p><strong>The existence of evil does not disprove God.</strong> Moral evil flows from the free will that makes genuine love possible. Natural evil may serve purposes we can't fully see from our limited vantage point. And ironically, calling something "truly evil" already assumes an objective moral standard — which points back toward God.</p>
     </div>
     <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;">
-      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('resurrection')">← Lesson 11: Resurrection</button>
+      <button class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);" onclick="showLesson('resurrection')">← Lesson 7: Resurrection</button>
       <button class="btn-primary" onclick="showPage('lessons')">← All Lessons</button>
+    </div>
+
+    <!-- GO DEEPER -->
+    <div class="ttb-block reveal">
+      <div class="ttb-label">GO DEEPER</div>
+      <div class="ttb-inner">
+        <div class="ttb-text">
+          <h3 class="ttb-title">Ready for more? Try the <em>Grades 9–12</em> track.</h3>
+          <p class="ttb-desc">The Advanced track covers everything you just learned — and goes much further. Formal philosophy, peer-reviewed science, the origin of life, DNA, molecular machines, quantum physics, and more. 13 lessons that prepare you for any challenge.</p>
+          <a href="#" onclick="showPage('lessons-advanced');return false;" class="ttb-link">Start Grades 9–12 →</a>
+        </div>
+        <div class="ttb-logo-area" style="font-size:2rem;">🔬</div>
+      </div>
     </div>
 
     <!-- CONTINUE YOUR JOURNEY -->
@@ -3590,9 +4163,10 @@
     <p>So I built this site. Not because I'm a theologian or a philosopher or a scientist. I'm just a parent who realized — too late for my own comfort, but maybe not too late for someone else's kids — that we have been sending our children into an intellectually hostile world with nothing but feelings and memory verses. And feelings don't survive a first-year philosophy class.</p>
     <p>This curriculum is what I wish someone had given me when my kids were 11. It's free because this isn't about money. It's about making sure the next generation can answer the question: <em>Why do you believe?</em></p>
 
-    <h2>Two Tracks, One Mission</h2>
-    <p>The <strong>Grades 6–8 track</strong> uses everyday analogies, simple step-by-step arguments, and plain language to introduce core apologetics topics — cosmological reasoning, moral arguments, manuscript evidence, archaeology, and the resurrection. No jargon. No prerequisites. 8 lessons.</p>
-    <p>The <strong>Grades 9–12 track</strong> goes deeper. 13 lessons engaging formal philosophical arguments, primary historical sources, peer-reviewed scientific evidence, and advanced topics including the origin of life, DNA as information, molecular machines, quantum physics, and consciousness. These lessons prepare students for the intellectual challenges they will face in college and beyond.</p>
+    <h2>Three Tracks, One Mission</h2>
+    <p>The <strong>Grades 3–5 Explorer track</strong> uses wonder, stories, and simple questions to introduce the biggest ideas — a Creator, right and wrong, the Bible's evidence, the real Jesus, the resurrection, and hard questions about suffering. 6 lessons designed for young minds. Warm, concrete, and age-appropriate.</p>
+    <p>The <strong>Grades 6–8 Foundations track</strong> uses everyday analogies, simple step-by-step arguments, and plain language to introduce core apologetics topics — cosmological reasoning, moral arguments, manuscript evidence, archaeology, and the resurrection. No jargon. No prerequisites. 8 lessons.</p>
+    <p>The <strong>Grades 9–12 Advanced track</strong> goes deeper. 13 lessons engaging formal philosophical arguments, primary historical sources, peer-reviewed scientific evidence, and advanced topics including the origin of life, DNA as information, molecular machines, quantum physics, and consciousness. These lessons prepare students for the intellectual challenges they will face in college and beyond.</p>
 
     <h2>What is Apologetics?</h2>
     <p>The word <em>apologetics</em> comes from the Greek word <em>apologia</em> — meaning "a defense" or "a reasoned answer." It doesn't mean apologizing for your faith. It means being able to give thoughtful reasons for what you believe.</p>
@@ -3660,6 +4234,7 @@
     <p>This curriculum is designed to answer <em>why</em> Christianity is reasonable. But apologetics is just the doorway — the life of faith goes much deeper. Once you've worked through these lessons, a wonderful next step is <a href="https://ttb.org" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,146,42,0.4);">Thru the Bible with J. Vernon McGee</a> — a free, verse-by-verse study of the entire Bible available in over 100 languages at <strong>ttb.org</strong>.</p>
 
     <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+      <button class="btn-primary" onclick="showPage('lessons-explorer')" style="background:#52b788;color:#1b4332;">Grades 3–5 →</button>
       <button class="btn-primary" onclick="showPage('lessons')">Grades 6–8 →</button>
       <button class="btn-primary" onclick="showPage('lessons-advanced')" style="background:#4a90d9;">Grades 9–12 →</button>
       <a href="https://ttb.org" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="color:var(--navy);border-color:var(--navy-mid);border:1px solid;padding:0.85rem 2rem;border-radius:4px;font-family:'Source Serif 4',serif;font-size:1rem;text-decoration:none;transition:all 0.2s;">Visit ttb.org →</a>
@@ -3763,6 +4338,43 @@ function answer(btn, id, correct) {
   fb.className = `quiz-feedback show ${correct ? 'correct-fb' : 'wrong-fb'}`;
 }
 
+// ── EXPLORER QUIZ (Grades 3-5) ──
+const expCorrectFeedback = [
+  "✓ That's right! If everything that starts existing has a maker, and the universe started existing, then the universe must have a maker — someone incredibly powerful.",
+  "✓ That's right! The fact that everyone, everywhere has a sense of right and wrong — like a compass pointing to goodness — is evidence that God put it there.",
+  "✓ That's right! The Bible has way more copies, way closer to the originals, than any other ancient book — and archaeologists keep confirming what it describes.",
+  "✓ That's right! When even people who didn't like Jesus confirmed he was real, that's especially strong evidence — because they had no reason to help the Christian story.",
+  "✓ That's right! People die for things they believe are true — but they don't die for things they know are lies. The disciples were in a position to know, and they never took it back.",
+  "✓ That's right! God gave us the freedom to choose — because real love and real goodness only count if you could have chosen not to. Freedom means people can also choose wrong."
+];
+const expWrongFeedback = [
+  "Not quite. Think about it: if a bicycle needs someone to make it, and a butterfly is way more complicated than a bicycle, what does the universe need?",
+  "Think again. If right and wrong were just made up, anyone could change them. But you know some things are really, truly wrong — no matter what anyone says. Where does that come from?",
+  "Think about the numbers: 5,800 copies of the Bible vs. 10 copies of Caesar's writings. Which one has more evidence behind it?",
+  "Think about the 'enemy rule.' If someone who doesn't like you still says something true about you, is that more or less believable than a friend saying it?",
+  "Think carefully: would you get in trouble — serious trouble — for something you knew was made up? The disciples did exactly that and never changed their story.",
+  "Think about it this way: if God made us like robots who could only be good, would our goodness mean anything? Would our love be real?"
+];
+
+let expAnswered = [false,false,false,false,false,false];
+
+function answerExp(btn, id, correct) {
+  const idx = parseInt(id.replace('qe',''))-1;
+  if(expAnswered[idx]) return;
+  expAnswered[idx] = true;
+  const opts = document.querySelectorAll(`#${id}-options .quiz-option`);
+  opts.forEach(o => { o.disabled = true; });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  if(!correct) {
+    opts.forEach(o => {
+      if(o.onclick.toString().includes(', true)')) o.classList.add('correct');
+    });
+  }
+  const fb = document.getElementById(`${id}-feedback`);
+  fb.textContent = correct ? expCorrectFeedback[idx] : expWrongFeedback[idx];
+  fb.className = `quiz-feedback show ${correct ? 'correct-fb' : 'wrong-fb'}`;
+}
+
 // ── ADVANCED QUIZ ──
 const advCorrectFeedback = [
   "✓ Correct! A timeless mechanistic cause would produce its effect from eternity. Only a personal agent with free will can choose to create at a finite moment — producing a temporal effect from a timeless state.",
@@ -3838,7 +4450,7 @@ triggerReveal();
   <div class="footer-inner">
     <div class="footer-left">
       <div class="footer-logo">Why Believe?</div>
-      <div class="footer-tagline">Free apologetics curriculum · Grades 6–12</div>
+      <div class="footer-tagline">Free apologetics curriculum · Grades 3–12</div>
       <div class="footer-free">
         <span class="free-badge">100% FREE</span>
         No account. No cost. No catch. Share it freely.
